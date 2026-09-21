@@ -1,0 +1,4 @@
+'use client';
+/* eslint-disable @next/next/no-img-element -- Local poster is precompressed and sized at export. */
+import {useState} from 'react';
+export function GarmentFilm(){const [playing,setPlaying]=useState(false);return <div className="garment-film">{playing?<video controls playsInline muted preload="metadata" poster="/media/olive-motion-poster.webp" width={720} height={1280} aria-label="Eight-second film showing the olive-gold suit and dupatta"><source src="/media/olive-motion.mp4" type="video/mp4"/>Your browser cannot play this film.</video>:<button type="button" onClick={()=>setPlaying(true)} aria-label="Load the olive-gold garment film"><img src="/media/olive-motion-poster.webp" alt="Olive-gold suit with the sheer dupatta draped over the head" width={720} height={1280} loading="lazy"/><span>View the garment film <span aria-hidden="true">▷</span></span></button>}</div>;}

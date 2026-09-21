@@ -1,0 +1,68 @@
+[
+  {
+    "id": "olive-hero",
+    "source": "2026-09-18/C0094.MP4",
+    "driveId": "1TJh8PuuksZ82yKUENFbA1mFCJctJEOE-",
+    "start": 10.5,
+    "duration": 8,
+    "audio": false,
+    "processing": "Portrait orientation restored, full frame retained, H.264 CRF26, 25fps, no colour changes.",
+    "poster": "/media/olive-hero-poster.webp",
+    "outputs": [
+      {
+        "src": "/media/olive-hero-480.mp4",
+        "width": 480,
+        "bytes": 1143428
+      },
+      {
+        "src": "/media/olive-hero-720.mp4",
+        "width": 720,
+        "bytes": 2373782
+      }
+    ]
+  },
+  {
+    "id": "fuchsia-walk",
+    "source": "2026-09-17/C0028.MP4",
+    "driveId": "1GENHGOFHIWV8ZVDL6nj4Nm4MCrqQb4RF",
+    "start": 1,
+    "duration": 6,
+    "audio": false,
+    "processing": "Portrait orientation restored, full frame retained, H.264 CRF26, 25fps, no colour changes.",
+    "poster": "/media/fuchsia-walk-poster.webp",
+    "outputs": [
+      {
+        "src": "/media/fuchsia-walk-480.mp4",
+        "width": 480,
+        "bytes": 1215487
+      },
+      {
+        "src": "/media/fuchsia-walk-720.mp4",
+        "width": 720,
+        "bytes": 2159878
+      }
+    ]
+  },
+  {
+    "id": "olive-drape",
+    "source": "2026-09-18/C0104.MP4",
+    "driveId": "1rHXWkwvOIgqfrJr-7x34jdamKmGOXl4G",
+    "start": 0.3,
+    "duration": 4.5,
+    "audio": false,
+    "processing": "Portrait orientation restored, full frame retained, H.264 CRF26, 25fps, no colour changes.",
+    "poster": "/media/olive-drape-poster.webp",
+    "outputs": [
+      {
+        "src": "/media/olive-drape-480.mp4",
+        "width": 480,
+        "bytes": 647815
+      },
+      {
+        "src": "/media/olive-drape-720.mp4",
+        "width": 720,
+        "bytes": 1336995
+      }
+    ]
+  }
+]

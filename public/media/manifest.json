@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "dsc06962",
+    "original": "2026-09-17/DSC06962.ARW",
+    "driveId": "1xh9U6XbTEqXaNfJ3EKqtYmNiF5A3dOp7",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc06962-320.webp",
+        "width": 320,
+        "bytes": 29886
+      },
+      {
+        "path": "/media/dsc06962-320.avif",
+        "width": 320,
+        "bytes": 20039
+      },
+      {
+        "path": "/media/dsc06962-480.webp",
+        "width": 480,
+        "bytes": 61206
+      },
+      {
+        "path": "/media/dsc06962-480.avif",
+        "width": 480,
+        "bytes": 40749
+      },
+      {
+        "path": "/media/dsc06962-640.webp",
+        "width": 640,
+        "bytes": 95046
+      },
+      {
+        "path": "/media/dsc06962-640.avif",
+        "width": 640,
+        "bytes": 65292
+      },
+      {
+        "path": "/media/dsc06962-800.webp",
+        "width": 800,
+        "bytes": 136026
+      },
+      {
+        "path": "/media/dsc06962-800.avif",
+        "width": 800,
+        "bytes": 91682
+      },
+      {
+        "path": "/media/dsc06962-1080.webp",
+        "width": 1080,
+        "bytes": 229052
+      },
+      {
+        "path": "/media/dsc06962-1080.avif",
+        "width": 1080,
+        "bytes": 151346
+      },
+      {
+        "path": "/media/dsc06962-1600.webp",
+        "width": 1600,
+        "bytes": 414038
+      },
+      {
+        "path": "/media/dsc06962-1600.avif",
+        "width": 1600,
+        "bytes": 274844
+      },
+      {
+        "path": "/media/dsc06962-2400.webp",
+        "width": 2400,
+        "bytes": 761352
+      },
+      {
+        "path": "/media/dsc06962-2400.avif",
+        "width": 2400,
+        "bytes": 504291
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAwL/xAAlEAACAQQCAgAHAAAAAAAAAAABAhEAAwQSE1EhMRQiQWFxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADAAT/xAAbEQACAwADAAAAAAAAAAAAAAAAAQIDERMhQv/aAAwDAQACEQMRAD8A4Sz7wLhtcm2gVjJJ/VTXuJj5HGSranwV8irORkIqXX4lLtPzajae57qNlXBOnHbtmIkL7+9DCD9D0UqevNMfiQpOxYEmYBiKKXcIjam6GI+sUUxtShnSLuSZWA5AqVkkXbpImeqsPqzbOis3ZFZnQkygP5FRhqv41glbwLQQbBWJ8kkUU4b5n0v8FFQLnJvdP//Z"
+  },
+  {
+    "id": "dsc06963",
+    "original": "2026-09-17/DSC06963.ARW",
+    "driveId": "1Tjm8JUVsLAggoBZPxpKYggRHoBQNicPh",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc06963-320.webp",
+        "width": 320,
+        "bytes": 28306
+      },
+      {
+        "path": "/media/dsc06963-320.avif",
+        "width": 320,
+        "bytes": 20151
+      },
+      {
+        "path": "/media/dsc06963-480.webp",
+        "width": 480,
+        "bytes": 53542
+      },
+      {
+        "path": "/media/dsc06963-480.avif",
+        "width": 480,
+        "bytes": 37698
+      },
+      {
+        "path": "/media/dsc06963-640.webp",
+        "width": 640,
+        "bytes": 81422
+      },
+      {
+        "path": "/media/dsc06963-640.avif",
+        "width": 640,
+        "bytes": 57780
+      },
+      {
+        "path": "/media/dsc06963-800.webp",
+        "width": 800,
+        "bytes": 113704
+      },
+      {
+        "path": "/media/dsc06963-800.avif",
+        "width": 800,
+        "bytes": 78147
+      },
+      {
+        "path": "/media/dsc06963-1080.webp",
+        "width": 1080,
+        "bytes": 185256
+      },
+      {
+        "path": "/media/dsc06963-1080.avif",
+        "width": 1080,
+        "bytes": 125080
+      },
+      {
+        "path": "/media/dsc06963-1600.webp",
+        "width": 1600,
+        "bytes": 328436
+      },
+      {
+        "path": "/media/dsc06963-1600.avif",
+        "width": 1600,
+        "bytes": 220076
+      },
+      {
+        "path": "/media/dsc06963-2400.webp",
+        "width": 2400,
+        "bytes": 559184
+      },
+      {
+        "path": "/media/dsc06963-2400.avif",
+        "width": 2400,
+        "bytes": 388691
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAQFAQID/8QAJhAAAgEDAwMEAwAAAAAAAAAAAQIDABESBCFBExRhIjFCUVKx0f/EABcBAAMBAAAAAAAAAAAAAAAAAAADBQH/xAAcEQACAgIDAAAAAAAAAAAAAAAAAQIRAyESQVH/2gAMAwEAAhEDEQA/AJeshVZgxYKpG1xc/VatA6DulMYRSFJC7jzVDVBZtJ3YmiOJxBsbk+DSseqVMMTYHduaTB8lo3HilPoFeYi8T5r+QHvRSsutCSMElKi5NlA/lFFC3of12phmc9SM4DZApsqnnbzUyQEglQixjjL2NdpnZoXv8m/VKRxdV7MTiOPunVRTi1DGn4Z6ELgN6vVud6KYWJEFrXHF+KKKJ0qbP//Z"
+  },
+  {
+    "id": "dsc06967",
+    "original": "2026-09-17/DSC06967.ARW",
+    "driveId": "18av2qhhqCixB3B8k_GLB7iD7vwT2jWyg",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc06967-320.webp",
+        "width": 320,
+        "bytes": 44144
+      },
+      {
+        "path": "/media/dsc06967-320.avif",
+        "width": 320,
+        "bytes": 27770
+      },
+      {
+        "path": "/media/dsc06967-480.webp",
+        "width": 480,
+        "bytes": 89098
+      },
+      {
+        "path": "/media/dsc06967-480.avif",
+        "width": 480,
+        "bytes": 56474
+      },
+      {
+        "path": "/media/dsc06967-640.webp",
+        "width": 640,
+        "bytes": 137528
+      },
+      {
+        "path": "/media/dsc06967-640.avif",
+        "width": 640,
+        "bytes": 89136
+      },
+      {
+        "path": "/media/dsc06967-800.webp",
+        "width": 800,
+        "bytes": 190296
+      },
+      {
+        "path": "/media/dsc06967-800.avif",
+        "width": 800,
+        "bytes": 124318
+      },
+      {
+        "path": "/media/dsc06967-1080.webp",
+        "width": 1080,
+        "bytes": 302932
+      },
+      {
+        "path": "/media/dsc06967-1080.avif",
+        "width": 1080,
+        "bytes": 202186
+      },
+      {
+        "path": "/media/dsc06967-1600.webp",
+        "width": 1600,
+        "bytes": 541734
+      },
+      {
+        "path": "/media/dsc06967-1600.avif",
+        "width": 1600,
+        "bytes": 364479
+      },
+      {
+        "path": "/media/dsc06967-2400.webp",
+        "width": 2400,
+        "bytes": 934308
+      },
+      {
+        "path": "/media/dsc06967-2400.avif",
+        "width": 2400,
+        "bytes": 641932
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQCAwUG/8QAJRAAAgICAQIGAwAAAAAAAAAAAQIAAxEhBEFRBRITIjEyUnGB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAcEQADAQACAwAAAAAAAAAAAAAAARECAxMhQVH/2gAMAwEAAhEDEQA/AEAfToLGweZvy2YkbbBuwkr27xZbSwCKcE6GTHHJIrZMg1jy73n9yUnkKy2m/hWtuvsf5CVWUOXJ9oHT3QjqAVtwrF2D8SfIY+gMZyDmbfB8Obn2FA4RV+T1k+f4PTxiBXY7HqWHeT7FYy/FqZeX7OZFuQMvjGsQmg/CAY6WEVRI/9k="
+  },
+  {
+    "id": "dsc06973",
+    "original": "2026-09-17/DSC06973.ARW",
+    "driveId": "1OEklGYDr8yz9-Cvkzob7eNtX9OvWfXM0",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc06973-320.webp",
+        "width": 320,
+        "bytes": 24836
+      },
+      {
+        "path": "/media/dsc06973-320.avif",
+        "width": 320,
+        "bytes": 18190
+      },
+      {
+        "path": "/media/dsc06973-480.webp",
+        "width": 480,
+        "bytes": 45998
+      },
+      {
+        "path": "/media/dsc06973-480.avif",
+        "width": 480,
+        "bytes": 34273
+      },
+      {
+        "path": "/media/dsc06973-640.webp",
+        "width": 640,
+        "bytes": 69364
+      },
+      {
+        "path": "/media/dsc06973-640.avif",
+        "width": 640,
+        "bytes": 50754
+      },
+      {
+        "path": "/media/dsc06973-800.webp",
+        "width": 800,
+        "bytes": 94270
+      },
+      {
+        "path": "/media/dsc06973-800.avif",
+        "width": 800,
+        "bytes": 68881
+      },
+      {
+        "path": "/media/dsc06973-1080.webp",
+        "width": 1080,
+        "bytes": 146732
+      },
+      {
+        "path": "/media/dsc06973-1080.avif",
+        "width": 1080,
+        "bytes": 105705
+      },
+      {
+        "path": "/media/dsc06973-1600.webp",
+        "width": 1600,
+        "bytes": 247132
+      },
+      {
+        "path": "/media/dsc06973-1600.avif",
+        "width": 1600,
+        "bytes": 178149
+      },
+      {
+        "path": "/media/dsc06973-2400.webp",
+        "width": 2400,
+        "bytes": 401790
+      },
+      {
+        "path": "/media/dsc06973-2400.avif",
+        "width": 2400,
+        "bytes": 304578
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEAv/EACMQAAICAgIBBAMAAAAAAAAAAAECAAMREgQhMRMiQXEyYqH/xAAYAQACAwAAAAAAAAAAAAAAAAACBAABA//EABsRAQADAQADAAAAAAAAAAAAAAEAAhEDBCJh/9oADAMBAAIRAxEAPwCVUNtoG1K2uQuzIT/RN82tONZZi7Zj2GAxk/JxIcPbQq1kKUIOngnr4iL9yTs3u8HJzAAm3DkWrs0tfGUYvsYv+sIs8cW4YOB12CYSm32L2rlkiKLGsD5Y9AHuM22IOfIzI6/xaPRuh9QgyO+OYDC0+84P3CTXufWbEJMitz2Z/9k="
+  },
+  {
+    "id": "dsc07018",
+    "original": "2026-09-18/DSC07018.ARW",
+    "driveId": "1SsSOnypk7ny3MqlQmOgol3q1j8VdQyfj",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07018-320.webp",
+        "width": 320,
+        "bytes": 26528
+      },
+      {
+        "path": "/media/dsc07018-320.avif",
+        "width": 320,
+        "bytes": 17166
+      },
+      {
+        "path": "/media/dsc07018-480.webp",
+        "width": 480,
+        "bytes": 48694
+      },
+      {
+        "path": "/media/dsc07018-480.avif",
+        "width": 480,
+        "bytes": 33368
+      },
+      {
+        "path": "/media/dsc07018-640.webp",
+        "width": 640,
+        "bytes": 73820
+      },
+      {
+        "path": "/media/dsc07018-640.avif",
+        "width": 640,
+        "bytes": 51116
+      },
+      {
+        "path": "/media/dsc07018-800.webp",
+        "width": 800,
+        "bytes": 100770
+      },
+      {
+        "path": "/media/dsc07018-800.avif",
+        "width": 800,
+        "bytes": 71387
+      },
+      {
+        "path": "/media/dsc07018-1080.webp",
+        "width": 1080,
+        "bytes": 164518
+      },
+      {
+        "path": "/media/dsc07018-1080.avif",
+        "width": 1080,
+        "bytes": 114910
+      },
+      {
+        "path": "/media/dsc07018-1600.webp",
+        "width": 1600,
+        "bytes": 305990
+      },
+      {
+        "path": "/media/dsc07018-1600.avif",
+        "width": 1600,
+        "bytes": 212248
+      },
+      {
+        "path": "/media/dsc07018-2400.webp",
+        "width": 2400,
+        "bytes": 561148
+      },
+      {
+        "path": "/media/dsc07018-2400.avif",
+        "width": 2400,
+        "bytes": 406832
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAMEBQECBv/EACgQAAIBAwIFAwUAAAAAAAAAAAECAwAEERIhBRMiMVEGI4EUQmFisf/EABYBAQEBAAAAAAAAAAAAAAAAAAACAf/EABgRAQEBAQEAAAAAAAAAAAAAAAARASFB/9oADAMBAAIRAxEAPwDezLyem5xgFFnznO4yP5TGRZPS6kOdSTnpz5/FItNKWTwbLzCpPUdiBvtUeO9nW4lIJWLSfbPYkHuPisTV/wDTQ3dtayaoiRAqn2+xHzRXNrxIuoPPEf6htNFVU9RXnKlgHC+MGkyTSMVbmZ6CMiszTEEvGiIR4FSII5XXqkAA8Cs8M5qmkm3AKg4GM4oq3n4XFLJqkll1EfaaKQr/2Q=="
+  },
+  {
+    "id": "dsc07024",
+    "original": "2026-09-18/DSC07024.ARW",
+    "driveId": "1mAzCxYCVfg8n2UkpeySCByeQ7diR-0ix",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07024-320.webp",
+        "width": 320,
+        "bytes": 37122
+      },
+      {
+        "path": "/media/dsc07024-320.avif",
+        "width": 320,
+        "bytes": 23481
+      },
+      {
+        "path": "/media/dsc07024-480.webp",
+        "width": 480,
+        "bytes": 74600
+      },
+      {
+        "path": "/media/dsc07024-480.avif",
+        "width": 480,
+        "bytes": 47104
+      },
+      {
+        "path": "/media/dsc07024-640.webp",
+        "width": 640,
+        "bytes": 121734
+      },
+      {
+        "path": "/media/dsc07024-640.avif",
+        "width": 640,
+        "bytes": 74717
+      },
+      {
+        "path": "/media/dsc07024-800.webp",
+        "width": 800,
+        "bytes": 172028
+      },
+      {
+        "path": "/media/dsc07024-800.avif",
+        "width": 800,
+        "bytes": 104828
+      },
+      {
+        "path": "/media/dsc07024-1080.webp",
+        "width": 1080,
+        "bytes": 285444
+      },
+      {
+        "path": "/media/dsc07024-1080.avif",
+        "width": 1080,
+        "bytes": 174178
+      },
+      {
+        "path": "/media/dsc07024-1600.webp",
+        "width": 1600,
+        "bytes": 530734
+      },
+      {
+        "path": "/media/dsc07024-1600.avif",
+        "width": 1600,
+        "bytes": 328692
+      },
+      {
+        "path": "/media/dsc07024-2400.webp",
+        "width": 2400,
+        "bytes": 1021834
+      },
+      {
+        "path": "/media/dsc07024-2400.avif",
+        "width": 2400,
+        "bytes": 649397
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIDBAUB/8QAJBAAAgICAQQBBQAAAAAAAAAAAQIDEQAEEhMhMUFhBSIygZH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAgH/xAAYEQADAQEAAAAAAAAAAAAAAAAAAREhAv/aAAwDAQACEQMRAD8Ar7Kx7O/sSsGMhXgT6A9V/Mf6LEulMdeO2IVmLEX6x59SU7cr67qVNFkHZh5qsi0xJHO2xLauxKKrAggV5yXNhCsOsJY+Ks6P9oI5JddvGGRopYXyB8e/jDFYhd191dhraFQ/4lqu/wB5mzSPsTS85GbiaBPfLWlBwVCWv3VfGZcuz0d6YFSRlNGcuIV+qjECVAMMlmTVdwx6qkgWBRGGZBp//9k="
+  },
+  {
+    "id": "dsc07025",
+    "original": "2026-09-18/DSC07025.ARW",
+    "driveId": "1duagE0AF1LzFMdO_DWYwK2nzHC69X_QL",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07025-320.webp",
+        "width": 320,
+        "bytes": 21144
+      },
+      {
+        "path": "/media/dsc07025-320.avif",
+        "width": 320,
+        "bytes": 14751
+      },
+      {
+        "path": "/media/dsc07025-480.webp",
+        "width": 480,
+        "bytes": 40900
+      },
+      {
+        "path": "/media/dsc07025-480.avif",
+        "width": 480,
+        "bytes": 28445
+      },
+      {
+        "path": "/media/dsc07025-640.webp",
+        "width": 640,
+        "bytes": 63676
+      },
+      {
+        "path": "/media/dsc07025-640.avif",
+        "width": 640,
+        "bytes": 43750
+      },
+      {
+        "path": "/media/dsc07025-800.webp",
+        "width": 800,
+        "bytes": 90578
+      },
+      {
+        "path": "/media/dsc07025-800.avif",
+        "width": 800,
+        "bytes": 61643
+      },
+      {
+        "path": "/media/dsc07025-1080.webp",
+        "width": 1080,
+        "bytes": 152532
+      },
+      {
+        "path": "/media/dsc07025-1080.avif",
+        "width": 1080,
+        "bytes": 101674
+      },
+      {
+        "path": "/media/dsc07025-1600.webp",
+        "width": 1600,
+        "bytes": 298802
+      },
+      {
+        "path": "/media/dsc07025-1600.avif",
+        "width": 1600,
+        "bytes": 196235
+      },
+      {
+        "path": "/media/dsc07025-2400.webp",
+        "width": 2400,
+        "bytes": 590658
+      },
+      {
+        "path": "/media/dsc07025-2400.avif",
+        "width": 2400,
+        "bytes": 426019
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAABQADAQL/xAAoEAACAQMDAwIHAAAAAAAAAAABAgMABBEFEjETFEEGcSEiMjSRkvD/xAAXAQADAQAAAAAAAAAAAAAAAAABAgMA/8QAGhEAAwADAQAAAAAAAAAAAAAAAAERAiEiEv/aAAwDAQACEQMRAD8A6zLJ6PtCfqDmNfc8Ua8Zhs+icBu4IODngUvAna6bFbqNypNvwwzR2tRyLdIY0AhI3gKOD5pWuaKn00GypN1Gxxn4Zwc1VsWEjFlTAz4qrUME4ruW7YwRgFiVYY/ven9Oggns1Z0DMPlzRGgWThjOWU7QY2XH4Ip2HpwoREm3POPNUS0RyezJ7CzDfbRfpVXp5txziqm8grP/2Q=="
+  },
+  {
+    "id": "dsc07041",
+    "original": "2026-09-18/DSC07041.ARW",
+    "driveId": "1SZ6yDDeji-SAgTFw1ge4qgMM4e5sZMiS",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07041-320.webp",
+        "width": 320,
+        "bytes": 17560
+      },
+      {
+        "path": "/media/dsc07041-320.avif",
+        "width": 320,
+        "bytes": 12870
+      },
+      {
+        "path": "/media/dsc07041-480.webp",
+        "width": 480,
+        "bytes": 37796
+      },
+      {
+        "path": "/media/dsc07041-480.avif",
+        "width": 480,
+        "bytes": 26333
+      },
+      {
+        "path": "/media/dsc07041-640.webp",
+        "width": 640,
+        "bytes": 62606
+      },
+      {
+        "path": "/media/dsc07041-640.avif",
+        "width": 640,
+        "bytes": 43248
+      },
+      {
+        "path": "/media/dsc07041-800.webp",
+        "width": 800,
+        "bytes": 92706
+      },
+      {
+        "path": "/media/dsc07041-800.avif",
+        "width": 800,
+        "bytes": 63440
+      },
+      {
+        "path": "/media/dsc07041-1080.webp",
+        "width": 1080,
+        "bytes": 166866
+      },
+      {
+        "path": "/media/dsc07041-1080.avif",
+        "width": 1080,
+        "bytes": 112309
+      },
+      {
+        "path": "/media/dsc07041-1600.webp",
+        "width": 1600,
+        "bytes": 375044
+      },
+      {
+        "path": "/media/dsc07041-1600.avif",
+        "width": 1600,
+        "bytes": 243453
+      },
+      {
+        "path": "/media/dsc07041-2400.webp",
+        "width": 2400,
+        "bytes": 938050
+      },
+      {
+        "path": "/media/dsc07041-2400.avif",
+        "width": 2400,
+        "bytes": 633348
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUBAwQC/8QAIRAAAgEEAgMBAQAAAAAAAAAAAQIAAxESIQQxBUFRFGH/xAAXAQADAQAAAAAAAAAAAAAAAAABAgME/8QAGREBAAIDAAAAAAAAAAAAAAAAABESAQIh/9oADAMBAAIRAxEAPwBQizorJUdWjfkeOC+PVTVY1KZZgLADY6++pnlYjKi8JBcGEYG7iU0VlqVyMQdIG2x+TdyeUGwJN7ksfcppha4CsMRcWIAvqXfg3k7ZA9W1qCvQztJE1AhyANAwj96FLLo9fyErQl3/2Q=="
+  },
+  {
+    "id": "dsc07046",
+    "original": "2026-09-18/DSC07046.ARW",
+    "driveId": "1nugTdwyfoYtXsn3UPsvRNVpQPkwCRsxB",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07046-320.webp",
+        "width": 320,
+        "bytes": 35112
+      },
+      {
+        "path": "/media/dsc07046-320.avif",
+        "width": 320,
+        "bytes": 23312
+      },
+      {
+        "path": "/media/dsc07046-480.webp",
+        "width": 480,
+        "bytes": 74876
+      },
+      {
+        "path": "/media/dsc07046-480.avif",
+        "width": 480,
+        "bytes": 49645
+      },
+      {
+        "path": "/media/dsc07046-640.webp",
+        "width": 640,
+        "bytes": 125630
+      },
+      {
+        "path": "/media/dsc07046-640.avif",
+        "width": 640,
+        "bytes": 80908
+      },
+      {
+        "path": "/media/dsc07046-800.webp",
+        "width": 800,
+        "bytes": 184086
+      },
+      {
+        "path": "/media/dsc07046-800.avif",
+        "width": 800,
+        "bytes": 118738
+      },
+      {
+        "path": "/media/dsc07046-1080.webp",
+        "width": 1080,
+        "bytes": 334050
+      },
+      {
+        "path": "/media/dsc07046-1080.avif",
+        "width": 1080,
+        "bytes": 207735
+      },
+      {
+        "path": "/media/dsc07046-1600.webp",
+        "width": 1600,
+        "bytes": 707594
+      },
+      {
+        "path": "/media/dsc07046-1600.avif",
+        "width": 1600,
+        "bytes": 434880
+      },
+      {
+        "path": "/media/dsc07046-2400.webp",
+        "width": 2400,
+        "bytes": 1598586
+      },
+      {
+        "path": "/media/dsc07046-2400.avif",
+        "width": 2400,
+        "bytes": 936343
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFAgT/xAAkEAACAQMEAgIDAAAAAAAAAAABAgMABBESITFRBRMiQWFxgf/EABgBAQADAQAAAAAAAAAAAAAAAAEAAgME/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAExEf/aAAwDAQACEQMRAD8Am+PgQ2xLjdzj+VUtyltD60iXA4xtXLZRMbJVhOSPqmNK0QOtRr6rm1rjDRliWPJ5ooUI4zKSG6/FFIO8SjW5immGUVd0J2JPGf11TfKSqLjWI48yYHxGOO657m4Jk9QGFU4qVcSytONUrMq7qDUkPVB9TkMhIBHGaKxDNhMEcGilV//Z"
+  },
+  {
+    "id": "dsc07051",
+    "original": "2026-09-18/DSC07051.ARW",
+    "driveId": "1tN7LkC0-REL-gaAhqd_ZVQY4X9MfljuX",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07051-320.webp",
+        "width": 320,
+        "bytes": 20950
+      },
+      {
+        "path": "/media/dsc07051-320.avif",
+        "width": 320,
+        "bytes": 15003
+      },
+      {
+        "path": "/media/dsc07051-480.webp",
+        "width": 480,
+        "bytes": 43996
+      },
+      {
+        "path": "/media/dsc07051-480.avif",
+        "width": 480,
+        "bytes": 30675
+      },
+      {
+        "path": "/media/dsc07051-640.webp",
+        "width": 640,
+        "bytes": 70970
+      },
+      {
+        "path": "/media/dsc07051-640.avif",
+        "width": 640,
+        "bytes": 48057
+      },
+      {
+        "path": "/media/dsc07051-800.webp",
+        "width": 800,
+        "bytes": 100368
+      },
+      {
+        "path": "/media/dsc07051-800.avif",
+        "width": 800,
+        "bytes": 69240
+      },
+      {
+        "path": "/media/dsc07051-1080.webp",
+        "width": 1080,
+        "bytes": 171376
+      },
+      {
+        "path": "/media/dsc07051-1080.avif",
+        "width": 1080,
+        "bytes": 116972
+      },
+      {
+        "path": "/media/dsc07051-1600.webp",
+        "width": 1600,
+        "bytes": 349574
+      },
+      {
+        "path": "/media/dsc07051-1600.avif",
+        "width": 1600,
+        "bytes": 235978
+      },
+      {
+        "path": "/media/dsc07051-2400.webp",
+        "width": 2400,
+        "bytes": 812838
+      },
+      {
+        "path": "/media/dsc07051-2400.avif",
+        "width": 2400,
+        "bytes": 575830
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUCAwT/xAAmEAACAgIBAwIHAAAAAAAAAAABAgADBBEhBRIxIlITMkFRkaHw/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIDAP/EABcRAQEBAQAAAAAAAAAAAAAAAAARASH/2gAMAwEAAhEDEQA/AEiCTsretK3ZNJaCUbY51J4tLZFq1rwT9fsI1yOl92Fjo2UxeoeO3Q/tSF6sREcwhZtHZW4IOjCEDHo4Vrb92BGWra7BI8xlfkn4BKHu3pdnjzMqhcXHFKD1N6nb3Smy0ivjx3c/mLOtusHU0AzXIPzAH9QltqiwqT7RCPC1/9k="
+  },
+  {
+    "id": "dsc07053",
+    "original": "2026-09-18/DSC07053.ARW",
+    "driveId": "1KGvh73MVI8DUc-0WbSQYJDkuaAWgQZoG",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07053-320.webp",
+        "width": 320,
+        "bytes": 20740
+      },
+      {
+        "path": "/media/dsc07053-320.avif",
+        "width": 320,
+        "bytes": 14346
+      },
+      {
+        "path": "/media/dsc07053-480.webp",
+        "width": 480,
+        "bytes": 44858
+      },
+      {
+        "path": "/media/dsc07053-480.avif",
+        "width": 480,
+        "bytes": 30544
+      },
+      {
+        "path": "/media/dsc07053-640.webp",
+        "width": 640,
+        "bytes": 76382
+      },
+      {
+        "path": "/media/dsc07053-640.avif",
+        "width": 640,
+        "bytes": 50945
+      },
+      {
+        "path": "/media/dsc07053-800.webp",
+        "width": 800,
+        "bytes": 113062
+      },
+      {
+        "path": "/media/dsc07053-800.avif",
+        "width": 800,
+        "bytes": 76325
+      },
+      {
+        "path": "/media/dsc07053-1080.webp",
+        "width": 1080,
+        "bytes": 211928
+      },
+      {
+        "path": "/media/dsc07053-1080.avif",
+        "width": 1080,
+        "bytes": 139817
+      },
+      {
+        "path": "/media/dsc07053-1600.webp",
+        "width": 1600,
+        "bytes": 493794
+      },
+      {
+        "path": "/media/dsc07053-1600.avif",
+        "width": 1600,
+        "bytes": 315824
+      },
+      {
+        "path": "/media/dsc07053-2400.webp",
+        "width": 2400,
+        "bytes": 1225040
+      },
+      {
+        "path": "/media/dsc07053-2400.avif",
+        "width": 2400,
+        "bytes": 797423
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAUBBAIDBv/EACgQAAIBAwMDAgcAAAAAAAAAAAECEQADBAUhQRMxYRJRBhQygZHR4f/EABcBAAMBAAAAAAAAAAAAAAAAAAECAwT/xAAYEQEAAwEAAAAAAAAAAAAAAAAAAQISIf/aAAwDAQACEQMRAD8AWhR6Zqcm10LjI/BgGCJ81e0wKuQGaO4UDyf5NHxAvrs9QH6HEA+3b9VnierTwqK70VgjyoopwdXmKE091s46p01JnbjkczSXLu/NYgHcsQSPPNb7unZBRpydoJjf8VZs6atnGkMGYbywpa0C1iRcJ49qKfKFjdF+woquCbf/2Q=="
+  },
+  {
+    "id": "dsc07072",
+    "original": "2026-09-18/DSC07072.ARW",
+    "driveId": "1IN7OhrHLdeeCagz3EctkZJXtomRRb8Kk",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07072-320.webp",
+        "width": 320,
+        "bytes": 29178
+      },
+      {
+        "path": "/media/dsc07072-320.avif",
+        "width": 320,
+        "bytes": 19017
+      },
+      {
+        "path": "/media/dsc07072-480.webp",
+        "width": 480,
+        "bytes": 60106
+      },
+      {
+        "path": "/media/dsc07072-480.avif",
+        "width": 480,
+        "bytes": 39584
+      },
+      {
+        "path": "/media/dsc07072-640.webp",
+        "width": 640,
+        "bytes": 98918
+      },
+      {
+        "path": "/media/dsc07072-640.avif",
+        "width": 640,
+        "bytes": 63825
+      },
+      {
+        "path": "/media/dsc07072-800.webp",
+        "width": 800,
+        "bytes": 142524
+      },
+      {
+        "path": "/media/dsc07072-800.avif",
+        "width": 800,
+        "bytes": 91615
+      },
+      {
+        "path": "/media/dsc07072-1080.webp",
+        "width": 1080,
+        "bytes": 247782
+      },
+      {
+        "path": "/media/dsc07072-1080.avif",
+        "width": 1080,
+        "bytes": 155264
+      },
+      {
+        "path": "/media/dsc07072-1600.webp",
+        "width": 1600,
+        "bytes": 480044
+      },
+      {
+        "path": "/media/dsc07072-1600.avif",
+        "width": 1600,
+        "bytes": 301485
+      },
+      {
+        "path": "/media/dsc07072-2400.webp",
+        "width": 2400,
+        "bytes": 987970
+      },
+      {
+        "path": "/media/dsc07072-2400.avif",
+        "width": 2400,
+        "bytes": 626886
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFBAL/xAAmEAACAgIBAwIHAAAAAAAAAAABAgMRACEEEjFBBVETFSMyUmGB/8QAGAEAAgMAAAAAAAAAAAAAAAAAAAIBAwT/xAAXEQEBAQEAAAAAAAAAAAAAAAAAAREC/9oADAMBAAIRAxEAPwCrwPS+udWZdKO2VOPNxp55ePC9yRdwQRY7WPcXrDhTqjspHcA2TVZEMkXB9RaaDTNIx21mibIH6vM+mzVx+MC21BwxkXJSWMOD3wySoHxLVSp8jXV4zG5jmnYll6AdLdb8Yj5gZYzGgZD+X3Z1DNUZiDNs6JA8YXnFksp7SSWfqlR7KLwzJJymjbps/wAwwD//2Q=="
+  },
+  {
+    "id": "dsc07085",
+    "original": "2026-09-18/DSC07085.ARW",
+    "driveId": "12GCfbenwNtMdGmKrzH4JrVAi9HO9vN6w",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07085-320.webp",
+        "width": 320,
+        "bytes": 23478
+      },
+      {
+        "path": "/media/dsc07085-320.avif",
+        "width": 320,
+        "bytes": 15945
+      },
+      {
+        "path": "/media/dsc07085-480.webp",
+        "width": 480,
+        "bytes": 47512
+      },
+      {
+        "path": "/media/dsc07085-480.avif",
+        "width": 480,
+        "bytes": 32166
+      },
+      {
+        "path": "/media/dsc07085-640.webp",
+        "width": 640,
+        "bytes": 75076
+      },
+      {
+        "path": "/media/dsc07085-640.avif",
+        "width": 640,
+        "bytes": 51136
+      },
+      {
+        "path": "/media/dsc07085-800.webp",
+        "width": 800,
+        "bytes": 106762
+      },
+      {
+        "path": "/media/dsc07085-800.avif",
+        "width": 800,
+        "bytes": 73078
+      },
+      {
+        "path": "/media/dsc07085-1080.webp",
+        "width": 1080,
+        "bytes": 181784
+      },
+      {
+        "path": "/media/dsc07085-1080.avif",
+        "width": 1080,
+        "bytes": 123757
+      },
+      {
+        "path": "/media/dsc07085-1600.webp",
+        "width": 1600,
+        "bytes": 356016
+      },
+      {
+        "path": "/media/dsc07085-1600.avif",
+        "width": 1600,
+        "bytes": 242832
+      },
+      {
+        "path": "/media/dsc07085-2400.webp",
+        "width": 2400,
+        "bytes": 753904
+      },
+      {
+        "path": "/media/dsc07085-2400.avif",
+        "width": 2400,
+        "bytes": 520803
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGQAAAwADAAAAAAAAAAAAAAAAAAMEAgUG/8QAJRAAAgEDBAIBBQAAAAAAAAAAAQIDAAQRBRIhMSJRYRMjQXGR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgMA/8QAGREAAwADAAAAAAAAAAAAAAAAAAERAyFB/9oADAMBAAIRAxEAPwDoEiR0VlHBFS3lsuOqXHLLpukiKMiScKdvI9/PdZ3GoRlAJMh8dAZzULBpU0r243niinyXEAchpY1PosAaK1LrHok1GWKW2d2Du+3CN0Af174pdtdqNEeSQ7mDnBb4/GaU8gYHEa4wR5EnilRJ9mJM+KKRtA4Oef7W4SJr2H69wX2luO6KbIwjbbz1RSTYYf/Z"
+  },
+  {
+    "id": "dsc07089",
+    "original": "2026-09-18/DSC07089.ARW",
+    "driveId": "10oxnA_yEMLv92uiPQKC4ZpGkeOl6VKia",
+    "width": 4024,
+    "height": 6024,
+    "processing": "LibRaw via rawpy, camera white balance, sRGB, auto exposure; no hue or saturation grading",
+    "outputs": [
+      {
+        "path": "/media/dsc07089-320.webp",
+        "width": 320,
+        "bytes": 32194
+      },
+      {
+        "path": "/media/dsc07089-320.avif",
+        "width": 320,
+        "bytes": 21636
+      },
+      {
+        "path": "/media/dsc07089-480.webp",
+        "width": 480,
+        "bytes": 67706
+      },
+      {
+        "path": "/media/dsc07089-480.avif",
+        "width": 480,
+        "bytes": 45097
+      },
+      {
+        "path": "/media/dsc07089-640.webp",
+        "width": 640,
+        "bytes": 110726
+      },
+      {
+        "path": "/media/dsc07089-640.avif",
+        "width": 640,
+        "bytes": 71881
+      },
+      {
+        "path": "/media/dsc07089-800.webp",
+        "width": 800,
+        "bytes": 161134
+      },
+      {
+        "path": "/media/dsc07089-800.avif",
+        "width": 800,
+        "bytes": 103513
+      },
+      {
+        "path": "/media/dsc07089-1080.webp",
+        "width": 1080,
+        "bytes": 274572
+      },
+      {
+        "path": "/media/dsc07089-1080.avif",
+        "width": 1080,
+        "bytes": 173851
+      },
+      {
+        "path": "/media/dsc07089-1600.webp",
+        "width": 1600,
+        "bytes": 533808
+      },
+      {
+        "path": "/media/dsc07089-1600.avif",
+        "width": 1600,
+        "bytes": 336563
+      },
+      {
+        "path": "/media/dsc07089-2400.webp",
+        "width": 2400,
+        "bytes": 1039342
+      },
+      {
+        "path": "/media/dsc07089-2400.avif",
+        "width": 2400,
+        "bytes": 675171
+      }
+    ],
+    "blurDataURL": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAAeABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQDBQECBv/EACUQAAIBBAEDBAMAAAAAAAAAAAECAwAEESESBTFBFEJRYRMykf/EABYBAQEBAAAAAAAAAAAAAAAAAAECA//EABgRAAMBAQAAAAAAAAAAAAAAAAABEQJR/9oADAMBAAIRAxEAPwCHqV8hiNpA59RKQo4+3fmm4bcRoPeY8KCTknVUHQLSW76ms2lhgJLMT3ONAfdXPJIQ6mUSEuSPnFY64XlOUxJzduQxvZopWWe5dyYowF+ziipEdhRLa09PGAQinJx3Pk0vNNEkZkkkVAO+Tj+VrHIwBLbLEk1z93L+e6YkaH6j4pSrBuDcvUgXPBiF8aoqG1sUniLsxG8aoq5kKz//2Q=="
+  }
+]

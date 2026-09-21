@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+raw-assets/
+*.tsbuildinfo
+.DS_Store
+.playwright-mcp/
+test-results/
+playwright-report/
+.venv/
+
+# Local review artifacts and Vercel link metadata
+screenshots/
+.vercel

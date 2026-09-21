@@ -1,0 +1,27 @@
+:root {
+ --paper:#f4f0e7; --paper-light:#fbf8f1; --paper-deep:#e8e0d2;
+ --ink:#362426; --muted:#6d5b55; --oxblood:#421f25; --oxblood-deep:#30171c;
+ --flame:#a53726; --on-dark:#faf3e5; --on-dark-muted:#d8c5b5;
+ --line:rgba(54,36,38,.22); --line-light:rgba(250,243,229,.3);
+ --font-body-fallback:Arial,sans-serif; --font-display-fallback:Georgia,serif;
+ --text-small:.75rem; --text-label:.8125rem; --text-body:1rem;
+ --text-intro:clamp(1.25rem,2.1vw,2rem); --text-title:clamp(2.4rem,4.8vw,5rem);
+ --text-hero:clamp(3rem,5.5vw,6.4rem); --text-statement:clamp(3.5rem,8vw,8.5rem);
+ --text-card:clamp(1.5rem,2.4vw,2.5rem); --tracking-label:.13em;
+ --leading-body:1.65; --leading-display:1.09;
+ --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+ --space-6:32px; --space-7:40px; --space-8:48px; --space-9:64px;
+ --space-10:80px; --space-11:96px; --space-12:120px; --space-13:160px;
+ --gutter:clamp(20px,4.45vw,80px); --page-max:1600px;
+ --chapter:clamp(72px,8vw,128px); --target:48px; --rule:1px;
+ --ease:cubic-bezier(.22,1,.36,1); --duration:300ms;
+ --nav-height:80px; --logo-width:144px; --logo-ratio:900 / 870; --icon-size:20px; --focus:2px solid var(--flame);
+ --whatsapp-light:#38b47b; --whatsapp-green:#178254; --whatsapp-dark:#075338;
+ --whatsapp-shadow:rgba(8,56,38,.25); --whatsapp-size:64px; --whatsapp-inset:28px;
+ --instagram-light:#d96178; --instagram-pink:#aa2857; --instagram-dark:#672d68;
+ --instagram-shadow:rgba(103,45,104,.22); --social-gap:16px;
+ --radius-field:0px; --focal:50% 50%;
+ --film-ratio:9 / 16; --film-control-bg:rgba(48,23,28,.88); --film-control-inset:16px;
+}
+@media(max-width:767px){:root{--nav-height:72px; --logo-width:108px; --whatsapp-size:58px; --whatsapp-inset:18px;}}
+@media(prefers-reduced-motion:reduce){:root{--duration:0s;}}

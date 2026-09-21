@@ -1,0 +1,12 @@
+.studies { background:#f5f0e7; color:#3d171b; }
+.study { display:grid; grid-template-columns:1fr 1fr; min-height:800px; border-bottom:1px solid #c9bba9; }
+.copy { padding:48px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:32px; }
+.copy>p { font-size:14px; line-height:1.6; }
+.brand { font-size:24px; letter-spacing:.08em; }
+.study h1 { font-size:clamp(42px,5.5vw,88px); line-height:1.08; font-weight:400; letter-spacing:-.04em; }
+.fashion h1 { text-transform:uppercase; font-size:clamp(42px,4.5vw,72px); letter-spacing:-.035em; }
+.study img { width:100%; height:800px; object-fit:contain; background:#806a50; }
+.action { padding:16px 0; border-bottom:1px solid; font-size:14px; }
+.caption { margin-top:40px; }
+.selection { padding:48px; max-width:900px; line-height:1.7; }
+@media(max-width:700px) { .study { grid-template-columns:1fr; }.copy{padding:24px;gap:24px;}.study img{height:auto;}.caption{margin-top:0;} }

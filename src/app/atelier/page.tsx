@@ -1,0 +1,7 @@
+import type {Metadata} from 'next';
+import Link from 'next/link';
+import {GarmentImage} from '@/components/garment-image';
+import {Invitation} from '@/components/footer';
+import {Arrow} from '@/components/icons';
+export const metadata:Metadata={title:'The atelier',description:'Meet the approach behind Gulmohar Wears: bespoke Indian wear, made to order in Mohali, Punjab, with worldwide shipping.'};
+export default function Atelier(){return <main id="main"><section className="atelier-opening page-width"><p className="eyebrow">GULMOHAR WEARS / MOHALI, PUNJAB</p><h1>Made in Mohali,<br/>made for <em>you.</em></h1><div className="atelier-spread"><figure><GarmentImage id="dsc06963" alt="Fuchsia Gulmohar suit photographed in a garden setting" eager/><figcaption>THE FUCHSIA LOOK / CAMPAIGN PHOTOGRAPH</figcaption></figure><div><p className="large-copy">Tell us what you want to wear. We’ll work through the details with you.</p><p>We’re Gulmohar Wears, based in Mohali, Punjab. We make suits, lehengas and wedding wear to order, starting with your occasion and the kind of outfit you have in mind.</p><h2>Tradition in<br/>every thread.</h2><p>You can start with a reference or a look from our collection. We’ll discuss the fabric, embroidery and fit with you before making begins. We ship worldwide, so you can order from abroad too.</p><Link className="text-link" href="/custom">Talk to us about an outfit <Arrow diagonal/></Link></div></div></section><Invitation/></main>;}

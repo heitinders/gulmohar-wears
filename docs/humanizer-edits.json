@@ -1,0 +1,422 @@
+[
+  [
+    "src/app/page.tsx",
+    "GULMOHAR / AN ATELIER IN BLOOM",
+    "GULMOHAR WEARS / MOHALI, PUNJAB"
+  ],
+  [
+    "src/app/page.tsx",
+    "Enquire on WhatsApp",
+    "Talk to us on WhatsApp"
+  ],
+  [
+    "src/app/page.tsx",
+    "Discover the current edit",
+    "Browse the collection"
+  ],
+  [
+    "src/app/page.tsx",
+    "Every detail,<br/>considered.",
+    "See the<br/>embroidery."
+  ],
+  [
+    "src/app/page.tsx",
+    "FROM PUNJAB, WITH A PERSONAL POINT OF VIEW.",
+    "MADE TO ORDER IN MOHALI"
+  ],
+  [
+    "src/app/page.tsx",
+    "For the celebrations you plan.<br/>And the moments you’ll <em>keep.</em>",
+    "Have an outfit in mind?<br/>We can <em>start there.</em>"
+  ],
+  [
+    "src/app/page.tsx",
+    "We are Gulmohar Wears, a bespoke Indian wear atelier in Mohali. Suits, lehengas and wedding wear, made around your occasion and sent worldwide.",
+    "We make suits, lehengas and wedding wear in Mohali. Send us a reference, or choose a look below and tell us what you’d change. We ship worldwide."
+  ],
+  [
+    "src/app/page.tsx",
+    "Colour, in<br/><em>full bloom.</em>",
+    "Find a colour<br/><em>you love.</em>"
+  ],
+  [
+    "src/app/page.tsx",
+    "Three looks. Three expressions.<br/>A starting point for your own.",
+    "See each suit in full, then take<br/>a closer look at the embroidery."
+  ],
+  [
+    "src/app/page.tsx",
+    "A vivid point of view",
+    "View the fuchsia suit"
+  ],
+  [
+    "src/app/page.tsx",
+    "A little colour.<br/>A lasting impression.",
+    "Prefer a<br/>softer shade?"
+  ],
+  [
+    "src/app/page.tsx",
+    "Quietly expressive",
+    "View the blue suit"
+  ],
+  [
+    "src/app/page.tsx",
+    "Meet the olive-gold look",
+    "See the olive-gold suit"
+  ],
+  [
+    "src/app/page.tsx",
+    "The whole look.<br/>The little<br/><em>things.</em>",
+    "A closer look<br/>at the<br/><em>embroidery.</em>"
+  ],
+  [
+    "src/app/page.tsx",
+    "Repeating motifs. A softly striped dupatta. Detail that carries from the neckline to the sleeve.",
+    "The round neckline and sleeves share the same embroidered pattern. The sheer dupatta has fine stripes."
+  ],
+  [
+    "src/app/page.tsx",
+    "One outfit,<br/>seen up close.",
+    "See how the<br/>dupatta falls."
+  ],
+  [
+    "src/app/page.tsx",
+    "Not quite like<br/><em>anyone else.</em>",
+    "Let’s plan<br/><em>your outfit.</em>"
+  ],
+  [
+    "src/app/page.tsx",
+    "Your occasion sets the direction.<br/>We work through the rest, together.",
+    "Tell us about the occasion and when you need your outfit. We’ll discuss the design and agree the details with you."
+  ],
+  [
+    "src/app/page.tsx",
+    "Create your own",
+    "Start a custom order"
+  ],
+  [
+    "src/app/page.tsx",
+    "['The occasion','Tell us where you’re going, what you love and when you need your outfit.']",
+    "['Tell us about the occasion','Share your event date and where the outfit needs to be delivered. Tell us what you like to wear, too.']"
+  ],
+  [
+    "src/app/page.tsx",
+    "['The expression','Explore the fabric, colour and silhouette. Share a reference or start with one of our looks.']",
+    "['Choose the design','Send a reference or start with one of our suits. We’ll discuss the shape, colour and fabric options.']"
+  ],
+  [
+    "src/app/page.tsx",
+    "['The making','Confirm the design, measurements, quote and timeline before the atelier begins.']",
+    "['Agree the details','We’ll confirm the design, measurements, price and making time with you before work begins.']"
+  ],
+  [
+    "src/app/page.tsx",
+    "['The finishing touch','Discuss fit and delivery with us, from Mohali to your doorstep.']",
+    "['Arrange fit and delivery','We’ll talk through fitting arrangements and how your outfit will reach you.']"
+  ],
+  [
+    "src/components/footer.tsx",
+    "YOUR OCCASION STARTS HERE.",
+    "TALK TO GULMOHAR"
+  ],
+  [
+    "src/components/footer.tsx",
+    "It begins<br/>with <em>you.</em>",
+    "Have something<br/><em>in mind?</em>"
+  ],
+  [
+    "src/components/footer.tsx",
+    "An occasion. A colour. A picture you saved.<br/>Tell us what you have in mind.",
+    "Send us a photo you’ve saved, or tell us about the occasion. We’ll help you work out the next steps."
+  ],
+  [
+    "src/components/footer.tsx",
+    "Let’s talk on WhatsApp",
+    "Chat on WhatsApp"
+  ],
+  [
+    "src/components/footer.tsx",
+    "AT YOUR SERVICE",
+    "HELP WITH YOUR ORDER"
+  ],
+  [
+    "src/components/footer.tsx",
+    "A DIRECT CONVERSATION",
+    "GET IN TOUCH"
+  ],
+  [
+    "src/components/footer.tsx",
+    "Questions, answered",
+    "Common questions"
+  ],
+  [
+    "src/components/footer.tsx",
+    "Made for you",
+    "Custom orders"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Explore the photographed edit",
+    "See our suits and their details"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Choose a look. Make it your occasion.",
+    "For the wedding and its celebrations"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Made to order, by conversation",
+    "Tell us the style you have in mind"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "02 / FIND YOUR EXPRESSION",
+    "02 / BROWSE BY STYLE"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Different occasions.<br/>Entirely your own.",
+    "What are you<br/>looking for?"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "A PERSONAL COMMISSION",
+    "CUSTOM LEHENGAS"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Your idea.<br/>Our next<br/><em>conversation.</em>",
+    "Have a lehenga<br/><em>in mind?</em>"
+  ],
+  [
+    "src/components/collection-index.tsx",
+    "Custom lehengas, designed with you.",
+    "Send us a reference to get started."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "A thought.<br/>A conversation.<br/><em>Your creation.</em>",
+    "What would you<br/><em>love to wear?</em>"
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "It can begin with a colour, a silhouette or a photograph. We make suits, lehengas and wedding wear to order, working through the details with you.",
+    "You might have a photograph saved, a favourite colour or just an occasion coming up. Tell us what you’re thinking. We make suits, lehengas and wedding wear to order."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "The fabric.<br/>The feeling.<br/>The <em>fit.</em>",
+    "Fabric, details<br/>and <em>fit.</em>"
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "Share your references and preferred fabrics. We will discuss what works for your design, confirm measurements and agree the quote before making begins.",
+    "Send your references and any fabric preferences. We’ll discuss the options with you, check your measurements and agree the price before work begins."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "Ordering from abroad? Tell us your city and event date at the start. We will explain the measurement and delivery steps for your order.",
+    "If you’re ordering from abroad, tell us your city and event date. We’ll explain how to take the measurements we need and arrange delivery."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "Working to a close date? Ask about rush possibilities. Timing is confirmed for your specific piece.",
+    "If the date is close, mention it in your first message. We’ll check whether we can make the outfit in time."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "A few details to start a useful conversation.",
+    "Fill in what you know. You can review the message before you send it on WhatsApp."
+  ],
+  [
+    "src/app/custom/page.tsx",
+    "Your starting point:",
+    "The outfit you selected:"
+  ],
+  [
+    "src/app/atelier/page.tsx",
+    "Rooted here.<br/>Made for <em>you.</em>",
+    "Made in Mohali,<br/>made for <em>you.</em>"
+  ],
+  [
+    "src/app/atelier/page.tsx",
+    "An Indian wear atelier with a personal way of working.",
+    "Tell us what you want to wear. We’ll work through the details with you."
+  ],
+  [
+    "src/app/atelier/page.tsx",
+    "Gulmohar Wears makes bespoke suits, lehengas and wedding wear in Mohali, Punjab. The occasion, the design and the person wearing it guide each conversation.",
+    "We’re Gulmohar Wears, based in Mohali, Punjab. We make suits, lehengas and wedding wear to order, starting with your occasion and the kind of outfit you have in mind."
+  ],
+  [
+    "src/app/atelier/page.tsx",
+    "From a first reference to fabric, embroidery and fit, we work through your choices together. Made to order, end to end, with worldwide shipping.",
+    "You can start with a reference or a look from our collection. We’ll discuss the fabric, embroidery and fit with you before making begins. We ship worldwide, so you can order from abroad too."
+  ],
+  [
+    "src/app/atelier/page.tsx",
+    "Begin your own piece",
+    "Talk to us about an outfit"
+  ],
+  [
+    "src/app/collections/page.tsx",
+    "Three colours.<br/>Your <em>expression.</em>",
+    "Find your<br/><em>next outfit.</em>"
+  ],
+  [
+    "src/app/collections/page.tsx",
+    "Look closely. Find a detail you love.<br/>We’ll take the conversation from there.",
+    "Browse the full looks and close-ups. If one catches your eye, ask us about the fabric, price or changes you have in mind."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Fuchsia, blue and olive gold. Explore the full silhouette and the finer details of each photographed look.",
+    "Browse our fuchsia, blue and olive-gold suits. Each gallery shows the full outfit alongside close-ups of the embroidery."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "An occasion to remember.",
+    "What will you wear to the wedding?"
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Explore the photographed suit edit as a starting point for your wedding occasion. Tell us your role, your colours and your ideas.",
+    "Have a wedding coming up? Browse these suits, then tell us which event you’re dressing for and any changes you’d like."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Bring the occasion, your preferred silhouette and a reference you love. We will discuss the fabric, details, fit and quote with you.",
+    "Send us a reference and tell us about the occasion. We’ll discuss the shape, fabric and embroidery, then confirm measurements and a quote."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Explore our photographed looks. Ask the atelier about the latest pieces and current availability.",
+    "Browse the collection below. Message us to ask about other designs and current availability."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "From an idea<br/>to <em>your own.</em>",
+    "Tell us about<br/><em>your lehenga.</em>"
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Begin with a conversation. We will work through your occasion, fabric and design, measurements and delivery plan.",
+    "Share the occasion date and where you need it delivered. We’ll work through the fabric and design with you, then confirm measurements and delivery details."
+  ],
+  [
+    "src/app/collections/[category]/page.tsx",
+    "Prepare your brief",
+    "Tell us what you have in mind"
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "How should we address you?",
+    "Your first name"
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "Where will your piece travel?",
+    "For example, Toronto, Canada"
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "Your vision",
+    "What do you have in mind?"
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "A silhouette, a colour, a detail you love…",
+    "Tell us about the style or colour you’d like."
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "Ready when you are",
+    "YOUR MESSAGE"
+  ],
+  [
+    "src/components/enquiry-form.tsx",
+    "Your conversation starts here.",
+    "Check your message before sending."
+  ],
+  [
+    "src/app/journal/page.tsx",
+    "A few considered thoughts on choosing a piece that feels like you.",
+    "Help with choosing an outfit, comparing details and getting ready to order."
+  ],
+  [
+    "src/lib/catalogue.ts",
+    "An olive-gold suit with an all-over embroidered pattern, wide trousers and a sheer, striped dupatta. A closer look reveals the detail across the neckline, sleeves and hem.",
+    "An olive-gold suit with embroidery across the front and sleeves, paired with wide trousers. The sheer dupatta has fine stripes; the close-ups show the neckline and hem in more detail."
+  ],
+  [
+    "src/lib/catalogue.ts",
+    "A vivid fuchsia suit with a decorated neckline, scattered motifs and a richly bordered dupatta. Wide-legged trousers carry the same detailed edging.",
+    "This fuchsia suit has a decorated neckline and small scattered motifs. A broad embroidered border runs along the dupatta, with detailed edging on the wide-legged trousers."
+  ],
+  [
+    "src/lib/catalogue.ts",
+    "A blue suit framed by long embroidered lines, with a matching dupatta and detailed trouser hems. The full-length and seated views show the same outfit from different angles.",
+    "Long embroidered panels run down the front of this blue suit. The sleeves and trouser hems have matching detail. See the seated view for a closer look at the blue dupatta."
+  ],
+  [
+    "src/lib/catalogue.ts",
+    "A closer view of the surface",
+    "Front and cuff detail"
+  ],
+  [
+    "src/app/products/[slug]/page.tsx",
+    "Ask us for a personal quote.",
+    "Message us for the price and available options."
+  ],
+  [
+    "src/app/products/[slug]/page.tsx",
+    "We will confirm the fabric composition, embroidery technique, care and measurement requirements with you before you order.",
+    "Ask us about the fabric, embroidery technique and care instructions. We’ll also explain which measurements we need before you order."
+  ],
+  [
+    "src/app/products/[slug]/page.tsx",
+    "Share your occasion date and delivery location. We will confirm availability, making time, shipping charges and the delivery plan directly.",
+    "Tell us your event date and delivery location. We’ll check availability and confirm the making time, shipping charges and delivery plan."
+  ],
+  [
+    "src/app/products/[slug]/page.tsx",
+    "A short view of the olive-gold suit and its dupatta, from the same shoot.",
+    "Watch the olive-gold suit and dupatta in this short film."
+  ],
+  [
+    "src/app/products/[slug]/page.tsx",
+    "Another expression.",
+    "You might also like."
+  ],
+  [
+    "src/lib/information.ts",
+    "A direct conversation.",
+    "Talk to us."
+  ],
+  [
+    "src/lib/information.ts",
+    "A fit that feels like you.",
+    "Getting the fit right."
+  ],
+  [
+    "src/lib/information.ts",
+    "Your measurements are part of the conversation. We will confirm what is needed for your specific outfit before making begins.",
+    "We’ll tell you which measurements we need for your outfit. Send them to us before making begins so we can check the details together."
+  ],
+  [
+    "src/lib/information.ts",
+    "A few useful answers.",
+    "Common questions."
+  ],
+  [
+    "src/lib/information.ts",
+    "The details that help you take the first step.",
+    "How to order, customise a look and arrange delivery."
+  ],
+  [
+    "src/lib/information.ts",
+    "Your enquiry, your choice.",
+    "Your enquiry and privacy."
+  ]
+]

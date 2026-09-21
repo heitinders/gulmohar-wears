@@ -1,0 +1,538 @@
+[
+  {
+    "route": "/",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07051-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/collections",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/products/olive-gold-suit",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07053-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/olive-motion-poster.webp",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/custom",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07072-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/atelier",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc06963-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/journal",
+    "width": 390,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07085-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07024-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/",
+    "width": 430,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07051-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/",
+    "width": 1024,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/collections",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/products/olive-gold-suit",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07053-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/olive-motion-poster.webp",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/custom",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07072-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/atelier",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc06963-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/journal",
+    "width": 1440,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07085-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07024-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  },
+  {
+    "route": "/",
+    "width": 1920,
+    "overflow": false,
+    "images": [
+      {
+        "src": "http://localhost:3002/media/dsc07053-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07089-480.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06967-1080.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07025-640.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc06963-800.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07046-1080.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/media/dsc07041-320.avif",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:3002/_next/image?url=%2Fbrand%2Fgulmohar-original.jpeg&w=256&q=75",
+        "loaded": true
+      }
+    ],
+    "fonts": {
+      "body": "body, \"body Fallback\", Arial, sans-serif",
+      "heading": "display, \"display Fallback\", Georgia, serif"
+    }
+  }
+]

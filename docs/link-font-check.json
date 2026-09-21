@@ -1,0 +1,115 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "href": "/collections",
+      "status": 200
+    },
+    {
+      "href": "/custom",
+      "status": 200
+    },
+    {
+      "href": "/",
+      "status": 200
+    },
+    {
+      "href": "/atelier",
+      "status": 200
+    },
+    {
+      "href": "/journal",
+      "status": 200
+    },
+    {
+      "href": "/products/olive-gold-suit",
+      "status": 200
+    },
+    {
+      "href": "/products/fuchsia-suit",
+      "status": 200
+    },
+    {
+      "href": "/products/blue-suit",
+      "status": 200
+    },
+    {
+      "href": "/collections/suits",
+      "status": 200
+    },
+    {
+      "href": "/collections/wedding-wear",
+      "status": 200
+    },
+    {
+      "href": "/collections/lehengas",
+      "status": 200
+    },
+    {
+      "href": "/size-and-fit",
+      "status": 200
+    },
+    {
+      "href": "/shipping",
+      "status": 200
+    },
+    {
+      "href": "/faq",
+      "status": 200
+    },
+    {
+      "href": "/contact",
+      "status": 200
+    },
+    {
+      "href": "/privacy",
+      "status": 200
+    },
+    {
+      "href": "/terms",
+      "status": 200
+    }
+  ],
+  "fonts": [
+    {
+      "family": "display",
+      "status": "loaded"
+    },
+    {
+      "family": "display",
+      "status": "loaded"
+    },
+    {
+      "family": "display Fallback",
+      "status": "unloaded"
+    },
+    {
+      "family": "body",
+      "status": "loaded"
+    },
+    {
+      "family": "body",
+      "status": "loaded"
+    },
+    {
+      "family": "body Fallback",
+      "status": "loaded"
+    },
+    {
+      "family": "__nextjs-Geist",
+      "status": "unloaded"
+    },
+    {
+      "family": "__nextjs-Geist Mono",
+      "status": "unloaded"
+    },
+    {
+      "family": "__nextjs-Geist",
+      "status": "unloaded"
+    },
+    {
+      "family": "__nextjs-Geist Mono",
+      "status": "unloaded"
+    }
+  ]
+}
