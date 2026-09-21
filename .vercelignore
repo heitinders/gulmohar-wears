@@ -1,0 +1,14 @@
+# Vercel upload exclusions. Build needs src, public, and package files only.
+node_modules
+.next
+.git
+raw-assets
+screenshots
+docs
+test-results
+playwright-report
+.playwright-mcp
+.venv
+.env*
+!.env.example
+.DS_Store
