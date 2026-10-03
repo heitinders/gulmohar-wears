@@ -24,12 +24,14 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .style-card svg{width:100%;height:auto;color:var(--ink)}.style-card[aria-pressed=true]{border-color:var(--oxblood)}
 .style-card strong{font:400 21px/1.2 var(--font-display),serif}.style-card small{font-size:12px;color:var(--muted)}
 /* Camera */
+.fit-step.fit-step-capture{padding:0;max-width:none}.fit-step .capture-heading{padding:12px var(--gutter) 0;font-size:var(--text-small)}
 .capture{flex:1;display:grid;grid-template-rows:1fr auto auto;background:var(--oxblood-deep);color:var(--on-dark);min-height:calc(100dvh - var(--fit-bar) - 60px)}
 .capture-stage{position:relative;overflow:hidden;min-height:50dvh}.capture-stage video,.capture-stage img{width:100%;height:100%;object-fit:contain;display:block;background:var(--oxblood-deep)}
 .capture-guide{position:absolute;inset:0;width:100%;height:100%;color:var(--on-dark);opacity:.45;pointer-events:none}
 .capture-tips{padding:12px var(--gutter);font-size:13px;display:grid;gap:6px;background:var(--film-control-bg)}.capture-tips strong{font-weight:500}
 .capture-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px var(--gutter) calc(16px + env(safe-area-inset-bottom))}
 .capture-actions .button-outline{color:var(--on-dark);border-color:var(--line-light)}.capture-actions .button-outline:hover{background:var(--oxblood)}
+.capture-unavailable{position:absolute;inset:auto 0 0 0}.capture-switch{grid-column:1/-1;color:inherit}
 .capture :focus-visible{outline-color:var(--on-dark)}.capture-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
 .capture-shots{display:flex;gap:12px;padding:0 var(--gutter) 12px}.capture-shots figure{width:56px}.capture-shots img{aspect-ratio:3/4;object-fit:cover;width:100%}.capture-shots figcaption{font-size:10px;letter-spacing:.08em;padding-top:4px}
 /* Ledger */

@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {TapeRail, STEPS, type StepId} from './tape-rail';
 import {StepStyle} from './step-style';
+import {StepPhotos} from './step-photos';
 import {initialFlow, type FlowState} from './flow-types';
 
 const isStep = (s: string | null): s is StepId => STEPS.some(step => step.id === s);
@@ -20,7 +21,7 @@ export function MeasureFlow() {
   return <>
     <TapeRail current={step}/>
     {step === 'style' && <StepStyle state={state} update={update} onNext={() => go('photos')}/>}
-    {step === 'photos' && <main id="main" className="fit-step"><h1>Photos</h1><p className="fit-lede">Coming in Task 13.</p></main>}
+    {step === 'photos' && <StepPhotos state={state} update={update} onBack={() => go('style')} onDone={() => go('result')}/>}
     {step === 'result' && <main id="main" className="fit-step"><h1>Your draft fit</h1><p className="fit-lede">Coming in Task 14.</p></main>}
   </>;
 }
