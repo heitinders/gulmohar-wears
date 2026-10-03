@@ -87,3 +87,15 @@ test("the anon key alone reads and writes nothing", { skip }, async () => {
   const rpc = await anon.rpc("fit_bump_usage", { p_key: "x", p_day: "2026-10-03", p_field: "tryons" });
   assert.ok(rpc.error);
 });
+
+test("try-on reservations go through the RPC, stop at the cap and refund", { skip }, async () => {
+  const store = createSupabaseStore(URL_, SERVICE);
+  const key = `reserve-${stamp}`;
+  assert.equal(await store.reserveTryOn(key, "2026-10-03", 2), true);
+  assert.equal(await store.reserveTryOn(key, "2026-10-03", 2), true);
+  assert.equal(await store.reserveTryOn(key, "2026-10-03", 2), false);
+  await store.refundTryOn(key, "2026-10-03");
+  assert.equal((await store.getUsage(key, "2026-10-03")).tryons, 1);
+  const parallel = await Promise.all(Array.from({ length: 8 }, () => store.reserveTryOn(`${key}-p`, "2026-10-03", 3)));
+  assert.equal(parallel.filter(Boolean).length, 3);
+});
