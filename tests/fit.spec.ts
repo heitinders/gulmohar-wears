@@ -204,3 +204,13 @@ test.describe('measuring after the gate', () => {
     const result = await new AxeBuilder({page}).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze(); expect(result.violations).toEqual([]);
   });
 });
+
+test('the privacy page explains what Find your fit keeps, who sees photos and how to delete', async ({page}) => {
+  await page.goto('/privacy#find-your-fit');
+  const heading = page.locator('#find-your-fit');
+  await expect(heading).toHaveText('Find your fit: what we keep');
+  await expect(heading).toBeInViewport();
+  const text = await page.locator('main').innerText();
+  for (const phrase of ['name, phone number', 'consent', 'never stored', 'Gemini', 'paid plan', 'delete']) expect(text).toContain(phrase);
+  expect(text).not.toMatch(/[—–]/);
+});
