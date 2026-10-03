@@ -8,7 +8,7 @@ const staff = { email: "staff@example.com", password: "correct horse battery", s
 const outsider = { email: "someone@example.com", password: "another long password", staff: false };
 
 test("signs in with the right password only", async () => {
-  let t = 0; const auth = createMemoryAuth([staff, outsider], () => t);
+  const t = 0; const auth = createMemoryAuth([staff, outsider], () => t);
   assert.deepEqual(await auth.signIn("staff@example.com", "wrong"), { ok: false });
   assert.deepEqual(await auth.signIn("nobody@example.com", "correct horse battery"), { ok: false });
   const r = await auth.signIn(" Staff@Example.com ", "correct horse battery");
