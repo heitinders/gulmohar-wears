@@ -1,5 +1,6 @@
-import { isSupportedCountry } from "libphonenumber-js/min";
-import { maskPhone, parsePhone } from "../phone.ts";
+import { isSupportedCountry } from "libphonenumber-js/max";
+import { maskPhone } from "../phone.ts";
+import { parsePhone } from "../phone-parse.ts";
 import { CONSENT_VERSION } from "../consent.ts";
 import { signClientToken, verifyClientToken } from "./token.ts";
 import type { FitStore } from "./store.ts";

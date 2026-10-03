@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { countryOptions, maskPhone, parsePhone } from "./phone.ts";
+import { countryOptions, maskPhone } from "./phone.ts";
+import { parsePhone } from "./phone-parse.ts";
 import { CONSENT_TEXT, CONSENT_VERSION } from "./consent.ts";
 
 const E164 = /^\+[1-9][0-9]{6,14}$/; // the database check in supabase/migrations
@@ -72,4 +73,12 @@ test("phones read in international format for staff", async () => {
   assert.equal(formatPhone("+919022564907"), "+91 90225 64907");
   assert.equal(formatPhone("+447400123456"), "+44 7400 123456");
   assert.equal(formatPhone("not a phone"), "not a phone");
+});
+
+test("numbers that only have the right length are refused (full metadata, not length checks)", async () => {
+  const { parsePhone: parse } = await import("./phone-parse.ts");
+  assert.equal(parse("98765 43210", "PK").ok, false);
+  assert.equal(parse("98765 43210", "BD").ok, false);
+  assert.deepEqual(parse("98765 43210", "IN"), { ok: true, e164: "+919876543210", country: "IN" });
+  assert.deepEqual(parse("7400 12345", "GB"), { ok: false, reason: "invalid", countryName: "United Kingdom" }); // one digit short
 });

@@ -1,25 +1,11 @@
-import { getCountries, getCountryCallingCode, isSupportedCountry, parsePhoneNumberFromString, type CountryCode } from "libphonenumber-js/min";
+import { getCountries, getCountryCallingCode, parsePhoneNumberFromString, type CountryCode } from "libphonenumber-js/min";
+
+// Display helpers, small enough for the browser. Validation needs full metadata and lives in phone-parse.ts (server).
 
 export type { CountryCode };
-export type PhoneResult = { ok: true; e164: string; country: CountryCode } | { ok: false; reason: "empty" | "invalid"; countryName: string };
 
 const names = (() => { try { return new Intl.DisplayNames(["en"], { type: "region" }); } catch { return null; } })();
 export const countryName = (code: string) => names?.of(code) ?? code;
-
-/** Default region India. A number typed with + keeps its own country whatever is selected. */
-export function parsePhone(input: string, country: CountryCode): PhoneResult {
-  const text = String(input ?? "").trim();
-  const name = countryName(country);
-  if (!text) return { ok: false, reason: "empty", countryName: name };
-  try {
-    const region = isSupportedCountry(country) ? country : undefined;
-    const parsed = parsePhoneNumberFromString(text, region);
-    if (!parsed || !parsed.isValid() || !parsed.country) return { ok: false, reason: "invalid", countryName: name };
-    return { ok: true, e164: parsed.number, country: parsed.country };
-  } catch {
-    return { ok: false, reason: "invalid", countryName: name };
-  }
-}
 
 export interface CountryOption { code: CountryCode; name: string; dial: string }
 /** India first, then every other supported region by English name. */
