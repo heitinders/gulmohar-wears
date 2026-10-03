@@ -49,3 +49,5 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .profile-list{display:grid;gap:12px}.profile-card{display:grid;gap:8px;padding:16px;background:var(--paper-light)}
 .profile-card strong{font:400 21px/1.2 var(--font-display),serif}.profile-card .fit-summary{font-size:12px}.profile-card-actions{display:flex;flex-wrap:wrap;gap:8px}
 @media(min-width:768px){.style-grid{grid-template-columns:repeat(4,1fr)}.fit-step{padding-top:48px}.capture{min-height:0}.capture-stage{min-height:60vh}.fit-actions{position:static;border:0;padding:8px 0 0;grid-auto-flow:column;justify-content:start}.fit-actions .button{width:auto}}
+/* Intro page disclosures */
+.fit-intro-details{max-width:720px;padding-bottom:var(--chapter)}.fit-intro-details>p{margin-top:24px}.page-heading>.button{margin-top:32px}.fit-intro-details>.fit-note{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px}

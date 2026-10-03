@@ -9,7 +9,7 @@ import {Arrow} from './icons';
 import {BrandMark} from './brand-mark';
 import {GarmentImage} from './garment-image';
 
-const links = [['Collections', '/collections'], ['Custom orders', '/custom'], ['Our atelier', '/atelier'], ['Journal', '/journal']];
+const links = [['Collections', '/collections'], ['Find your fit', '/fit'], ['Custom orders', '/custom'], ['Our atelier', '/atelier'], ['Journal', '/journal']];
 const categories = [['Suits', '/collections/suits', 'See the full looks and details'], ['Wedding wear', '/collections/wedding-wear', 'For the wedding and its celebrations'], ['Custom lehengas', '/collections/lehengas', 'Tell us what you have in mind']];
 
 export function Navigation() {
