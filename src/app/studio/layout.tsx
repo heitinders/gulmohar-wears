@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import '../fit/fit.css';
 import './studio.css';
 export const metadata: Metadata = {title: {default: 'Studio', template: '%s | Gulmohar Studio'}, robots: {index: false, follow: false}};
 /** Staff only. Client names and phones appear here, so session recording masks the whole studio. */

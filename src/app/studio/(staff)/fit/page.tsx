@@ -1,1 +1,6 @@
-export default function Page() { return <main id="main" className="studio-page"><h1>Fit</h1></main>; }
+import type {Metadata} from 'next';
+import {StudioFit} from '@/components/studio/studio-fit';
+import {clientOptions} from '../../client-options';
+
+export const metadata: Metadata = {title: 'Fit'};
+export default async function Fit() { return <StudioFit clients={await clientOptions()}/>; }

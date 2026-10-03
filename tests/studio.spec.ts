@@ -1,5 +1,5 @@
 import {test, expect, type Browser, type Page} from '@playwright/test';
-import {heightOnlyDraft, passGate} from './gate';
+import {heightOnlyDraft, passGate, PNG} from './gate';
 import AxeBuilder from '@axe-core/playwright';
 import {STUDIO_DEV_EMAIL, STUDIO_DEV_PASSWORD} from '../playwright.config';
 
@@ -81,6 +81,12 @@ test.describe('studio sign in', () => {
   });
 });
 
+/** Chooses the option whose text includes `text` (selectOption matches labels exactly). */
+async function pick(page: Page, label: string, text: string) {
+  const select = page.getByLabel(label);
+  await select.selectOption((await select.locator('option', {hasText: text}).first().getAttribute('value'))!);
+}
+
 const uniquePhone = () => `9${String(Math.floor(Math.random() * 1e9)).padStart(9, '0')}`;
 
 /** A customer in their own browser: gate, height-only draft, then the given choices, left long enough to sync. */
@@ -146,6 +152,105 @@ test.describe('studio clients and orders', () => {
     for (const path of ['/studio', '/studio/orders']) for (const width of [390, 1440]) {
       await page.setViewportSize({width, height: 900}); await page.goto(path);
       await expect(page.locator('main h1')).toHaveCount(1);
+      expect((await new AxeBuilder({page}).withTags(axeTags).analyze()).violations, `${path} ${width}`).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth), `${path} ${width}`).toBe(width);
+    }
+  });
+});
+
+/** A customer's draft code, as it appears at the end of their WhatsApp message. */
+async function customerDraftCode(browser: Browser, name: string) {
+  const context = await browser.newContext(); const page = await context.newPage();
+  const phone = uniquePhone();
+  await passGate(page, {name, phone}); await heightOnlyDraft(page);
+  const href = (await page.getByRole('link', {name: 'Continue to WhatsApp'}).getAttribute('href'))!;
+  await context.close();
+  return {phone, code: new URL(href).searchParams.get('text')!.match(/Draft code: (\S+)/)![1]};
+}
+
+test.describe('studio fit, import and tailor', () => {
+  test('in-shop measuring saves to this device for the chosen client, never to WhatsApp', async ({page, browser}) => {
+    const name = `Shop ${Date.now()}`; const owner = `DeviceOwner ${Date.now()}`;
+    await customer(browser, name);
+    await passGate(page, {name: owner, phone: uniquePhone()}); // this studio device also holds a customer's gate token
+    await signIn(page);
+    await page.route('**/models/**', r => r.abort());
+    await page.getByRole('navigation', {name: 'Studio'}).getByRole('link', {name: 'Fit'}).click();
+    await pick(page, 'Client', name);
+    await page.getByRole('button', {name: 'Start measuring'}).click();
+    await expect(page.getByLabel(/Your name/)).toHaveValue(name);
+    await page.getByRole('button', {name: /Sharara/}).click();
+    await page.getByLabel(/^Height/).fill('63'); await page.getByLabel(/^Height/).blur();
+    await page.getByRole('button', {name: 'Next: Photos'}).click();
+    await expect(page).toHaveURL(/\/studio\/fit\?step=photos/);
+    for (const shot of ['front', 'side']) { await page.getByLabel('Upload a photo').setInputFiles({name: `${shot}.png`, mimeType: 'image/png', buffer: PNG}); await page.getByRole('button', {name: 'Use this photo'}).click(); }
+    await page.getByRole('button', {name: 'Use height only'}).click();
+    await expect(page).toHaveURL(/\/studio\/fit\?step=result/);
+    await expect(page.getByRole('link', {name: 'Continue to WhatsApp'})).toHaveCount(0);
+    await expect(page.getByRole('button', {name: 'Save to this phone'})).toHaveCount(0);
+    await page.getByRole('button', {name: `Save for ${name} on this device`}).click();
+    await expect(page.locator('main').getByRole('status')).toContainText('Saved on this device');
+    await page.waitForTimeout(1500);
+    await page.goto('/studio');
+    await expect(page.locator('.client-row', {hasText: name})).toContainText('On this device');
+    await expect(page.locator('.client-row', {hasText: owner})).not.toContainText('Sharara');
+  });
+
+  test('a mangled draft code is refused and a real one attaches to the client on this device', async ({page, browser}) => {
+    const name = `Import ${Date.now()}`;
+    const {code} = await customerDraftCode(browser, name);
+    await signIn(page);
+    await page.goto('/studio/import');
+    await pick(page, 'Client', name);
+    await page.getByLabel('Draft code').fill(code.slice(0, -3) + 'zzz');
+    await page.getByRole('button', {name: 'Import'}).click();
+    await expect(page.locator('main').getByRole('alert')).toHaveText('This code looks incomplete. Ask the customer to resend it.');
+    await page.getByLabel('Draft code').fill(`  ${code}  `);
+    await page.getByRole('button', {name: 'Import'}).click();
+    await expect(page.locator('main').getByRole('status')).toContainText(`Imported for ${name}`);
+    await expect(page.locator('main').getByRole('status')).toContainText('Anarkali');
+  });
+
+  test('tailor corrections are kept on this device beside the draft', async ({page, browser}) => {
+    const name = `Tailor ${Date.now()}`;
+    const {code} = await customerDraftCode(browser, name);
+    await signIn(page);
+    await page.goto('/studio/import');
+    await pick(page, 'Client', name);
+    await page.getByLabel('Draft code').fill(code); await page.getByRole('button', {name: 'Import'}).click();
+    await page.goto('/studio/tailor');
+    await pick(page, 'Client on this device', name);
+    const bust = page.locator('.tailor-row', {hasText: 'Bust'});
+    await bust.getByLabel('Tape, inches').fill('34.5');
+    await bust.getByRole('checkbox', {name: 'Verified'}).check();
+    await page.getByRole('button', {name: 'Save corrections'}).click();
+    await expect(page.locator('main').getByRole('status')).toContainText('Saved on this device');
+    await page.reload();
+    await pick(page, 'Client on this device', name);
+    await expect(bust.getByLabel('Tape, inches')).toHaveValue('34.5');
+    await expect(bust.getByRole('checkbox', {name: 'Verified'})).toBeChecked();
+    await expect(bust).toContainText('tailor verified');
+  });
+
+  test('a tape value outside 4 to 80 inches is refused', async ({page, browser}) => {
+    const name = `Range ${Date.now()}`;
+    const {code} = await customerDraftCode(browser, name);
+    await signIn(page);
+    await page.goto('/studio/import');
+    await pick(page, 'Client', name);
+    await page.getByLabel('Draft code').fill(code); await page.getByRole('button', {name: 'Import'}).click();
+    await page.goto('/studio/tailor');
+    await pick(page, 'Client on this device', name);
+    await page.locator('.tailor-row', {hasText: 'Bust'}).getByLabel('Tape, inches').fill('340');
+    await page.getByRole('button', {name: 'Save corrections'}).click();
+    await expect(page.locator('main').getByRole('alert')).toContainText('between 4 and 80');
+  });
+
+  test('fit, tailor and import pass axe and fit at 390 and 1440', async ({page}) => {
+    await signIn(page);
+    for (const path of ['/studio/fit', '/studio/tailor', '/studio/import']) for (const width of [390, 1440]) {
+      await page.setViewportSize({width, height: 900}); await page.goto(path);
+      await expect(page.locator('main h1'), path).toHaveCount(1);
       expect((await new AxeBuilder({page}).withTags(axeTags).analyze()).violations, `${path} ${width}`).toEqual([]);
       expect(await page.evaluate(() => document.documentElement.scrollWidth), `${path} ${width}`).toBe(width);
     }
