@@ -15,7 +15,7 @@
  --gutter:clamp(20px,4.45vw,80px); --page-max:1600px;
  --chapter:clamp(72px,8vw,128px); --target:48px; --rule:1px;
  --ease:cubic-bezier(.22,1,.36,1); --duration:300ms;
- --nav-height:80px; --logo-width:144px; --logo-ratio:900 / 870; --icon-size:20px; --focus:2px solid var(--flame);
+ --nav-height:80px; --fit-bar:56px; --logo-width:144px; --logo-ratio:900 / 870; --icon-size:20px; --focus:2px solid var(--flame);
  --whatsapp-light:#38b47b; --whatsapp-green:#178254; --whatsapp-dark:#075338;
  --whatsapp-shadow:rgba(8,56,38,.25); --whatsapp-size:64px; --whatsapp-inset:28px;
  --instagram-light:#d96178; --instagram-pink:#aa2857; --instagram-dark:#672d68;
