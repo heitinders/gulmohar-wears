@@ -1,5 +1,5 @@
 import type { Measures } from "./measures.ts";
-import { CM_PER_IN, round1 } from "./units.ts";
+import { CM_PER_IN, round1, formatIn, formatCm } from "./units.ts";
 import { FIT_EASE, type FitId } from "./fit-preference.ts";
 
 // Ported from app.js SIZE_CHART (L147-152). Inches.
@@ -45,13 +45,16 @@ export function recommendSize(m: Measures, fit: FitId): SizeAdvice {
   return { size, closest: band.size, mtm: mtm || custom, reasons, bustIn, waistIn, hipIn, easeCm: ease, hipOver, waistOver, bustOver };
 }
 
+/** An inch shortfall for customer copy: inches to the quarter, cm alongside. */
+const shortfall = (inches: number) => `${formatIn(inches * CM_PER_IN)} (${formatCm(inches * CM_PER_IN)})`;
+
 /** Customer copy. No dashes. */
 export function sizeAdviceLine(a: SizeAdvice): string {
   const because: string[] = [];
   if (a.reasons.includes("bust-outside-band")) because.push("the bust is outside our S to XL ready band");
-  if (a.reasons.includes("hip-over")) because.push(`the hip needs ${a.hipOver} in more than the ${a.closest} chart`);
-  if (a.reasons.includes("waist-over")) because.push(`the waist needs ${a.waistOver} in more than the ${a.closest} chart`);
-  if (a.reasons.includes("bust-over")) because.push(`the bust needs ${a.bustOver} in more than the ${a.closest} chart`);
+  if (a.reasons.includes("hip-over")) because.push(`the hip needs ${shortfall(a.hipOver)} more than the ${a.closest} chart`);
+  if (a.reasons.includes("waist-over")) because.push(`the waist needs ${shortfall(a.waistOver)} more than the ${a.closest} chart`);
+  if (a.reasons.includes("bust-over")) because.push(`the bust needs ${shortfall(a.bustOver)} more than the ${a.closest} chart`);
   if (a.reasons.includes("fitted-near-top")) because.push("a fitted cut sits near the top of the bust band");
   if (a.mtm) return `Your closest Gulmohar size is ${a.closest}. We recommend made to measure${because.length ? " because " + because.join(" and ") : ""}.`;
   return `Your closest Gulmohar size is ${a.closest}. Ready stock is possible.`;

@@ -20,7 +20,13 @@ test("38 / 32 / 44 in is closest to L but the hip needs made to measure", () => 
   const a = recommendSize(withGirths(96.5, 81.3, 111.8), "regular");
   assert.equal(a.size, "L"); assert.equal(a.closest, "L"); assert.equal(a.mtm, true);
   assert.ok(a.reasons.includes("hip-over"));
-  assert.equal(sizeAdviceLine(a), "Your closest Gulmohar size is L. We recommend made to measure because the hip needs 2 in more than the L chart.");
+  assert.equal(sizeAdviceLine(a), "Your closest Gulmohar size is L. We recommend made to measure because the hip needs 2 in (5 cm) more than the L chart.");
+});
+
+test("a shortfall is shown to the quarter inch with cm alongside", () => {
+  const a = recommendSize(withGirths(96.5, 81.3, 112.5), "regular"); // hip 44.29 in, 2.3 in over L
+  assert.equal(a.closest, "L"); assert.equal(a.hipOver, 2.3);
+  assert.equal(sizeAdviceLine(a), "Your closest Gulmohar size is L. We recommend made to measure because the hip needs 2¼ in (6 cm) more than the L chart.");
 });
 
 test("a bust outside 34 to 42 in is Custom with the nearest band as closest", () => {
