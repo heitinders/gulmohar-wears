@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CM_PER_IN, round1, cmToIn, inToCm, formatIn, formatCm } from "./units.ts";
+import { CM_PER_IN, round1, cmToIn, inToCm, formatIn, formatCm, NO_MEASURE } from "./units.ts";
 
 test("constants and conversions match the prototype", () => {
   assert.equal(CM_PER_IN, 2.54);
@@ -22,4 +22,14 @@ test("formatCm rounds to the nearest half centimetre", () => {
   assert.equal(formatCm(84.449), "84.5 cm");
   assert.equal(formatCm(84.2), "84 cm");
   assert.equal(formatCm(84.76), "85 cm");
+});
+
+test("formatters return a placeholder for missing, non-finite or negative lengths", () => {
+  for (const bad of [NaN, Infinity, -Infinity, -1]) {
+    assert.equal(formatIn(bad), NO_MEASURE);
+    assert.equal(formatCm(bad), NO_MEASURE);
+  }
+  assert.equal(NO_MEASURE, "n/a");
+  assert.equal(formatIn(0), "0 in");
+  assert.equal(formatCm(0), "0 cm");
 });

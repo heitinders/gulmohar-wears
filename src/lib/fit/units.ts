@@ -9,16 +9,22 @@ export const inToCm = (inch: number) => inch * CM_PER_IN;
 
 const QUARTERS = ["", "¼", "½", "¾"];
 
+/** Shown instead of a number when a length is missing, not finite or negative. No dashes in customer copy. */
+export const NO_MEASURE = "n/a";
+const isLength = (cm: number) => Number.isFinite(cm) && cm >= 0;
+
 // Ported from app.js fmtIn (L547-550), changed to quarter-inch display.
-/** Display only. Rounds to the nearest quarter inch, e.g. 33¼ in. */
+/** Display only. Rounds to the nearest quarter inch, e.g. 33¼ in. Returns NO_MEASURE for NaN, infinite or negative input. */
 export function formatIn(cm: number): string {
+  if (!isLength(cm)) return NO_MEASURE;
   const quarters = Math.round(cmToIn(cm) * 4);
   const whole = Math.floor(quarters / 4);
   return `${whole}${QUARTERS[quarters % 4]} in`;
 }
 
-/** Display only. Rounds to the nearest half centimetre, e.g. 84.5 cm. */
+/** Display only. Rounds to the nearest half centimetre, e.g. 84.5 cm. Returns NO_MEASURE for NaN, infinite or negative input. */
 export function formatCm(cm: number): string {
+  if (!isLength(cm)) return NO_MEASURE;
   const half = Math.round(cm * 2) / 2;
   return `${Number.isInteger(half) ? half : half.toFixed(1)} cm`;
 }
