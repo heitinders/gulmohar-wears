@@ -74,3 +74,10 @@ test("a deployment-wide daily ceiling defaults to 150 and can be set", () => {
   assert.equal(tryOnConfig({ ...supa, ...tryOn }).globalCap, 150);
   assert.equal(tryOnConfig({ ...supa, ...tryOn, FIT_TRYON_GLOBAL_DAILY_CAP: "40" }).globalCap, 40);
 });
+
+test("the gate's hourly limit per address defaults to 10 and can be raised", async () => {
+  const { gateHourlyLimit } = await import("./config.ts");
+  assert.equal(gateHourlyLimit({}), 10);
+  assert.equal(gateHourlyLimit({ FIT_GATE_HOURLY_LIMIT: "40" }), 40);
+  assert.equal(gateHourlyLimit({ FIT_GATE_HOURLY_LIMIT: "zero" }), 10);
+});

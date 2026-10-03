@@ -47,3 +47,6 @@ export function fitConfigProblems(env: Env = process.env): string[] {
   if (missing.length && missing.length < SUPABASE_KEYS.length && env.NEXT_PUBLIC_SUPABASE_URL) return [`Supabase is partly configured (missing ${missing.join(", ")}); Find your fit is off until all four are set.`];
   return [];
 }
+
+/** Gate sign-ups allowed per address per hour (default 10). Raise it if many customers share one network. */
+export const gateHourlyLimit = (env: Env = process.env) => cap(env.FIT_GATE_HOURLY_LIMIT, 10);

@@ -1,5 +1,5 @@
 import "server-only";
-import { fitBackend, fitConfigProblems, tryOnConfig, type FitBackend } from "./config.ts";
+import { fitBackend, fitConfigProblems, gateHourlyLimit, tryOnConfig, type FitBackend } from "./config.ts";
 import { createMemoryStore, type FitStore } from "./store.ts";
 import type { StudioAuth, StudioData } from "./studio-auth.ts";
 import { createSupabaseStore } from "./supabase-store.ts";
@@ -16,7 +16,7 @@ export interface FitDeps {
 }
 
 const g = globalThis as typeof globalThis & { __gwFitLimiter?: ReturnType<typeof createRateLimiter> };
-const gateLimiter = () => (g.__gwFitLimiter ??= createRateLimiter({ limit: 10, windowMs: 60 * 60 * 1000 }));
+const gateLimiter = () => (g.__gwFitLimiter ??= createRateLimiter({ limit: gateHourlyLimit(), windowMs: 60 * 60 * 1000 }));
 
 const reported = globalThis as typeof globalThis & { __gwFitConfigReported?: boolean };
 
