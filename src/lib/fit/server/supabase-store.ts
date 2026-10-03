@@ -22,7 +22,12 @@ export function toDbPatch(p: PreferencePatch): Record<string, unknown> {
 }
 
 const COLUMNS = "id, phone_e164, name, consent_at, consent_version, style, fit, sleeve, neckline, length_note, brief, created_at, updated_at";
-const fail = (what: string, error: { code?: string } | null): never => { throw new Error(`supabase ${what} failed${error?.code ? ` (${error.code})` : ""}`); };
+/** Logs which call failed and the Postgres or HTTP code only, so a wrong key or schema is visible without customer data. */
+const fail = (what: string, error: { code?: string } | null): never => {
+  const message = `supabase ${what} failed${error?.code ? ` (${error.code})` : ""}`;
+  console.error(`[find-your-fit] ${message}`);
+  throw new Error(message);
+};
 const noSession = { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } };
 
 /** Service-role access for customer code paths. Only server modules import this. */

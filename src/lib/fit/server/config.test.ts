@@ -59,3 +59,13 @@ test("caps parse whole numbers and fall back on garbage", () => {
   assert.equal(tryOnConfig({ ...supa, ...tryOn, FIT_STUDIO_DAILY_CAP: "50" }).studioCap, 50);
   for (const bad of ["", "abc", "-3", "0", "2.5", "1e9"]) assert.equal(tryOnConfig({ ...supa, ...tryOn, FIT_TRYON_DAILY_CAP: bad }).dailyCap, 6, bad);
 });
+
+test("a token secret shorter than 16 characters is a configuration problem, not a working gate", async () => {
+  const { fitConfigProblems } = await import("./config.ts");
+  const short = { ...supa, FIT_TOKEN_SECRET: "only-12-char" };
+  assert.equal(fitBackend(short), "off");
+  assert.deepEqual(fitConfigProblems(short), ["FIT_TOKEN_SECRET must be at least 16 characters; Find your fit is off until it is."]);
+  assert.deepEqual(fitConfigProblems(supa), []);
+  assert.deepEqual(fitConfigProblems({}), []);
+  assert.deepEqual(fitConfigProblems({ NEXT_PUBLIC_SUPABASE_URL: "https://x.supabase.co" }), ["Supabase is partly configured (missing NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, FIT_TOKEN_SECRET); Find your fit is off until all four are set."]);
+});
