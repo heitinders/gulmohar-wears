@@ -9,6 +9,8 @@ import type { FitStore } from "./store.ts";
 
 /** Vercel functions refuse bodies over 4.5 MB; the phone sends a 1600px JPEG of a few hundred kB. */
 export const MAX_TRYON_BYTES = 4 * 1024 * 1024;
+/** The usage row that counts every preview in the deployment, for the global ceiling. */
+export const GLOBAL_USAGE_KEY = "global";
 const TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const STATUS: Record<TryOnError["code"], number> = { timeout: 504, vendor: 502, "no-image": 502, blocked: 422 };
 
@@ -48,14 +50,16 @@ export async function handleTryOn(deps: TryOnDeps, req: { contentLength: number 
     if (!garment || typeof slug !== "string") return { status: 400, json: { error: "look" } };
     if (!(person instanceof Blob) || !person.size || !TYPES.has(person.type)) return { status: 415, json: { error: "type" } };
     const day = deps.today();
-    if ((await deps.store.getUsage(who.key, day)).tryons >= who.cap) {
-      return { status: 429, json: { error: "cap", whatsapp: whatsappUrl("Hi Gulmohar, I have used today's try-on previews. Could you help me choose a look?") } };
-    }
+    const capped = { status: 429, json: { error: "cap", whatsapp: whatsappUrl("Hi Gulmohar, I have used today's try-on previews. Could you help me choose a look?") } };
+    // Reserve before the vendor call so parallel requests cannot all slip under the cap; refund if it fails.
+    if (!(await deps.store.reserveTryOn(GLOBAL_USAGE_KEY, day, deps.config.globalCap))) return capped;
+    if (!(await deps.store.reserveTryOn(who.key, day, who.cap))) { await deps.store.refundTryOn(GLOBAL_USAGE_KEY, day); return capped; }
     let out;
     try { out = await deps.provider.tryOn({ person, garment, lookSlug: slug }); }
-    catch (e) { const code = e instanceof TryOnError ? e.code : "vendor"; return { status: STATUS[code], json: { error: code } }; }
-    // Count only a preview that was actually made. If counting fails the customer still gets the image.
-    try { await deps.store.bumpUsage(who.key, day, "tryons"); } catch { /* not counted */ }
+    catch (e) {
+      await Promise.allSettled([deps.store.refundTryOn(who.key, day), deps.store.refundTryOn(GLOBAL_USAGE_KEY, day)]);
+      const code = e instanceof TryOnError ? e.code : "vendor"; return { status: STATUS[code], json: { error: code } };
+    }
     return { status: 200, image: out.image, model: out.model, promptVersion: out.promptVersion };
   } catch {
     return { status: 503, json: { error: "unavailable" } };

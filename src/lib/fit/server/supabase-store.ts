@@ -60,6 +60,15 @@ export function createSupabaseStore(url: string, serviceKey: string): FitStore {
       if (error || typeof data !== "number") return fail("bump", error);
       return data;
     },
+    async reserveTryOn(key, day, cap) {
+      const { data, error } = await db.rpc("fit_reserve_tryon", { p_key: key, p_day: day, p_cap: cap });
+      if (error || typeof data !== "boolean") return fail("reserve", error);
+      return data;
+    },
+    async refundTryOn(key, day) {
+      const { error } = await db.rpc("fit_refund_tryon", { p_key: key, p_day: day });
+      if (error) fail("refund", error);
+    },
   };
 }
 

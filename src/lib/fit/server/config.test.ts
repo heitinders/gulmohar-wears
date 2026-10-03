@@ -69,3 +69,8 @@ test("a token secret shorter than 16 characters is a configuration problem, not 
   assert.deepEqual(fitConfigProblems({}), []);
   assert.deepEqual(fitConfigProblems({ NEXT_PUBLIC_SUPABASE_URL: "https://x.supabase.co" }), ["Supabase is partly configured (missing NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, FIT_TOKEN_SECRET); Find your fit is off until all four are set."]);
 });
+
+test("a deployment-wide daily ceiling defaults to 150 and can be set", () => {
+  assert.equal(tryOnConfig({ ...supa, ...tryOn }).globalCap, 150);
+  assert.equal(tryOnConfig({ ...supa, ...tryOn, FIT_TRYON_GLOBAL_DAILY_CAP: "40" }).globalCap, 40);
+});

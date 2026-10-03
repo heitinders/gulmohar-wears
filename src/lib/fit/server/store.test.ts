@@ -57,3 +57,16 @@ test("rows returned are copies, so callers cannot change the store", async () =>
   const row = (await s.getClient(id))!; row.name = "Changed";
   assert.equal((await s.getClient(id))!.name, "A");
 });
+
+test("reserving a try-on is all or nothing at the cap, and a refund gives it back", async () => {
+  const s = createMemoryStore();
+  assert.equal(await s.reserveTryOn("k", "2026-10-03", 2), true);
+  assert.equal(await s.reserveTryOn("k", "2026-10-03", 2), true);
+  assert.equal(await s.reserveTryOn("k", "2026-10-03", 2), false);
+  assert.equal((await s.getUsage("k", "2026-10-03")).tryons, 2);
+  await s.refundTryOn("k", "2026-10-03");
+  assert.equal((await s.getUsage("k", "2026-10-03")).tryons, 1);
+  await s.refundTryOn("k", "2026-10-03"); await s.refundTryOn("k", "2026-10-03");
+  assert.equal((await s.getUsage("k", "2026-10-03")).tryons, 0, "never below zero");
+  assert.equal(await s.reserveTryOn("z", "2026-10-03", 0), false);
+});

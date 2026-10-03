@@ -114,3 +114,32 @@ test("migration file is idempotent-safe to read and names the consent-free table
   assert.match(text, /enable row level security/gi);
   assert.equal((text.match(/enable row level security/gi) ?? []).length, 3);
 });
+
+test("fit_reserve_tryon stops at the cap, refund gives one back, and only the service role may call them", { skip: !available && "Postgres not installed" }, () => {
+  const r = (q: string) => sql(q, { role: "service_role" });
+  assert.equal(r(`select fit_reserve_tryon('+447400999999', '2026-10-03', 2)`), "t");
+  assert.equal(r(`select fit_reserve_tryon('+447400999999', '2026-10-03', 2)`), "t");
+  assert.equal(r(`select fit_reserve_tryon('+447400999999', '2026-10-03', 2)`), "f");
+  assert.equal(sql(`select tryons from fit_usage where phone_e164 = '+447400999999'`), "2");
+  r(`select fit_refund_tryon('+447400999999', '2026-10-03')`); r(`select fit_refund_tryon('+447400999999', '2026-10-03')`); r(`select fit_refund_tryon('+447400999999', '2026-10-03')`);
+  assert.equal(sql(`select tryons from fit_usage where phone_e164 = '+447400999999'`), "0");
+  assert.equal(r(`select fit_reserve_tryon('+447400888888', '2026-10-03', 0)`), "f");
+  fails(`select fit_reserve_tryon('x', '2026-10-03', 5)`, { role: "anon" }, /permission denied/);
+  fails(`select fit_refund_tryon('x', '2026-10-03')`, { role: "authenticated", sub: STAFF }, /permission denied/);
+});
+
+test("parallel reservations never pass the cap", { skip: !available && "Postgres not installed" }, async () => {
+  const { exec } = await import("node:child_process");
+  const one = () => new Promise<string>(resolve => exec(`psql -h ${dir} -p ${port} -U postgres -d postgres -At -q -c "set role service_role; select fit_reserve_tryon('+447400777777', '2026-10-03', 3)"`, (_e, out) => resolve(out.trim())));
+  const results = await Promise.all(Array.from({ length: 12 }, one));
+  assert.equal(results.filter(x => x === "t").length, 3);
+  assert.equal(sql(`select tryons from fit_usage where phone_e164 = '+447400777777'`), "3");
+});
+
+test("deleting a client also deletes their usage rows, leaving other phones alone", { skip: !available && "Postgres not installed" }, () => {
+  seedClient();
+  sql(`select fit_bump_usage('+919876543210', '2026-10-01', 'tryons'); select fit_bump_usage('+919876543210', '2026-10-02', 'reports'); select fit_bump_usage('+447400666666', '2026-10-02', 'tryons')`, { role: "service_role" });
+  assert.equal(sql(`with d as (delete from fit_clients where phone_e164 = '+919876543210' returning 1) select count(*) from d`, { role: "authenticated", sub: STAFF }), "1");
+  assert.equal(sql(`select count(*) from fit_usage where phone_e164 = '+919876543210'`), "0");
+  assert.equal(sql(`select count(*) from fit_usage where phone_e164 = '+447400666666'`), "1");
+});

@@ -17,6 +17,10 @@ export interface FitStore {
   updatePreference(id: string, patch: PreferencePatch): Promise<boolean>;
   getUsage(key: string, day: string): Promise<Usage>;
   bumpUsage(key: string, day: string, field: keyof Usage): Promise<number>;
+  /** Atomically takes one try-on if fewer than `cap` are used today. False when the cap is reached. */
+  reserveTryOn(key: string, day: string, cap: number): Promise<boolean>;
+  /** Gives a reserved try-on back after the vendor failed. Never goes below zero. */
+  refundTryOn(key: string, day: string): Promise<void>;
 }
 
 export interface MemoryState { clients: Map<string, ClientRow>; usage: Map<string, Usage> }
@@ -45,5 +49,11 @@ export function createMemoryStore(now: () => Date = () => new Date(), state: Mem
       const k = `${key}|${day}`; const u = state.usage.get(k) ?? { tryons: 0, reports: 0 };
       u[field] += 1; state.usage.set(k, u); return u[field];
     },
+    async reserveTryOn(key, day, cap) {
+      const k = `${key}|${day}`; const u = state.usage.get(k) ?? { tryons: 0, reports: 0 };
+      if (u.tryons >= cap) return false;
+      u.tryons += 1; state.usage.set(k, u); return true;
+    },
+    async refundTryOn(key, day) { const u = state.usage.get(`${key}|${day}`); if (u && u.tryons > 0) u.tryons -= 1; },
   };
 }

@@ -1,6 +1,6 @@
 import { test, mock } from "node:test";
 import assert from "node:assert/strict";
-import { MAX_TRYON_BYTES, handleReport, handleTryOn, indiaDay, type TryOnDeps } from "./tryon.ts";
+import { GLOBAL_USAGE_KEY, MAX_TRYON_BYTES, handleReport, handleTryOn, indiaDay, type TryOnDeps } from "./tryon.ts";
 import { createMemoryStore, newMemoryState } from "./store.ts";
 import { signClientToken } from "./token.ts";
 import { TryOnError, createFakeProvider, type TryOnProvider } from "./tryon-provider.ts";
@@ -8,7 +8,7 @@ import type { TryOnConfig } from "./config.ts";
 
 const SECRET = "tryon-test-secret-value";
 const DAY = "2026-10-03";
-const config: TryOnConfig = { available: true, provider: "fake", model: "fake", dailyCap: 6, studioCap: 30 };
+const config: TryOnConfig = { available: true, provider: "fake", model: "fake", dailyCap: 6, studioCap: 30, globalCap: 500 };
 const jpeg = (bytes = 10) => new Blob([Buffer.alloc(bytes, 1)], { type: "image/jpeg" });
 
 async function setup(over: Partial<TryOnDeps> = {}) {
@@ -128,4 +128,28 @@ test("nothing is logged on any path, so images, tokens and phones never reach lo
 test("the day rolls over at midnight in India", () => {
   assert.equal(indiaDay(new Date("2026-10-03T18:29:59Z")), "2026-10-03");
   assert.equal(indiaDay(new Date("2026-10-03T18:30:00Z")), "2026-10-04");
+});
+
+test("ten requests at once with five used make exactly one more preview", async () => {
+  const slow: TryOnProvider = { async tryOn({ garment }) { await new Promise(r => setTimeout(r, 20)); return { image: garment, model: "fake", promptVersion: "p" }; } };
+  const { deps, store, token } = await setup({ provider: slow });
+  for (let i = 0; i < 5; i++) await store.bumpUsage("+919876543210", DAY, "tryons");
+  const results = await Promise.all(Array.from({ length: 10 }, () => call(deps, { token, look: "olive-gold-suit", person: jpeg() })));
+  assert.equal(results.filter(r => r.status === 200).length, 1);
+  assert.equal(results.filter(r => r.status === 429).length, 9);
+  assert.equal((await store.getUsage("+919876543210", DAY)).tryons, 6);
+});
+
+test("a deployment-wide daily ceiling stops all previews, and failures give the slot back", async () => {
+  const { deps, store, token } = await setup({ config: { ...config, globalCap: 2 } });
+  assert.equal((await call(deps, { token, look: "olive-gold-suit", person: jpeg() })).status, 200);
+  const failing: TryOnProvider = { async tryOn() { throw new TryOnError("vendor"); } };
+  assert.equal((await call({ ...deps, provider: failing }, { token, look: "olive-gold-suit", person: jpeg() })).status, 502);
+  assert.equal((await store.getUsage(GLOBAL_USAGE_KEY, DAY)).tryons, 1);
+  const other = await store.upsertClient({ phone: "+447400123456", name: "B", consentAt: "c", consentVersion: "v" });
+  const otherToken = signClientToken(other.id, SECRET);
+  assert.equal((await call(deps, { token: otherToken, look: "olive-gold-suit", person: jpeg() })).status, 200);
+  const third = await call(deps, { token: otherToken, look: "olive-gold-suit", person: jpeg() });
+  assert.equal(third.status, 429); assert.equal((third.json as { error: string }).error, "cap");
+  assert.equal((await store.getUsage("+447400123456", DAY)).tryons, 1, "a refused request leaves the phone's count alone");
 });
