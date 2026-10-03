@@ -4,7 +4,9 @@ import {useRouter, useSearchParams} from 'next/navigation';
 import {TapeRail, STEPS, type StepId} from './tape-rail';
 import {StepStyle} from './step-style';
 import {StepPhotos} from './step-photos';
-import {initialFlow, type FlowState} from './flow-types';
+import {StepResult} from './step-result';
+import {browserProfileStore} from '@/lib/fit/device-store';
+import {emptyBrief, initialFlow, type FlowState} from './flow-types';
 
 const isStep = (s: string | null): s is StepId => STEPS.some(step => step.id === s);
 
@@ -12,16 +14,31 @@ const isStep = (s: string | null): s is StepId => STEPS.some(step => step.id ===
 export function MeasureFlow() {
   const params = useSearchParams(); const router = useRouter();
   const [state, setState] = useState<FlowState>(initialFlow);
+  const [loadedProfile, setLoadedProfile] = useState(false);
   const requested: StepId = isStep(params.get('step')) ? (params.get('step') as StepId) : 'style';
+  const profileId = params.get('profile');
+  // A saved profile lives in this browser only, so it can only be read after mount.
+  useEffect(() => {
+    if (!profileId) return;
+    const p = browserProfileStore().list().find(x => x.id === profileId);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is only readable after mount; this copies the profile in once.
+    if (p) setState(s => ({...s, name: p.name, styleId: p.styleId, heightCm: p.heightCm, kameezOverrideCm: p.kameezOverrideCm, preference: p.preference, brief: p.brief ?? emptyBrief, profileId: p.id,
+      draft: requested === 'result' ? {measures: p.measures, raw: p.rawMeasures ?? p.measures, confidence: p.confidence, calibration: p.calibration, frontLm: null, sideLm: null, quality: null} : null}));
+    setLoadedProfile(true);
+  }, [profileId]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Until the profile effect has run, a saved result has no draft and the style step's fields would mount empty
+  // (they read their text once), so every step waits instead of redirecting or showing blanks.
+  const loading = !!profileId && !loadedProfile;
   // A step cannot show without its inputs: results need a draft, photos need a height.
   const step: StepId = requested === 'result' && !state.draft ? (state.heightCm ? 'photos' : 'style') : requested === 'photos' && !state.heightCm ? 'style' : requested;
-  useEffect(() => { if (step !== requested) router.replace(`/fit/measure?step=${step}`); }, [step, requested, router]);
+  useEffect(() => { if (!loading && step !== requested) router.replace(`/fit/measure?step=${step}`); }, [loading, step, requested, router]);
   const go = (s: StepId) => router.push(`/fit/measure?step=${s}`);
   const update = (patch: Partial<FlowState>) => setState(s => ({...s, ...patch}));
+  if (loading) return <main id="main" className="fit-step"><h1>Find your fit</h1></main>;
   return <>
     <TapeRail current={step}/>
     {step === 'style' && <StepStyle state={state} update={update} onNext={() => go('photos')}/>}
     {step === 'photos' && <StepPhotos state={state} update={update} onBack={() => go('style')} onDone={() => go('result')}/>}
-    {step === 'result' && <main id="main" className="fit-step"><h1>Your draft fit</h1><p className="fit-lede">Coming in Task 14.</p></main>}
+    {step === 'result' && <StepResult state={state} update={update} onRemeasure={() => { update({front: null, side: null, draft: null, attempts: 0}); go('photos'); }} onRestart={() => { setState(initialFlow); go('style'); }}/>}
   </>;
 }

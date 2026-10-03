@@ -36,7 +36,7 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .capture-shots{display:flex;gap:12px;padding:0 var(--gutter) 12px}.capture-shots figure{width:56px}.capture-shots img{aspect-ratio:3/4;object-fit:cover;width:100%}.capture-shots figcaption{font-size:10px;letter-spacing:.08em;padding-top:4px}
 /* Ledger */
 .draft-eyebrow{color:var(--flame)}
-.ledger{border-top:1px solid var(--line);margin:0}.ledger-group{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--flame);padding:24px 0 8px}
+.ledger{border-top:1px solid var(--line)}.ledger dl{margin:0}.ledger-group{font:inherit;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--flame);padding:24px 0 8px}
 .ledger-row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0 12px;border-bottom:1px solid var(--line)}
 .ledger-row dt{font-size:13px;align-self:end}.ledger-row dt small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
 .ledger-row dd{margin:0;text-align:right}.ledger-in{font:400 28px/1 var(--font-display),serif;font-variant-numeric:tabular-nums}
@@ -54,3 +54,6 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 @media(min-width:768px){.style-grid{grid-template-columns:repeat(4,1fr)}.fit-step{padding-top:48px}.capture{min-height:0}.capture-stage{min-height:60vh}.fit-actions{position:static;border:0;padding:8px 0 0;grid-auto-flow:column;justify-content:start}.fit-actions .button{width:auto}}
 /* Intro page disclosures */
 .fit-intro-details{max-width:720px;padding-bottom:var(--chapter)}.fit-intro-details>p{margin-top:24px}.page-heading>.button{margin-top:32px}.fit-intro-details>.fit-note{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px}
+.fit-chart{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}.fit-chart th,.fit-chart td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line)}.fit-chart tr[aria-current] th,.fit-chart tr[aria-current] td{color:var(--flame)}
+/* Text links that are buttons: drop the browser button box, keep the underline. */
+button.text-link{background:none;border:0;border-bottom:1px solid currentColor;padding:0}
