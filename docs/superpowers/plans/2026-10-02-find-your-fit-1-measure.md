@@ -77,6 +77,7 @@ Listed so the client can decide; the port keeps the prototype's behaviour unless
 5. The side photo was effectively required. **Kept required** in part 1: the side step cannot be skipped except through "Use height only".
 6. Tailor bias learning is deferred (spec 2). Not ported in part 1.
 7. Knee and ankle "widths" measure the distance between the two knees or ankles (stance), not limb width. Ported as-is.
+8. Confidence for a tape-measured value is not capped by the missing front photo (changed from the prototype).
 
 ## File structure
 

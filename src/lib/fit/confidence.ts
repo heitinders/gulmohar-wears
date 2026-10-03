@@ -26,7 +26,8 @@ const vis = (lm: Landmarks, i: number) => {
   return p.visibility ?? p.presence ?? 1;
 };
 
-// Ported from app.js computeConfidence (L972-1015). Unlike the prototype, callers re-run this after calibration.
+// Ported from app.js computeConfidence (L972-1015). Unlike the prototype, callers re-run this after calibration,
+// and a "calibrated" field keeps its floor of 90 without a front photo (Decisions 8).
 export function computeConfidence(
   m: Measures,
   front: Landmarks | null,
@@ -50,7 +51,7 @@ export function computeConfidence(
     if (calibrated && GIRTH_KEYS.includes(key)) c = Math.min(96, c + 18);
     if (calibrated && src === "calibrated") c = Math.min(97, Math.max(c, 90));
     c -= penalty;
-    if (!front) c = Math.min(c, 48);
+    if (!front && src !== "calibrated") c = Math.min(c, 48); // Decisions 8: the customer's own tape is not capped by the missing photo
     out[key] = Math.max(25, Math.min(97, Math.round(c)));
   }
   return out;

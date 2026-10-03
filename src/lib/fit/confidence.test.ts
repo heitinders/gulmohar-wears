@@ -7,7 +7,7 @@ import { applyTapeCalibration } from "./calibrate.ts";
 import { FRONT, SIDE, IMG, HEIGHT_64_IN } from "./fixtures.ts";
 import { FIELDS } from "./measures.ts";
 
-test("height-only drafts are capped at 48 everywhere", () => {
+test("height-only drafts without a tape value are capped at 48 everywhere", () => {
   const c = computeConfidence(ratioMeasures(HEIGHT_64_IN, null, "punjabi"), null, null, null, false);
   for (const f of FIELDS) assert.equal(c[f], 48, f); // 42 + 0.3 * 38 = 53.4, capped 55 for ratio, then 48 with no front
 });
@@ -39,6 +39,15 @@ test("calibration lifts girths to at least 90 and is recomputed", () => {
   const c = computeConfidence(r.measures, FRONT, null, assessPoseQuality(FRONT, null), true);
   assert.equal(c.bust, 96 - 8); // 80, +18 capped 96, then max(_, 90) capped 97, minus 8 soft penalty
   assert.equal(c.shoulder, 86 - 8); // lengths unchanged
+});
+
+test("a tape-measured girth on a height-only draft is not capped by the missing front photo", () => {
+  const r = applyTapeCalibration(ratioMeasures(HEIGHT_64_IN, null, "anarkali"), "bust", 86.4);
+  if (!r.ok) throw new Error("expected ok");
+  const c = computeConfidence(r.measures, null, null, null, true);
+  assert.equal(c.bust, 90); // 53.4 capped 55, +18 = 71.4, calibrated floor 90, no front cap for "calibrated" (Decisions 8)
+  assert.equal(c.waist, 90); // every girth is rescaled by the tape, so its source is "calibrated" too
+  assert.equal(c.shoulder, 48); // lengths still come from height alone, so the no-front cap stays
 });
 
 test("levels and labels", () => {
