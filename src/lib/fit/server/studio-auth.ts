@@ -65,6 +65,12 @@ export function createMemoryStudioData(auth: MemoryAuth, state: MemoryState, acc
   return {
     async isStaff(userId) { const u = await auth.getUser(accessToken); return !!u && u.id === userId && auth.staffIds.has(userId); },
     async listClients() { if (!(await caller())) return []; return [...state.clients.values()].map(r => structuredClone(r)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)); },
-    async deleteClient(id) { if (!(await caller())) return false; return state.clients.delete(id); },
+    async deleteClient(id) {
+      if (!(await caller())) return false;
+      const row = state.clients.get(id); if (!row) return false;
+      state.clients.delete(id);
+      for (const k of [...state.usage.keys()]) if (k.startsWith(`${row.phone}|`)) state.usage.delete(k);
+      return true;
+    },
   };
 }

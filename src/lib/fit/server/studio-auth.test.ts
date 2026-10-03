@@ -72,3 +72,13 @@ test("database rows map to client rows and back without extra fields", () => {
   assert.deepEqual(toDbPatch({ fit: "relaxed", lengthNote: "y", brief: null }), { fit: "relaxed", length_note: "y", brief: null });
   assert.deepEqual(toDbPatch({}), {});
 });
+
+test("deleting a client in the memory backend also forgets their usage, like the database trigger", async () => {
+  const state = newMemoryState(); const store = createMemoryStore(undefined, state); const auth = createMemoryAuth([staff]);
+  const { id } = await store.upsertClient({ phone: "+919876543210", name: "S", consentAt: "c", consentVersion: "v" });
+  await store.bumpUsage("+919876543210", "2026-10-03", "tryons"); await store.bumpUsage("+447400123456", "2026-10-03", "tryons");
+  const s = await auth.signIn(staff.email, staff.password); assert.ok(s.ok);
+  assert.equal(await createMemoryStudioData(auth, state, s.session.accessToken).deleteClient(id), true);
+  assert.deepEqual(await store.getUsage("+919876543210", "2026-10-03"), { tryons: 0, reports: 0 });
+  assert.equal((await store.getUsage("+447400123456", "2026-10-03")).tryons, 1);
+});
