@@ -58,7 +58,7 @@ export function TryOnFlow({looks}: {looks: (LookOption & {look: Look})[]}) {
   const tryAnother = () => { setResult(null); setSlug(null); setProblem(null); setLiked(false); };
   const order = chosen ? composeTryOnOrder({name: browserClientTokenStore().who()?.name ?? '', look: chosen.look, choice, size}) : '';
 
-  return <main id="main" className="fit-step tryon">
+  return <main id="main" className="fit-step tryon" data-clarity-mask="true">
     <div><p className="eyebrow draft-eyebrow">TRY IT ON</p><h1>Try a look on</h1></div>
     {!result && <>
       <p className="fit-lede">Choose one of our suits and add a full-length photo of yourself. We make a preview of you wearing it. It is an AI picture, so the garment in your order will be the real one from our photos.</p>

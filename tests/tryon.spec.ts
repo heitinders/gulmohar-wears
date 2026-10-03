@@ -99,6 +99,11 @@ test.describe('try-on', () => {
     await expect(page).toHaveURL(/\/fit\/try-on/);
   });
 
+  test('session recording masks try-on, where the customer photo and name appear', async ({page}) => {
+    await passGate(page, {name: 'Mask', phone: uniquePhone(), next: '/fit/try-on'});
+    await expect(page.locator('main')).toHaveAttribute('data-clarity-mask', 'true');
+  });
+
   test('try-on passes axe, has one h1 and fits at 390 and 1440', async ({page}) => {
     await passGate(page, {name: 'Axe', phone: uniquePhone(), next: '/fit/try-on'});
     for (const width of [390, 1440]) {

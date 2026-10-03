@@ -81,6 +81,15 @@ test.describe('the consent gate', () => {
     expect(await page.evaluate(() => localStorage.getItem('gulmohar_fit_token_v1'))).toBeNull();
   });
 
+  test('session recording masks the gate, where names and numbers appear', async ({page}) => {
+    await page.goto('/fit/start');
+    await expect(page.locator('main')).toHaveAttribute('data-clarity-mask', 'true');
+    await passGate(page);
+    await page.goto('/fit/start');
+    await expect(page.locator('main h1')).toContainText('Welcome back');
+    await expect(page.locator('main')).toHaveAttribute('data-clarity-mask', 'true');
+  });
+
   test('the gate page passes axe at 390 and 1440', async ({page}) => {
     for (const width of [390, 1440]) {
       await page.setViewportSize({width, height: 900}); await page.goto('/fit/start');

@@ -63,13 +63,13 @@ export function ConsentGate({countries, next}: {countries: CountryOption[]; next
 
   function useAnother() { browserClientTokenStore().clear(); setWho(null); setMode('form'); }
 
-  if (mode === 'checking') return <main id="main" className="fit-step"><h1>Before we measure</h1></main>;
-  if (mode === 'welcome' && who) return <main id="main" className="fit-step gate">
+  if (mode === 'checking') return <main id="main" className="fit-step" data-clarity-mask="true"><h1>Before we measure</h1></main>;
+  if (mode === 'welcome' && who) return <main id="main" className="fit-step gate" data-clarity-mask="true">
     <div><p className="eyebrow draft-eyebrow">FIND YOUR FIT</p><h1>Welcome back, {who.name}.</h1></div>
     <p className="fit-lede">We have your details for <span className="nowrap">{who.phoneMasked}</span>. Carry on where you left off.</p>
     <div className="fit-actions gate-actions"><Link className="button button-primary" href={next}>Continue <Arrow/></Link><button type="button" className="text-link" onClick={useAnother}>Not you? Use another number</button></div>
   </main>;
-  return <main id="main" className="fit-step gate">
+  return <main id="main" className="fit-step gate" data-clarity-mask="true">
     <div><p className="eyebrow draft-eyebrow">FIND YOUR FIT</p><h1>Before we measure</h1></div>
     <p className="fit-lede">Tell us who you are so the atelier can recognise your draft when it arrives on WhatsApp. Your photos and sizes stay on this phone.</p>
     <form className="fit-form" onSubmit={submit} noValidate>
