@@ -47,3 +47,14 @@ test("the order brief lists fabric, occasion, city, deadline and notes", () => {
   assert.ok(text.includes("Notes: Boat neck"));
   assert.doesNotMatch(text, /[—–]/);
 });
+
+test("a try-on order names the look, the choice and that the preview was AI, with no measurements", async () => {
+  const { composeTryOnOrder } = await import("./messages.ts");
+  const { looks } = await import("../catalogue.ts");
+  const ready = composeTryOnOrder({ name: "Simran", look: looks[0], choice: "size", size: "M" });
+  assert.match(ready, /Simran/); assert.match(ready, /Olive-gold embroidered suit/); assert.match(ready, /Ready size: M/); assert.match(ready, /AI preview/);
+  assert.doesNotMatch(ready, /[—–]/); assert.doesNotMatch(ready, /bust|waist|cm\b/i);
+  const mtm = composeTryOnOrder({ name: "", look: looks[1], choice: "mtm" });
+  assert.match(mtm, /Made to measure/); assert.match(mtm, /Fuchsia/); assert.doesNotMatch(mtm, /I’m ,/);
+  assert.match(composeTryOnOrder({ name: "A", look: looks[2], choice: "size", size: "" }), /Ready size: help me choose/);
+});

@@ -5,6 +5,7 @@ import { FIT_LABELS, NECKLINE_LABELS, SLEEVE_LABELS, type FitPreference } from "
 import type { Calibration } from "../fit/calibrate.ts";
 import { sizeAdviceLine, type SizeAdvice } from "../fit/size-advice.ts";
 import { formatCm, formatIn } from "../fit/units.ts";
+import type { Look } from "../catalogue.ts";
 
 /** CRM-neutral: no provider fields, credentials or transport in the UI model. */
 export interface Enquiry {
@@ -103,5 +104,15 @@ export function composeOrderBrief(i: DraftMessageInput & { brief: OrderBrief }):
     ...measureLines(i),
     "", "All numbers are photo estimates marked DRAFT. Our tailor verifies every measurement before cutting fabric.",
     `Draft code: ${i.code}`,
+  ].join("\n");
+}
+
+/** After an AI try-on preview: the look and how they want it made. No measurements; those travel in the draft message. */
+export function composeTryOnOrder(i: { name: string; look: Look; choice: "size" | "mtm"; size?: string }): string {
+  const name = clean(i.name);
+  return [
+    name ? `Hi Gulmohar, I’m ${name}. I’d like to order the ${i.look.name}.` : `Hi Gulmohar, I’d like to order the ${i.look.name}.`,
+    i.choice === "mtm" ? "Made to measure. I can send my measurement draft or measure with you." : `Ready size: ${i.size ? clean(i.size) : "help me choose"}`,
+    "I saw it in an AI preview on your website, so please confirm the fabric, colour, price and delivery timeline.",
   ].join("\n");
 }

@@ -20,6 +20,9 @@ const PHOTOS = {landmarks: 'front and side photos', hybrid: 'front photo only', 
 export function StepResult({state, update, onRemeasure, onRestart, studio}: StepProps & {onRemeasure(): void; onRestart(): void; studio?: StudioMode}) {
   const draft = state.draft!; const style = getStyle(state.styleId);
   const [saved, setSaved] = useState<'idle' | 'ok' | 'failed'>('idle');
+  const [tryOn, setTryOn] = useState(false);
+  // The try-on link shows only when previews are switched on for this deployment.
+  useEffect(() => { if (studio) return; let live = true; fetch('/api/fit/try-on').then(r => r.json()).then((j: {available?: boolean}) => { if (live) setTryOn(!!j.available); }).catch(() => {}); return () => { live = false; }; }, [studio]);
   // Style and fit choices go to the atelier's client list; measurements never do (spec 4.2).
   const {styleId, preference, brief} = state;
   useEffect(() => {
@@ -54,6 +57,7 @@ export function StepResult({state, update, onRemeasure, onRestart, studio}: Step
       <div className="chips"><button type="button" className="button button-outline" onClick={save}>{state.profileId ? 'Update saved measures' : 'Save to this phone'}</button><Link className="text-link" href="/fit/profile">Saved measures <Arrow/></Link></div>
       <p className="fit-note" role="status">{saved === 'ok' ? 'Saved in this browser only. Nothing leaves your phone.' : saved === 'failed' ? "Couldn't save on this phone. Private browsing or full storage can cause this. You can still send the draft." : ''}</p>
       <SendOnWhatsApp state={state}/>
+      {tryOn && <Link className="text-link" href="/fit/try-on">Try a look on <Arrow/></Link>}
     </>}
     <div className="fit-actions"><button type="button" className="button button-outline" onClick={onRemeasure}>Retake photos</button><button type="button" className="text-link" onClick={onRestart}>Start over</button></div>
   </main>;
