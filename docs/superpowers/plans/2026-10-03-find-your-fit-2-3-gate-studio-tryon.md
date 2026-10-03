@@ -95,16 +95,16 @@ playwright.config.ts                                    webServer env: memory ba
 
 **Interfaces:** Produces tables `fit_clients`, `fit_usage`, `studio_staff` exactly as spec 4.3, and `public.fit_bump_usage(p_key text, p_day date, p_field text) returns int` (atomic upsert-increment of `tryons` or `reports`, executable by `service_role` only).
 
-- [ ] Write `rls.test.ts` first. It creates a cluster with `initdb` in a temp dir on a free port, starts `postgres`, loads `auth-stub.sql` then the migration, and asserts with `psql` under `set role`:
+- [x] Write `rls.test.ts` first. It creates a cluster with `initdb` in a temp dir on a free port, starts `postgres`, loads `auth-stub.sql` then the migration, and asserts with `psql` under `set role`:
   - anon: `select` on each table fails or returns 0 rows; `insert into fit_clients` fails.
   - authenticated non-staff (claim `sub` = a user not in `studio_staff`): `select count(*) from fit_clients` returns 0; `delete` affects 0 rows.
   - authenticated staff: sees the seeded row, can delete it, can select `fit_usage`, cannot `insert`/`update` `fit_clients`.
   - service_role: can insert; the phone check rejects `+0123`, `9876543210`; the brief check rejects `{"notes":"x"}` and accepts `{"city":"Leeds"}`; `fit_bump_usage` returns 1 then 2; anon and authenticated cannot execute it.
   - There is no column named like `%measure%`, `%height%`, `%weight%`, `%image%`, `%photo%` in the three tables.
   - The test skips (not fails) when `initdb` is not on PATH.
-- [ ] Run `npm run test:db`, expect failure (no migration file).
-- [ ] Write the stub (roles `anon`, `authenticated`, `service_role` with `bypassrls`, schema `auth`, `auth.users(id uuid primary key, email text)`, `auth.uid()` reading `current_setting('request.jwt.claim.sub', true)`, default privileges granting all on public tables to the three roles as Supabase does) and the migration (tables per spec, `enable row level security` on all three, policies `staff_select_clients`, `staff_delete_clients`, `staff_select_usage` using `exists (select 1 from studio_staff s where s.user_id = auth.uid())`, `studio_staff` select policy for the row's own user only, `fit_bump_usage` with `revoke execute ... from public, anon, authenticated` and `grant execute ... to service_role`, an `updated_at` trigger).
-- [ ] Run, expect pass. Commit "Add the Find Your Fit schema with row-level security and a real-database test".
+- [x] Run `npm run test:db`, expect failure (no migration file).
+- [x] Write the stub (roles `anon`, `authenticated`, `service_role` with `bypassrls`, schema `auth`, `auth.users(id uuid primary key, email text)`, `auth.uid()` reading `current_setting('request.jwt.claim.sub', true)`, default privileges granting all on public tables to the three roles as Supabase does) and the migration (tables per spec, `enable row level security` on all three, policies `staff_select_clients`, `staff_delete_clients`, `staff_select_usage` using `exists (select 1 from studio_staff s where s.user_id = auth.uid())`, `studio_staff` select policy for the row's own user only, `fit_bump_usage` with `revoke execute ... from public, anon, authenticated` and `grant execute ... to service_role`, an `updated_at` trigger).
+- [x] Run, expect pass. Commit "Add the Find Your Fit schema with row-level security and a real-database test".
 
 ### Task 2: Phone parsing and consent copy
 
@@ -112,8 +112,8 @@ playwright.config.ts                                    webServer env: memory ba
 
 **Interfaces:** `parsePhone(input: string, country: CountryCode): {ok: true; e164: string; country: CountryCode} | {ok: false; reason: 'empty' | 'invalid'; countryName: string}`; `countryOptions(locale = 'en'): {code: CountryCode; name: string; dial: string}[]` sorted by name with India first; `maskPhone(e164): string` (keeps the country code and last 4 digits, middle as `•`); `CONSENT_VERSION`, `CONSENT_TEXT`.
 
-- [ ] Tests: `98765 43210`+IN → `+919876543210`; `+44 7911 123456` with IN → `+447911123456` country GB; `0044 7911 123456`+IN → invalid, `countryName` `India`; `12`+IN invalid; empty → `empty`; US `(415) 555-2671` → `+14155552671`; every e164 result matches the DB regex; `countryOptions()[0].code === 'IN'` and includes `GB`, `US`, `CA`, `AU`; `maskPhone('+919876543210') === '+91 ••••••3210'`; consent text contains no `—` or `–` and equals spec 5 verbatim.
-- [ ] Fail, implement with `libphonenumber-js/min`, pass, commit "Add phone parsing and the consent wording".
+- [x] Tests: `98765 43210`+IN → `+919876543210`; `+44 7911 123456` with IN → `+447911123456` country GB; `0044 7911 123456`+IN → invalid, `countryName` `India`; `12`+IN invalid; empty → `empty`; US `(415) 555-2671` → `+14155552671`; every e164 result matches the DB regex; `countryOptions()[0].code === 'IN'` and includes `GB`, `US`, `CA`, `AU`; `maskPhone('+919876543210') === '+91 ••••••3210'`; consent text contains no `—` or `–` and equals spec 5 verbatim.
+- [x] Fail, implement with `libphonenumber-js/min`, pass, commit "Add phone parsing and the consent wording".
 
 ### Task 3: Client token and backend config
 
@@ -121,8 +121,8 @@ playwright.config.ts                                    webServer env: memory ba
 
 **Interfaces:** `signClientToken(clientId: string, secret: string): string`; `verifyClientToken(token: unknown, secret: string): {ok: true; clientId: string} | {ok: false}`; `fitBackend(env = process.env): 'supabase' | 'memory' | 'off'`; `tryOnConfig(env): {available: boolean; provider: 'gemini' | 'fake' | null; model: string | null; dailyCap: number; studioCap: number; reason?: string}`.
 
-- [ ] Tests: round trip; flipping one character of either half fails; another secret fails; non-string, empty, three-part and 10 kB tokens fail without throwing; uses `timingSafeEqual` (length mismatch guarded). Config: each mode from env combinations; `memory` ignored when `NODE_ENV=production`; try-on unavailable when paid flag missing (`reason: 'paid-tier-unconfirmed'`), when not enabled, when backend `off`; caps parse integers and fall back to 6 and 30 on garbage.
-- [ ] Fail, implement, pass, commit "Add the signed client token and backend configuration".
+- [x] Tests: round trip; flipping one character of either half fails; another secret fails; non-string, empty, three-part and 10 kB tokens fail without throwing; uses `timingSafeEqual` (length mismatch guarded). Config: each mode from env combinations; `memory` ignored when `NODE_ENV=production`; try-on unavailable when paid flag missing (`reason: 'paid-tier-unconfirmed'`), when not enabled, when backend `off`; caps parse integers and fall back to 6 and 30 on garbage.
+- [x] Fail, implement, pass, commit "Add the signed client token and backend configuration".
 
 ### Task 4: FitStore, memory store and rate limiter
 
@@ -144,17 +144,17 @@ createMemoryStore(): FitStore & {staff: StaffDirectory}   // shared through glob
 toPreferencePatch(input: unknown): PreferencePatch        // whitelist and length limits; drops brief.notes and unknown keys
 createRateLimiter({limit, windowMs, now?}): {take(key: string): boolean}
 ```
-- [ ] Tests: upsert on same phone keeps the id and updates name and consent; preference patch drops `notes`, `heightCm`, `measures`, unknown keys, overlong strings (sleeve 60, length note 200, brief values 120), invalid style or fit; empty brief becomes `null`; usage increments per key and day independently; limiter allows `limit` then refuses until the window passes.
-- [ ] Fail, implement, pass, commit "Add the client store, preference whitelist and rate limiter".
+- [x] Tests: upsert on same phone keeps the id and updates name and consent; preference patch drops `notes`, `heightCm`, `measures`, unknown keys, overlong strings (sleeve 60, length note 200, brief values 120), invalid style or fit; empty brief becomes `null`; usage increments per key and day independently; limiter allows `limit` then refuses until the window passes.
+- [x] Fail, implement, pass, commit "Add the client store, preference whitelist and rate limiter".
 
 ### Task 5: Supabase store and staff auth adapters
 
 **Files:** `src/lib/fit/server/supabase-store.ts`, `src/lib/fit/server/studio-auth.ts` (+test for the memory auth and cookie helpers). Add `@supabase/supabase-js`, `server-only`.
 
 **Interfaces:** `createSupabaseStore(url, serviceKey): FitStore`; `interface StudioAuth { signIn(email, password): Promise<{ok: true; session: Session} | {ok: false}>; getUser(accessToken): Promise<{id: string; email: string} | null>; refresh(refreshToken): Promise<Session | null>; signOut(accessToken): Promise<void> }`; `Session {accessToken; refreshToken; expiresAt: number}`; `createMemoryAuth(users)`, `createSupabaseAuth(url, anonKey)`; `SESSION_COOKIES = {access: 'gw_studio_at', refresh: 'gw_studio_rt', expires: 'gw_studio_exp'}`; `sessionCookieOptions(secure)`; `needsRefresh(expiresAt, now)` (true within 60 s of expiry).
-- [ ] Tests (memory auth and helpers): sign in with the right password, wrong password fails; `getUser` on a signed-out token is null; refresh rotates tokens; `needsRefresh` boundaries; cookie options are `httpOnly`, `sameSite: 'lax'`, `path: '/studio'`, `secure` as given.
-- [ ] The Supabase adapters map the same calls onto `supabase-js` (service-role client with `persistSession: false` for the store; `bumpUsage` through `rpc('fit_bump_usage')`; staff reads use a client created with the staff JWT so RLS applies). They are exercised against a live project only, listed under "Needs from the client".
-- [ ] Commit "Add Supabase adapters and the studio session helpers".
+- [x] Tests (memory auth and helpers): sign in with the right password, wrong password fails; `getUser` on a signed-out token is null; refresh rotates tokens; `needsRefresh` boundaries; cookie options are `httpOnly`, `sameSite: 'lax'`, `path: '/studio'`, `secure` as given.
+- [x] The Supabase adapters map the same calls onto `supabase-js` (service-role client with `persistSession: false` for the store; `bumpUsage` through `rpc('fit_bump_usage')`; staff reads use a client created with the staff JWT so RLS applies). They are exercised against a live project only, listed under "Needs from the client".
+- [x] Commit "Add Supabase adapters and the studio session helpers".
 
 ### Task 6: Register, check and preference sync on the server
 
@@ -168,94 +168,94 @@ checkClient(deps, token): Promise<{ok: true; name: string; phoneMasked: string} 
 updatePreference(deps, token, patch): Promise<{ok: true} | {ok: false; error: 'invalid-token' | 'unavailable'}>
 // actions.ts ('use server'): registerFitClient(formData), checkFitToken(token), syncFitPreference(token, patch)
 ```
-- [ ] Tests: name trimmed, 1 to 80 chars; consent must be `true` and version must equal `CONSENT_VERSION`; filled honeypot `website` returns `ok: true`-shaped fake success without writing (bots learn nothing) — assert store untouched; 11th attempt from one IP in an hour → `rate`; store throwing → `unavailable` and nothing logged (console spied); same phone twice → same token; `checkClient` for a deleted client → `invalid-token`; `updatePreference` only writes whitelisted fields.
-- [ ] `deps.ts` (`import 'server-only'`) builds deps from `fitBackend()`; actions return `{ok:false,error:'unavailable'}` when backend is `off`. Actions read the IP from `headers()` `x-forwarded-for` first entry.
-- [ ] Fail, implement, pass, typecheck, commit "Add client registration and preference sync on the server".
+- [x] Tests: name trimmed, 1 to 80 chars; consent must be `true` and version must equal `CONSENT_VERSION`; filled honeypot `website` returns `ok: true`-shaped fake success without writing (bots learn nothing) — assert store untouched; 11th attempt from one IP in an hour → `rate`; store throwing → `unavailable` and nothing logged (console spied); same phone twice → same token; `checkClient` for a deleted client → `invalid-token`; `updatePreference` only writes whitelisted fields.
+- [x] `deps.ts` (`import 'server-only'`) builds deps from `fitBackend()`; actions return `{ok:false,error:'unavailable'}` when backend is `off`. Actions read the IP from `headers()` `x-forwarded-for` first entry.
+- [x] Fail, implement, pass, typecheck, commit "Add client registration and preference sync on the server".
 
 ### Task 7: Browser token storage and the gate guard
 
 **Files:** `src/lib/fit/client-token.ts` (+test), `src/components/fit/fit-gate.tsx`.
 
 **Interfaces:** `createClientTokenStore(storage: StorageLike | null): {get(): string | null; set(token, who: {name; phoneMasked}): boolean; who(): {name; phoneMasked} | null; clear(): void; pendingPreference(): PreferencePatch | null; setPendingPreference(p): void; clearPending(): void}`; `browserClientTokenStore()`. `<FitGate required: boolean next: string>{children}</FitGate>`: when required and no token, `router.replace('/fit/start?next=' + next)`; when a token exists, runs `checkFitToken` once per page load; `invalid-token` clears and redirects; `unavailable` or a network error lets the customer continue. When a pending preference exists, it retries `syncFitPreference` and clears it on success.
-- [ ] Tests for the store with a throwing storage (never throws) and keys `gulmohar_fit_token_v1`, `gulmohar_fit_client_v1`, `gulmohar_fit_pending_pref_v1`.
-- [ ] Commit "Add browser token storage and the fit gate guard".
+- [x] Tests for the store with a throwing storage (never throws) and keys `gulmohar_fit_token_v1`, `gulmohar_fit_client_v1`, `gulmohar_fit_pending_pref_v1`.
+- [x] Commit "Add browser token storage and the fit gate guard".
 
 ### Task 8: Gate UI, wiring and preference sync from the result step
 
 **Files:** `src/components/fit/phone-field.tsx`, `src/components/fit/consent-gate.tsx`, `src/app/fit/start/page.tsx`, modify `src/app/fit/page.tsx` (Start goes to `/fit/start`), `src/app/fit/measure/page.tsx` and `src/app/fit/profile/page.tsx` (wrap in `FitGate` with `required={fitBackend() !== 'off'}`; pages become dynamic by reading config at request time via `connection()`), `src/components/fit/step-result.tsx` (debounced sync of style, fit, sleeve, neckline, length note and brief, never measurements; failure stores pending), `src/app/fit/fit.css`.
 
-- [ ] `/fit/start`: when backend is `off`, redirect to `/fit/measure`. Otherwise one `h1` "Before we measure", name, `PhoneField` (country `select` with India first plus a `tel` input, 16px, label "Phone or WhatsApp number"), consent checkbox with `CONSENT_TEXT` and a link to `/privacy#find-your-fit`, hidden honeypot `website` (`tabIndex=-1`, `autoComplete="off"`, visually hidden, `aria-hidden`), primary "Continue". Inline errors with `role="alert"` next to their fields: phone error names the country ("That doesn't look like a valid number for India."). `unavailable`: "We couldn't save your details just now. Try again, or message us on WhatsApp." with the WhatsApp link. When the phone already holds a valid token: "Welcome back, Simran" with the masked phone, "Continue" and "Not you? Use another number".
-- [ ] Playwright (`tests/fit.spec.ts`, memory backend): gate refuses `0044...` with India selected, accepts `98765 43210`, lands on `/fit/measure`; the gate is keyboard-only operable; returning visit shows the welcome; visiting `/fit/measure` without a token redirects to `/fit/start?next=%2Ffit%2Fmeasure`; a tampered token in localStorage is cleared and redirected; existing part 1 tests pass through the gate first; axe on `/fit/start`.
-- [ ] Commit "Add the consent gate, gate redirects and preference sync".
+- [x] `/fit/start`: when backend is `off`, redirect to `/fit/measure`. Otherwise one `h1` "Before we measure", name, `PhoneField` (country `select` with India first plus a `tel` input, 16px, label "Phone or WhatsApp number"), consent checkbox with `CONSENT_TEXT` and a link to `/privacy#find-your-fit`, hidden honeypot `website` (`tabIndex=-1`, `autoComplete="off"`, visually hidden, `aria-hidden`), primary "Continue". Inline errors with `role="alert"` next to their fields: phone error names the country ("That doesn't look like a valid number for India."). `unavailable`: "We couldn't save your details just now. Try again, or message us on WhatsApp." with the WhatsApp link. When the phone already holds a valid token: "Welcome back, Simran" with the masked phone, "Continue" and "Not you? Use another number".
+- [x] Playwright (`tests/fit.spec.ts`, memory backend): gate refuses `0044...` with India selected, accepts `98765 43210`, lands on `/fit/measure`; the gate is keyboard-only operable; returning visit shows the welcome; visiting `/fit/measure` without a token redirects to `/fit/start?next=%2Ffit%2Fmeasure`; a tampered token in localStorage is cleared and redirected; existing part 1 tests pass through the gate first; axe on `/fit/start`.
+- [x] Commit "Add the consent gate, gate redirects and preference sync".
 
 ### Task 9: Privacy section
 
 **Files:** `src/lib/information.ts`, `src/app/[info]/page.tsx`, test in `tests/fit.spec.ts`.
 
-- [ ] Add sections to `privacy` (titles prefixed so the anchor is stable, first section id `find-your-fit`): what Find your fit stores (name, phone, consent time and version, style and fit choices, order brief fields), what it never stores (photos, measurements, height, try-on images), who processes photos (measuring: nobody, on the phone; try-on: the one photo goes through our server to Google Gemini on a paid plan and is not kept), deletion (WhatsApp or phone from `brand.ts`, the Studio deletes the record). Section headings get ids from a slug of the title. Playwright: `/privacy#find-your-fit` shows the heading; no dashes.
-- [ ] Commit "Add the Find your fit privacy section".
+- [x] Add sections to `privacy` (titles prefixed so the anchor is stable, first section id `find-your-fit`): what Find your fit stores (name, phone, consent time and version, style and fit choices, order brief fields), what it never stores (photos, measurements, height, try-on images), who processes photos (measuring: nobody, on the phone; try-on: the one photo goes through our server to Google Gemini on a paid plan and is not kept), deletion (WhatsApp or phone from `brand.ts`, the Studio deletes the record). Section headings get ids from a slug of the title. Playwright: `/privacy#find-your-fit` shows the heading; no dashes.
+- [x] Commit "Add the Find your fit privacy section".
 
 ### Task 10: Studio session, proxy and login
 
 **Files:** `src/lib/fit/server/studio.ts` (+test), `src/proxy.ts`, `src/app/studio/layout.tsx`, `src/app/studio/studio.css`, `src/app/studio/login/page.tsx`, `src/app/studio/login/actions.ts`, `src/app/studio/(staff)/layout.tsx`, `src/app/studio/(staff)/actions.ts`, `src/components/studio/studio-nav.tsx`.
 
 **Interfaces:** `requireStaff(deps: {auth; store}, cookies: {access?: string}): Promise<{ok: true; user: {id; email}; accessToken: string} | {ok: false; reason: 'signed-out' | 'not-staff' | 'unavailable'}>`; `refreshSessionCookies(auth, cookies, now): Promise<{set?: Session; clear?: true} | null>` used by `proxy.ts` on `/studio/:path*`.
-- [ ] Tests: no cookie → signed-out; valid user not in staff → not-staff; staff → ok; refresh within 60 s of expiry sets new cookies; refresh failure clears them.
-- [ ] Login page (noindex via `robots: {index: false}` in the studio layout metadata): email, password, "Sign in"; errors "Email or password is not right." and "This account is not on the studio list."; with backend `off`: "The studio is not connected yet." Staff layout redirects to `/studio/login` when not ok, renders `StudioNav` (Clients, Orders, Fit, Tailor, Import, Sign out).
-- [ ] Commit "Add studio sign-in, session refresh and navigation".
+- [x] Tests: no cookie → signed-out; valid user not in staff → not-staff; staff → ok; refresh within 60 s of expiry sets new cookies; refresh failure clears them.
+- [x] Login page (noindex via `robots: {index: false}` in the studio layout metadata): email, password, "Sign in"; errors "Email or password is not right." and "This account is not on the studio list."; with backend `off`: "The studio is not connected yet." Staff layout redirects to `/studio/login` when not ok, renders `StudioNav` (Clients, Orders, Fit, Tailor, Import, Sign out).
+- [x] Commit "Add studio sign-in, session refresh and navigation".
 
 ### Task 11: Clients and Orders
 
 **Files:** `src/lib/fit/server/studio.ts` (`listClients`, `listOrders`, `deleteClient` + tests), `src/app/studio/(staff)/page.tsx`, `orders/page.tsx`, `src/components/studio/client-list.tsx`, `delete-client.tsx`, `src/lib/fit/studio-store.ts` (+test).
 
 **Interfaces:** `listOrders(rows)` keeps rows whose brief has any non-empty value, sorted by deadline ascending with no deadline last; `waLink(phone)` = `https://wa.me/<digits>`; studio store `createStudioStore(storage)`: `{list(); get(phone); save(entry: StudioEntry); attachTailor(phone, values: Partial<Values>, verified: Field[]); remove(phone)}` with `StudioEntry {phone; name; styleId; heightCm; fit; measures: Values; confidence: Partial<Record<Field, number>>; source: 'studio-fit' | 'import'; savedAt; tailor?: {values; verified; at}}` under `gulmohar_studio_measures_v1`.
-- [ ] Tests: orders filter and sort; deleting needs staff (`requireStaff` result); studio store survives throwing storage; tailor corrections are kept alongside the original values, not over them.
-- [ ] Clients table: name, phone (tap opens WhatsApp chat), style, fit, brief summary, last seen, "On this device" marker from the studio store, Delete with confirm. Empty state copy. Orders: same rows filtered and sorted, deadline shown first.
-- [ ] Commit "Add the studio client list and orders".
+- [x] Tests: orders filter and sort; deleting needs staff (`requireStaff` result); studio store survives throwing storage; tailor corrections are kept alongside the original values, not over them.
+- [x] Clients table: name, phone (tap opens WhatsApp chat), style, fit, brief summary, last seen, "On this device" marker from the studio store, Delete with confirm. Empty state copy. Orders: same rows filtered and sorted, deadline shown first.
+- [x] Commit "Add the studio client list and orders".
 
 ### Task 12: Studio Fit, Tailor and Import
 
 **Files:** `src/components/fit/measure-flow.tsx` (props `basePath` default `/fit/measure` and `studio?: {clients; onSave}`), `step-result.tsx` (studio mode replaces save-to-phone and WhatsApp with "Save for this client on this device"), `src/app/studio/(staff)/fit/page.tsx`, `src/components/studio/studio-fit.tsx`, `tailor/page.tsx`, `src/components/studio/tailor-compare.tsx`, `import/page.tsx`, `src/components/studio/import-code.tsx`.
 
-- [ ] Studio Fit: choose a client (select of Supabase clients), then the same three steps under `/studio/fit?step=`; result saves to the studio store only.
-- [ ] Tailor: pick a client held on this device; per field: draft value (in and cm), a tape input in inches, a "Verified" checkbox; "Save corrections" stores them on this device. Fields marked verified show source "tailor verified".
-- [ ] Import: paste a code, choose the client; `decodeDraftCode` errors show "This code looks incomplete. Ask the customer to resend it."; success shows the decoded style, fit and bust, and saves with source `import`.
-- [ ] Playwright `tests/studio.spec.ts` (memory backend, dev staff from env): wrong password message; sign in; a client registered through the gate appears with a working `wa.me` link; Orders lists only clients with a brief; Import rejects a mangled code and accepts a real one produced by the customer flow; Tailor saves a correction and shows it after reload; Delete removes the client; Sign out returns to login; axe on every studio route; one `h1` per route; no horizontal overflow at 390 and 1440.
-- [ ] Commit "Add studio fit, tailor corrections and draft code import".
+- [x] Studio Fit: choose a client (select of Supabase clients), then the same three steps under `/studio/fit?step=`; result saves to the studio store only.
+- [x] Tailor: pick a client held on this device; per field: draft value (in and cm), a tape input in inches, a "Verified" checkbox; "Save corrections" stores them on this device. Fields marked verified show source "tailor verified".
+- [x] Import: paste a code, choose the client; `decodeDraftCode` errors show "This code looks incomplete. Ask the customer to resend it."; success shows the decoded style, fit and bust, and saves with source `import`.
+- [x] Playwright `tests/studio.spec.ts` (memory backend, dev staff from env): wrong password message; sign in; a client registered through the gate appears with a working `wa.me` link; Orders lists only clients with a brief; Import rejects a mangled code and accepts a real one produced by the customer flow; Tailor saves a correction and shows it after reload; Delete removes the client; Sign out returns to login; axe on every studio route; one `h1` per route; no horizontal overflow at 390 and 1440.
+- [x] Commit "Add studio fit, tailor corrections and draft code import".
 
 ### Task 13: Try-on prompt, providers and the spike script
 
 **Files:** `src/lib/fit/tryon-prompt.ts` (+test), `src/lib/fit/server/tryon-provider.ts` (+test with a recorded Gemini response fixture), `scripts/fit-tryon-spike.mjs`, `docs/FIT-SPIKE-REPORT.md`, `.gitignore` (`.fit-spike/`).
 
 **Interfaces:** `TRYON_PROMPT_VERSION = 'tryon-2026-10-03'`; `buildTryOnPrompt(look: Look): string`; `interface TryOnProvider { tryOn(i: {person: Blob; garment: Blob; lookSlug: string}): Promise<{image: Blob; model: string; promptVersion: string}> }`; `createGeminiProvider({apiKey, model, fetch?, timeoutMs = 45000})` posting to `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent` with header `x-goog-api-key`, parts `[text, inline_data person, inline_data garment]`, `generationConfig.responseModalities: ['IMAGE']`, reading `candidates[0].content.parts[].inlineData ?? inline_data`; `TryOnError` with `code: 'timeout' | 'vendor' | 'no-image' | 'blocked'`; `createFakeProvider()` returns the garment image (dev and Playwright only).
-- [ ] Tests: prompt includes every spec 4.6 requirement (face, skin tone, body shape, proportions, pose, background unchanged; only clothing replaced; embroidery placement, colour, sheer dupatta kept; no beautifying or slimming; one photorealistic image) and the look name, no dashes; provider sends the key only in the header (never the URL), parses camelCase and snake_case responses, maps `promptFeedback.blockReason` to `blocked`, a response without image to `no-image`, HTTP 500 to `vendor`, abort to `timeout`; error messages never contain base64 data.
-- [ ] Spike script: `node scripts/fit-tryon-spike.mjs --person path.jpg` requires `GEMINI_API_KEY` and `GEMINI_PAID_TIER_CONFIRMED=true`, runs `gemini-3.1-flash-image` and `gemini-3-pro-image` on the three looks, writes images to `.fit-spike/` (gitignored), and prints the scoring table to paste into the report. The report template lists the five criteria and the go or no-go bar (every look scores at least 4 of 5 on both "dupatta preserved" and "person unchanged").
-- [ ] Commit "Add the try-on prompt, Gemini provider and the spike kit".
+- [x] Tests: prompt includes every spec 4.6 requirement (face, skin tone, body shape, proportions, pose, background unchanged; only clothing replaced; embroidery placement, colour, sheer dupatta kept; no beautifying or slimming; one photorealistic image) and the look name, no dashes; provider sends the key only in the header (never the URL), parses camelCase and snake_case responses, maps `promptFeedback.blockReason` to `blocked`, a response without image to `no-image`, HTTP 500 to `vendor`, abort to `timeout`; error messages never contain base64 data.
+- [x] Spike script: `node scripts/fit-tryon-spike.mjs --person path.jpg` requires `GEMINI_API_KEY` and `GEMINI_PAID_TIER_CONFIRMED=true`, runs `gemini-3.1-flash-image` and `gemini-3-pro-image` on the three looks, writes images to `.fit-spike/` (gitignored), and prints the scoring table to paste into the report. The report template lists the five criteria and the go or no-go bar (every look scores at least 4 of 5 on both "dupatta preserved" and "person unchanged").
+- [x] Commit "Add the try-on prompt, Gemini provider and the spike kit".
 
 ### Task 14: Try-on server routes
 
 **Files:** `src/lib/fit/server/tryon.ts` (+test), `src/app/api/fit/try-on/route.ts`, `src/app/api/fit/try-on/report/route.ts`.
 
 **Interfaces:** `handleTryOn(deps: {config; store; secret; provider; loadGarment(slug): Promise<Blob | null>; staff(): Promise<{id} | null>; today(): string}, form: FormData, contentLength: number | null): Promise<{status: number; json?: object; image?: Blob}>`; `handleReport(...)`. Responses: 503 `{error: 'unavailable'}`; 413 `too-large`; 415 `type`; 400 `look`; 401 `invalid-token`; 429 `cap` with `{whatsapp: url}`; 502 `vendor` / 504 `timeout`; 200 with the image bytes and `x-tryon-model`, `x-tryon-prompt`, `cache-control: no-store`. `GET /api/fit/try-on` → `{available}`.
-- [ ] Tests: unavailable when config says so (paid flag); content-length over 8 MB refused before parsing; GIF refused; unknown slug refused; bad token refused; staff session accepted with the studio cap and key `staff:<id>`; at 5 used the call succeeds and the count becomes 6; at 6 used refused; provider failure leaves the count unchanged; report bumps `reports` only; privacy: with `console` spied across every path, nothing logged contains image bytes, the token, or measurement words.
-- [ ] Commit "Add the try-on and report routes with daily caps".
+- [x] Tests: unavailable when config says so (paid flag); content-length over 8 MB refused before parsing; GIF refused; unknown slug refused; bad token refused; staff session accepted with the studio cap and key `staff:<id>`; at 5 used the call succeeds and the count becomes 6; at 6 used refused; provider failure leaves the count unchanged; report bumps `reports` only; privacy: with `console` spied across every path, nothing logged contains image bytes, the token, or measurement words.
+- [x] Commit "Add the try-on and report routes with daily caps".
 
 ### Task 15: Try-on UI
 
 **Files:** `src/lib/fit/image.ts`, `src/components/fit/look-picker.tsx`, `try-on-preview.tsx`, `try-on-flow.tsx`, `src/app/fit/try-on/page.tsx`, `src/lib/enquiries/messages.ts` (`composeTryOnOrder` + test), `step-result.tsx` ("Try it on" link only when available).
 
-- [ ] `composeTryOnOrder({name, look, choice: 'size' | 'mtm', size?, styleId?})` test: names the look, says the preview was AI, no measurements unless a draft code is passed, no dashes.
-- [ ] Page: when try-on is unavailable, the page explains and offers WhatsApp (no form). Otherwise: choose a look (three catalogue looks, full silhouette images), add a photo (camera or upload, downscaled to 1600px), "Make my preview"; result with the persistent label "AI preview, not a photograph of the garment", "Report this preview", "Try another look", "I like this" then "Ready size" or "Made to measure", then "Order on WhatsApp". Cap message: "You've used today's previews. Message us on WhatsApp and we'll help." Error: retry, allowance kept.
-- [ ] Playwright `tests/tryon.spec.ts` (memory backend, fake provider): full journey to the WhatsApp link; label always visible with the image; report shows a thank-you; cap reached after the configured cap (set `FIT_TRYON_DAILY_CAP=2` in the test server env) shows the cap message; axe.
-- [ ] Commit "Add the try-on flow".
+- [x] `composeTryOnOrder({name, look, choice: 'size' | 'mtm', size?, styleId?})` test: names the look, says the preview was AI, no measurements unless a draft code is passed, no dashes.
+- [x] Page: when try-on is unavailable, the page explains and offers WhatsApp (no form). Otherwise: choose a look (three catalogue looks, full silhouette images), add a photo (camera or upload, downscaled to 1600px), "Make my preview"; result with the persistent label "AI preview, not a photograph of the garment", "Report this preview", "Try another look", "I like this" then "Ready size" or "Made to measure", then "Order on WhatsApp". Cap message: "You've used today's previews. Message us on WhatsApp and we'll help." Error: retry, allowance kept.
+- [x] Playwright `tests/tryon.spec.ts` (memory backend, fake provider): full journey to the WhatsApp link; label always visible with the image; report shows a thank-you; cap reached after the configured cap (set `FIT_TRYON_DAILY_CAP=2` in the test server env) shows the cap message; axe.
+- [x] Commit "Add the try-on flow".
 
 ### Task 16: Environment, docs and the full verification
 
 **Files:** `.env.example`, `playwright.config.ts`, `README.md` (a short "Find your fit backend" section), `docs/superpowers/plans/*` checkboxes.
 
-- [ ] `npm test`, `npm run test:db`, `npm run typecheck`, `npm run lint`, `npm run build` (with backend off and with memory), `npm run test:ui` all pass. Screenshots of `/fit/start`, `/studio`, `/fit/try-on` at 390, 430 and 1440 reviewed against the design notes. `grep -rn "—\|–"` over new customer-facing files returns nothing.
-- [ ] Fresh reviewer over the whole branch; fix confirmed findings.
-- [ ] Commit "Document the Find your fit backend settings".
+- [x] `npm test`, `npm run test:db`, `npm run typecheck`, `npm run lint`, `npm run build` (with backend off and with memory), `npm run test:ui` all pass. Screenshots of `/fit/start`, `/studio`, `/fit/try-on` at 390, 430 and 1440 reviewed against the design notes. `grep -rn "—\|–"` over new customer-facing files returns nothing.
+- [x] Fresh reviewer over the whole branch; fix confirmed findings.
+- [x] Commit "Document the Find your fit backend settings".
 
 ## Needs from the client (cannot be done in code)
 
