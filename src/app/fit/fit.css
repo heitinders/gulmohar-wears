@@ -14,9 +14,10 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .fit-step{width:100%;max-width:720px;margin:0 auto;padding:32px var(--gutter) 40px;display:grid;gap:24px;align-content:start;flex:1}
 .fit-step h1{font-size:clamp(32px,5vw,44px)}.fit-lede{font-size:15px;color:var(--muted);max-width:52ch}
 .fit-field{display:grid;gap:8px;font-size:13px}.fit-field-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
-.unit-toggle{display:flex}.unit-toggle .chip{min-width:52px;justify-content:center;display:inline-flex;align-items:center}
+.unit-toggle{display:flex}.unit-toggle .chip{min-width:52px;min-height:var(--target);justify-content:center;display:inline-flex;align-items:center}
 .fit-error{border-left:2px solid var(--flame);padding:6px 12px;font-size:13px}.fit-note{font-size:12px;color:var(--muted);line-height:1.7}
 .fit-actions{position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:16px 0 calc(16px + env(safe-area-inset-bottom));display:grid;gap:12px}.fit-actions .button{width:100%}
+.fit-form{display:grid;gap:24px}
 /* Style cards */
 .style-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .style-card{display:grid;gap:10px;padding:16px 14px 18px;background:var(--paper-light);border:2px solid transparent;text-align:left;color:var(--ink);min-height:var(--target)}
