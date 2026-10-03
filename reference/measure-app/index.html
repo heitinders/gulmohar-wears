@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6b1e2a" />
+  <meta name="description" content="Gulmohar Wears — Find Your Gulmohar Fit. Personal measurements and Punjabi silhouettes, tailored around you." />
+  <title>Gulmohar Wears · Find Your Fit</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo-mark.png?v=3" type="image/png" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <img class="logo-mark" src="assets/logo-mark.png?v=3" alt="Gulmohar Wears" width="48" height="48" />
+      <div class="titles">
+        <h1>Gulmohar Wears</h1>
+        <p class="tag">Wear the Bloom.</p>
+      </div>
+      <div class="topbar-actions">
+        <span class="mode-badge" id="mode-badge">Studio</span>
+        <button type="button" class="icon-btn" id="btn-settings" title="Settings" aria-label="Settings">⚙</button>
+      </div>
+    </header>
+
+    <!-- Customer nav -->
+    <nav class="nav-bar" id="nav-customer" role="tablist" aria-label="Customer">
+      <button type="button" class="nav-tab active" data-tab="home" role="tab" aria-selected="true">Home</button>
+      <button type="button" class="nav-tab" data-tab="measure" role="tab" aria-selected="false">My Fit</button>
+      <button type="button" class="nav-tab" data-tab="inventory" role="tab" aria-selected="false">Collection</button>
+      <button type="button" class="nav-tab" data-tab="clients" role="tab" aria-selected="false">Profile</button>
+    </nav>
+
+    <!-- Studio nav -->
+    <nav class="nav-bar" id="nav-studio" role="tablist" aria-label="Gulmohar Studio" hidden>
+      <button type="button" class="nav-tab" data-tab="measure" role="tab">Fit</button>
+      <button type="button" class="nav-tab" data-tab="clients" role="tab">Clients</button>
+      <button type="button" class="nav-tab" data-tab="inventory" role="tab">Inventory</button>
+      <button type="button" class="nav-tab" data-tab="tailor" role="tab">Tailor</button>
+      <button type="button" class="nav-tab" data-tab="orders" role="tab">Orders</button>
+      <button type="button" class="nav-tab" data-tab="tryon" role="tab">Try-on</button>
+    </nav>
+
+    <!-- ========== HOME (Customer landing) ========== -->
+    <div class="tab-panel active" id="tab-home" role="tabpanel">
+      <div class="panel-pad">
+        <div class="home-hero">
+          <img class="logo-mark lg" src="assets/logo-mark.png?v=3" alt="" />
+          <div class="brand-line">Gulmohar Wears</div>
+          <p class="tagline">Wear the Bloom.</p>
+          <h2>Find Your Gulmohar Fit</h2>
+          <p class="lead">Personal measurements and beautiful Punjabi silhouettes, tailored around you.</p>
+          <button type="button" class="btn btn-cta btn-block" id="btn-start">START MY FIT</button>
+          <button type="button" class="btn btn-ghost btn-block customer-only" id="btn-demo">Demo with height only</button>
+
+          <div class="steps-row" aria-hidden="true">
+            <div class="step-pill"><span class="num">01</span><span class="txt">Measure</span></div>
+            <span class="step-arrow">→</span>
+            <div class="step-pill"><span class="num">02</span><span class="txt">Try On</span></div>
+            <span class="step-arrow">→</span>
+            <div class="step-pill"><span class="num">03</span><span class="txt">Tailor Verify</span></div>
+          </div>
+        </div>
+
+        <details class="accuracy-details">
+          <summary>How accurate is this?</summary>
+          <div class="acc-body">
+            Photo estimates are a <strong>draft</strong> for your tailor — not a final cut sheet.
+            Uncalibrated AI can miss by several inches (worse with loose clothes or cropped feet).
+            After you enter <em>one real tape</em> (bust or waist), girths typically land within <strong>~±0.5–1 in</strong>.
+            Always re-tape before cutting fabric.
+          </div>
+        </details>
+
+        <p class="footer-note">WhatsApp Business · +91 86998 41800</p>
+      </div>
+    </div>
+
+    <!-- ========== MY FIT / MEASURE ========== -->
+    <div class="tab-panel" id="tab-measure" role="tabpanel" hidden>
+      <div class="fit-progress" id="fit-progress" aria-label="Fit progress">
+        <div class="fit-step on" data-fit-phase="measure"><div class="bar"></div><div class="lbl">Measurements</div></div>
+        <div class="fit-step" data-fit-phase="photos"><div class="bar"></div><div class="lbl">Photos</div></div>
+        <div class="fit-step" data-fit-phase="fit"><div class="bar"></div><div class="lbl">Fit</div></div>
+        <div class="fit-step" data-fit-phase="tryon"><div class="bar"></div><div class="lbl">Try On</div></div>
+      </div>
+      <!-- legacy dots kept for JS goStep -->
+      <div class="progress" id="progress" aria-hidden="true">
+        <div class="dot on" data-step="0"></div>
+        <div class="dot" data-step="1"></div>
+        <div class="dot" data-step="2"></div>
+        <div class="dot" data-step="3"></div>
+        <div class="dot" data-step="4"></div>
+      </div>
+
+      <section class="screen" id="screen-intro" data-step="0">
+        <div class="home-hero" style="padding-top:12px;">
+          <h2 class="screen-title" style="text-align:center;">Your fit journey</h2>
+          <p class="lead">Style, height, and photos — then a draft for your tailor.</p>
+        </div>
+        <div class="need-box">
+          <strong>You’ll need</strong>
+          <ul>
+            <li>Your height in inches (accurate)</li>
+            <li>Front + side photos — fitted clothes, arms away, full feet in frame</li>
+            <li>Optional: one real bust or waist tape after the estimate</li>
+          </ul>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-start-inner">Continue</button>
+          <button type="button" class="btn btn-ghost btn-block" data-goto-home>Back to Home</button>
+        </div>
+      </section>
+
+      <section class="screen active" id="screen-client" data-step="1">
+        <h2 class="screen-title">Choose your silhouette</h2>
+        <p class="screen-sub">Pick a style, then height — it scales all estimates to inches.</p>
+        <div class="field">
+          <span class="field-label">Suit style *</span>
+          <div class="style-grid" id="style-grid" role="radiogroup" aria-label="Suit style">
+            <button type="button" class="style-chip style-card active" data-style="punjabi" aria-pressed="true">
+              <img src="assets/styles/punjabi.jpg" alt="" loading="lazy" />
+              <span class="style-card-label">Classic Punjabi<span class="style-card-sub">Salwar kameez</span></span>
+            </button>
+            <button type="button" class="style-chip style-card" data-style="anarkali" aria-pressed="false">
+              <img src="assets/styles/anarkali.jpg" alt="" loading="lazy" />
+              <span class="style-card-label">Anarkali<span class="style-card-sub">Flare silhouette</span></span>
+            </button>
+            <button type="button" class="style-chip style-card" data-style="sharara" aria-pressed="false">
+              <img src="assets/styles/sharara.jpg" alt="" loading="lazy" />
+              <span class="style-card-label">Sharara<span class="style-card-sub">Wide flare set</span></span>
+            </button>
+            <button type="button" class="style-chip style-card" data-style="farshi" aria-pressed="false">
+              <img src="assets/styles/farshi.jpg" alt="" loading="lazy" />
+              <span class="style-card-label">Farshi<span class="style-card-sub">Floor-length drama</span></span>
+            </button>
+          </div>
+          <p class="hint" id="style-hint">Classic suit — mid-thigh kameez default (~45% height). Salwar length emphasized.</p>
+        </div>
+        <label class="field">
+          <span>Your name (optional)</span>
+          <input type="text" id="input-name" placeholder="e.g. Simran Kaur" autocomplete="name" />
+        </label>
+        <label class="field">
+          <span>Height (inches) *</span>
+          <input type="number" id="input-height" inputmode="decimal" min="47" max="87" step="0.1" placeholder="e.g. 64" required />
+          <p class="hint">Typical adult range 55–73 in. Must be accurate.</p>
+        </label>
+        <label class="field">
+          <span id="kameez-len-label">Desired kameez / kurti length (inches, optional)</span>
+          <input type="number" id="input-kameez-len" inputmode="decimal" min="20" max="63" step="0.5" placeholder="Leave blank for style default" />
+          <p class="hint" id="kameez-len-hint">If blank, we estimate from the selected style.</p>
+        </label>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-to-front">Next: Front photo</button>
+          <button type="button" class="btn btn-ghost btn-block" data-goto-home>Back to Home</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-front" data-step="2">
+        <h2 class="screen-title">Front photo</h2>
+        <p class="screen-sub">Full body — head to <strong>feet</strong> visible. Fitted clothes. Stand back (not wide-angle close-up).</p>
+        <div class="photo-zone" id="zone-front" role="button" tabindex="0" title="Click to upload">
+          <div class="placeholder" id="ph-front">
+            <div class="placeholder-icon">📷</div>
+            <div class="ph-title">Front view</div>
+            <div class="ph-sub">Fitted clothes · arms away · full feet · no wide-angle warp</div>
+          </div>
+          <img class="preview" id="preview-front" alt="Front preview" hidden />
+        </div>
+        <div class="photo-actions">
+          <button type="button" class="btn btn-primary" id="btn-cam-front">Open camera</button>
+          <label class="btn btn-secondary" style="cursor:pointer;">
+            Upload
+            <input type="file" id="file-front" accept="image/*" hidden />
+          </label>
+          <button type="button" class="btn btn-ghost" id="btn-clear-front" disabled>Clear</button>
+        </div>
+        <ul class="guide-list">
+          <li><strong>Fitted clothes</strong> — no bulky coats, shawls, or oversized kurtas</li>
+          <li><strong>Arms ~6–8 in from torso</strong> so bust / waist / hip edges read clearly</li>
+          <li><strong>Full feet in frame</strong> — cropped feet inflate all measures</li>
+          <li>Phone upright, subject fills frame; stand ~2–3 m back (avoid ultra-wide)</li>
+          <li>Even lighting — avoid strong backlight</li>
+        </ul>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-to-side" disabled>Next: Side photo</button>
+          <button type="button" class="btn btn-ghost btn-block" data-back="1">Back</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-side" data-step="3">
+        <h2 class="screen-title">Side photo</h2>
+        <p class="screen-sub">True profile — same distance as front. Feet still visible. Improves bust/waist/hip depth.</p>
+        <div class="photo-zone" id="zone-side" role="button" tabindex="0" title="Click to upload">
+          <div class="placeholder" id="ph-side">
+            <div class="placeholder-icon">📷</div>
+            <div class="ph-title">Side / profile</div>
+            <div class="ph-sub">Turn 90° · fitted clothes · full feet · same distance</div>
+          </div>
+          <img class="preview" id="preview-side" alt="Side preview" hidden />
+        </div>
+        <div class="photo-actions">
+          <button type="button" class="btn btn-primary" id="btn-cam-side">Open camera</button>
+          <label class="btn btn-secondary" style="cursor:pointer;">
+            Upload
+            <input type="file" id="file-side" accept="image/*" hidden />
+          </label>
+          <button type="button" class="btn btn-ghost" id="btn-clear-side" disabled>Clear</button>
+        </div>
+        <div class="retake-panel" id="retake-panel" hidden>
+          <div class="retake-head"><strong>Retake suggested</strong> <span class="badge">Pose quality</span></div>
+          <ul class="retake-list" id="retake-list"></ul>
+          <p class="hint" id="retake-hard-note" hidden>Blocking issues found — fix photos before estimating, or force continue (weaker).</p>
+          <div class="btn-row horizontal" id="retake-actions" hidden>
+            <button type="button" class="btn btn-ghost" id="btn-retake-front">Retake front</button>
+            <button type="button" class="btn btn-ghost" id="btn-retake-side">Retake side</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-block" id="btn-force-estimate" hidden>Force estimate anyway (weaker)</button>
+        </div>
+        <p class="status-line" id="process-status"></p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-process" disabled>Estimate measurements</button>
+          <button type="button" class="btn btn-ghost btn-block" data-back="2">Back</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-results" data-step="4">
+        <h2 class="screen-title">Your measurement draft</h2>
+        <div id="mode-pill" class="mode-pill">Pose landmarks + height</div>
+        <div id="calib-pill" class="mode-pill calib-pill" hidden>Calibrated to your tape</div>
+        <div class="results-meta" id="results-meta"></div>
+        <div class="style-pill" id="style-pill">Style: Classic Punjabi suit</div>
+        <div class="disclaimer" style="margin-top:0;">
+          <strong>DRAFT — tailor to verify</strong> before cutting.
+          Uncalibrated: often ~±1–2.5 in (worse if feet cropped). After one tape: girths ~±0.5–1 in.
+        </div>
+        <div class="scale-warnings" id="scale-warnings" hidden></div>
+
+        <div class="calib-card card" id="calib-card">
+          <div class="size-card-head">
+            <strong>Tape calibration</strong>
+            <span class="badge">Best accuracy step</span>
+          </div>
+          <p class="hint" id="calib-note" style="margin-top:0;">
+            Enter <strong>one</strong> real tape (bust or waist). All girths scale; lengths stay pose/height-based unless you also enter a length.
+          </p>
+          <label class="field">
+            <span>Calibrate from</span>
+            <select id="calib-field">
+              <option value="bust" selected>Bust (recommended)</option>
+              <option value="waist">Waist</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Your tape measure (inches) *</span>
+            <input type="number" id="calib-tape" inputmode="decimal" min="16" max="63" step="0.1" placeholder="e.g. 38" />
+          </label>
+          <label class="field">
+            <span>Optional: real kameez length (inches)</span>
+            <input type="number" id="calib-length" inputmode="decimal" min="16" max="63" step="0.5" placeholder="Leave blank to keep photo lengths" />
+          </label>
+          <div class="btn-row horizontal">
+            <button type="button" class="btn btn-primary" id="btn-calib-apply">Apply tape</button>
+            <button type="button" class="btn btn-ghost" id="btn-calib-clear">Clear</button>
+          </div>
+        </div>
+
+        <div class="fit-pref card" id="fit-pref">
+          <div class="size-card-head">
+            <strong>Fit preference</strong>
+            <span class="badge">Affects size advice &amp; brief</span>
+          </div>
+          <span class="field-label">Fit</span>
+          <div class="chip-row" id="fit-grid" role="radiogroup" aria-label="Fit">
+            <button type="button" class="style-chip" data-fit="fitted" aria-pressed="false">Fitted</button>
+            <button type="button" class="style-chip active" data-fit="regular" aria-pressed="true">Regular</button>
+            <button type="button" class="style-chip" data-fit="relaxed" aria-pressed="false">Relaxed</button>
+          </div>
+          <span class="field-label">Sleeve</span>
+          <div class="chip-row" id="sleeve-grid" role="radiogroup" aria-label="Sleeve">
+            <button type="button" class="style-chip active" data-sleeve="full" aria-pressed="true">Full</button>
+            <button type="button" class="style-chip" data-sleeve="three-quarter" aria-pressed="false">¾</button>
+            <button type="button" class="style-chip" data-sleeve="cap" aria-pressed="false">Cap</button>
+            <button type="button" class="style-chip" data-sleeve="sleeveless" aria-pressed="false">Sleeveless</button>
+          </div>
+          <span class="field-label">Neckline</span>
+          <div class="chip-row" id="neckline-grid" role="radiogroup" aria-label="Neckline">
+            <button type="button" class="style-chip active" data-neckline="round" aria-pressed="true">Round</button>
+            <button type="button" class="style-chip" data-neckline="v" aria-pressed="false">V</button>
+            <button type="button" class="style-chip" data-neckline="boat" aria-pressed="false">Boat</button>
+            <button type="button" class="style-chip" data-neckline="collar" aria-pressed="false">Collar</button>
+          </div>
+          <label class="field">
+            <span>Preferred kameez length note (optional)</span>
+            <input type="text" id="fit-kameez-note" placeholder="e.g. Mid-thigh / below knee / floor" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="size-card" id="size-card">
+          <div class="size-card-head">
+            <strong>AI size recommendation</strong>
+            <span class="badge">DRAFT guide only</span>
+          </div>
+          <div class="size-estimate" id="size-estimate"></div>
+          <p class="hint" id="size-note">Bust + waist + hip vs Gulmohar chart, with fit ease. Heaviest ready stock: <strong>M / L (38–40″)</strong>.</p>
+          <details class="size-chart-details">
+            <summary>Show size chart (bust / waist / hip)</summary>
+            <table class="size-chart-table">
+              <thead><tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr></thead>
+              <tbody>
+                <tr><td>S</td><td>34–36″</td><td>26–28″</td><td>36–38″</td></tr>
+                <tr><td>M</td><td>36–38″</td><td>28–30″</td><td>38–40″</td></tr>
+                <tr class="hl"><td>L</td><td>38–40″</td><td>30–32″</td><td>40–42″</td></tr>
+                <tr><td>XL</td><td>40–42″</td><td>32–34″</td><td>42–44″</td></tr>
+                <tr><td>Custom / MTM</td><td colspan="3">outside band or girth overflow</td></tr>
+              </tbody>
+            </table>
+            <p class="hint">M/L (38–40″ bust) is Gulmohar’s heaviest ready-stock band. Fit ease applies. Chart is a draft guide — not a cut sheet.</p>
+          </details>
+        </div>
+
+        <div class="section-label">Kameez / upper</div>
+        <table class="measure-table" id="table-kameez"></table>
+        <div class="section-label" id="bottom-section-label">Bottom (salwar / sharara)</div>
+        <table class="measure-table" id="table-bottom"></table>
+        <div class="order-brief card" id="order-brief">
+          <div class="size-card-head">
+            <strong>Order brief</strong>
+            <span class="badge">DRAFT — tailor to verify</span>
+          </div>
+          <p class="hint" style="margin-top:0;">Fabric, occasion, city &amp; deadline for the tailor / WhatsApp card.</p>
+          <label class="field">
+            <span>Fabric preference</span>
+            <input type="text" id="brief-fabric" placeholder="e.g. Soft silk, georgette, cotton silk" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Occasion</span>
+            <select id="brief-occasion">
+              <option value="">Select…</option>
+              <option value="KC">Karva Chauth (KC)</option>
+              <option value="wedding">Wedding</option>
+              <option value="roka">Roka</option>
+              <option value="festive">Festive</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Delivery city</span>
+            <input type="text" id="brief-city" placeholder="e.g. Chandigarh / Toronto" autocomplete="address-level2" />
+          </label>
+          <label class="field">
+            <span>Deadline</span>
+            <input type="date" id="brief-deadline" />
+          </label>
+          <label class="field">
+            <span>Notes</span>
+            <textarea id="brief-notes" rows="3" placeholder="Colour, embroidery, sleeve preference, fit notes…"></textarea>
+          </label>
+          <div class="brief-preview" id="brief-preview" aria-live="polite"></div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary btn-block" id="btn-brief-wa">Send brief on WhatsApp</button>
+          </div>
+          <div class="btn-row horizontal">
+            <button type="button" class="btn btn-secondary" id="btn-brief-copy">Copy brief</button>
+            <button type="button" class="btn btn-secondary" id="btn-brief-print">Print / download brief</button>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary btn-block" id="btn-save-client">Save to my profile</button>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-wa-send">Send measures on WhatsApp</button>
+        </div>
+        <div class="btn-row horizontal">
+          <button type="button" class="btn btn-secondary" id="btn-copy">Copy WhatsApp card</button>
+          <button type="button" class="btn btn-secondary" id="btn-print">Print / PDF</button>
+        </div>
+        <div class="btn-row" style="padding-top:8px;">
+          <button type="button" class="btn btn-gold btn-block" id="btn-goto-tryon">Try on a suit</button>
+          <button type="button" class="btn btn-ghost btn-block" id="btn-restart">Start over</button>
+        </div>
+        <p class="footer-note">Gulmohar Wears · +91 86998 41800 · Wear the bloom.</p>
+      </section>
+    </div>
+
+    <!-- ========== PROFILE (customer) / CLIENTS (studio) ========== -->
+    <div class="tab-panel" id="tab-clients" role="tabpanel" hidden>
+      <div class="panel-pad">
+        <h2 class="screen-title customer-only">My profile</h2>
+        <p class="screen-sub customer-only">Saved measurements so you needn’t re-photograph every order. Stored on this phone only.</p>
+        <h2 class="screen-title studio-only">Client profiles</h2>
+        <p class="screen-sub studio-only">Saved measures so she needn’t re-photograph every order. This phone only (max 50).</p>
+        <div class="disclaimer">
+          <strong>Open</strong> → Use saved measures (skip photos) or Re-measure. Flags if older than 6 months. Not cloud-synced.
+        </div>
+        <div class="btn-row" style="padding-top:0; margin-top:0;">
+          <button type="button" class="btn btn-secondary btn-block" id="btn-clients-refresh">Refresh list</button>
+        </div>
+        <div class="section-label"><span class="customer-only">Profiles</span><span class="studio-only">Clients</span> (<span id="clients-count">0</span>)</div>
+        <div class="clients-list" id="clients-list"></div>
+        <div class="empty-state" id="clients-empty">
+          <div class="empty-icon">✦</div>
+          <strong class="customer-only">No saved profile yet</strong>
+          <p class="customer-only">Complete My Fit → tap <em>Save to my profile</em>.</p>
+          <strong class="studio-only">No saved clients yet</strong>
+          <p class="studio-only">Run Fit → fill Order brief → tap Save.</p>
+        </div>
+        <p class="footer-note">Gulmohar Wears · +91 86998 41800</p>
+      </div>
+    </div>
+
+    <!-- ========== TAILOR (studio) ========== -->
+    <div class="tab-panel" id="tab-tailor" role="tabpanel" hidden>
+      <div class="panel-pad">
+        <h2 class="screen-title">Tailor verification</h2>
+        <p class="screen-sub">Compare AI draft vs your tape. Deltas train bias for next estimates.</p>
+        <div class="disclaimer">
+          Enter corrected inches for each field you re-taped. Saved locally as <em>gulmohar_tailor_learn_v2</em>. Still DRAFT until you cut.
+        </div>
+        <label class="field">
+          <span>Client (optional — scopes bias)</span>
+          <select id="tailor-client-select">
+            <option value="">Global / current session</option>
+          </select>
+        </label>
+        <div class="bias-summary card" id="bias-summary">
+          <strong>Running avg AI bias</strong>
+          <div id="bias-list" class="bias-list">No corrections yet.</div>
+          <label class="check-row">
+            <input type="checkbox" id="bias-apply-global" checked />
+            Apply global bias on next photo estimates
+          </label>
+          <label class="check-row">
+            <input type="checkbox" id="bias-apply-client" checked />
+            Prefer client-specific bias when available
+          </label>
+        </div>
+        <div class="section-label">AI draft → Tailor corrected (inches)</div>
+        <div id="tailor-verify-table" class="tailor-verify"></div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-block" id="btn-tailor-save">Save corrections &amp; learn</button>
+          <button type="button" class="btn btn-ghost btn-block" id="btn-tailor-load-current">Load current draft measures</button>
+        </div>
+        <p class="footer-note">Gulmohar Wears · +91 86998 41800</p>
+      </div>
+    </div>
+
+    <!-- ========== COLLECTION / INVENTORY ========== -->
+    <div class="tab-panel" id="tab-inventory" role="tabpanel" hidden>
+      <div class="panel-pad">
+        <h2 class="screen-title customer-only">Collection</h2>
+        <p class="screen-sub customer-only">Choose a Gulmohar suit to try on — colour &amp; silhouette vibe.</p>
+        <h2 class="screen-title studio-only">Suit inventory</h2>
+        <p class="screen-sub studio-only">Upload product photos (flat lay or model on white). Stored in this browser only.</p>
+        <div class="disclaimer studio-only">
+          Prefer plain / white background. Used for draft try-on overlays — not production retouching.
+        </div>
+
+        <form id="inv-form" class="inv-form studio-only">
+          <label class="field">
+            <span>Product image *</span>
+            <input type="file" id="inv-file" accept="image/*" required />
+          </label>
+          <label class="field">
+            <span>Name *</span>
+            <input type="text" id="inv-name" placeholder="e.g. Maroon Farshi Noor" required />
+          </label>
+          <label class="field">
+            <span>Style *</span>
+            <select id="inv-style" required>
+              <option value="punjabi suit">Punjabi suit</option>
+              <option value="anarkali">Anarkali</option>
+              <option value="sharara">Sharara</option>
+              <option value="cape sharara">Cape sharara</option>
+              <option value="farshi">Farshi</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Colour *</span>
+            <input type="text" id="inv-colour" placeholder="e.g. Maroon / Sapphire" required />
+          </label>
+          <label class="field">
+            <span>SKU (optional)</span>
+            <input type="text" id="inv-sku" placeholder="e.g. GW-KC-01" />
+          </label>
+          <button type="submit" class="btn btn-primary btn-block">Add to inventory</button>
+        </form>
+
+        <div class="section-label" style="margin-top:8px;"><span class="customer-only">Suits</span><span class="studio-only">Gallery</span> (<span id="inv-count">0</span>)</div>
+        <div class="inv-gallery" id="inv-gallery"></div>
+        <p class="footer-note" id="inv-empty">No pieces yet — <span class="studio-only">add your first suit above.</span><span class="customer-only">check back soon, or ask Gulmohar Studio.</span></p>
+        <div class="btn-row customer-only" style="padding-top:12px;">
+          <button type="button" class="btn btn-primary btn-block" id="btn-collection-tryon">Try on a suit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ORDERS (studio) ========== -->
+    <div class="tab-panel" id="tab-orders" role="tabpanel" hidden>
+      <div class="panel-pad">
+        <h2 class="screen-title">Orders &amp; briefs</h2>
+        <p class="screen-sub">Saved client briefs from this device — fabric, occasion, city, deadline.</p>
+        <div class="disclaimer">Device-local only. Open a client in Clients to verify measures.</div>
+        <div class="clients-list" id="orders-list"></div>
+        <div class="empty-state" id="orders-empty">
+          <div class="empty-icon">✦</div>
+          <strong>No order briefs yet</strong>
+          <p>Save a client with fabric / occasion / city filled.</p>
+        </div>
+        <p class="footer-note">Gulmohar Wears · +91 86998 41800</p>
+      </div>
+    </div>
+
+    <!-- ========== TRY-ON ========== -->
+    <div class="tab-panel" id="tab-tryon" role="tabpanel" hidden>
+      <div class="fit-progress" id="fit-progress-tryon" aria-label="Fit progress">
+        <div class="fit-step done" data-fit-phase="measure"><div class="bar"></div><div class="lbl">Measurements</div></div>
+        <div class="fit-step done" data-fit-phase="photos"><div class="bar"></div><div class="lbl">Photos</div></div>
+        <div class="fit-step done" data-fit-phase="fit"><div class="bar"></div><div class="lbl">Fit</div></div>
+        <div class="fit-step on" data-fit-phase="tryon"><div class="bar"></div><div class="lbl">Try On</div></div>
+      </div>
+      <div class="panel-pad">
+        <h2 class="screen-title">Virtual try-on</h2>
+        <p class="screen-sub">Pose-aligned garment overlay. Colour &amp; silhouette vibe only.</p>
+        <div class="disclaimer">
+          <strong>DRAFT preview — fabric drape &amp; fit not exact.</strong>
+          Overlay scales from shoulder width via MediaPipe pose. Not a true 3D garment sim.
+        </div>
+
+        <label class="field">
+          <span>Your full-body front photo *</span>
+          <button type="button" class="btn btn-primary" id="btn-cam-tryon">Open camera</button>
+          <input type="file" id="tryon-file" accept="image/*" />
+          <p class="hint" id="tryon-reuse-hint" hidden>Using front photo from My Fit. Change below if needed.</p>
+        </label>
+        <div class="photo-zone tryon-client-zone" id="tryon-client-zone">
+          <div class="placeholder" id="tryon-ph">
+            <div class="placeholder-icon">✦</div>
+            <div class="ph-title">Your photo</div>
+            <div class="ph-sub">Same tips as My Fit front photo</div>
+          </div>
+          <img class="preview" id="tryon-client-preview" alt="Client" hidden />
+        </div>
+
+        <div class="section-label">Choose your suit</div>
+        <div class="inv-picker" id="inv-picker"></div>
+        <p class="hint" id="tryon-no-inv">Add pieces in Collection / Inventory first.</p>
+
+        <p class="status-line" id="tryon-status"></p>
+        <button type="button" class="btn btn-primary btn-block" id="btn-tryon-run" disabled>Generate try-on draft</button>
+
+        <div id="tryon-result-wrap" hidden>
+          <div class="section-label">Result</div>
+          <div class="tryon-result-frame">
+            <canvas id="tryon-canvas"></canvas>
+            <div class="tryon-watermark">DRAFT preview — fabric drape &amp; fit not exact</div>
+          </div>
+          <div class="order-tryon card" id="order-tryon">
+            <div class="size-card-head">
+              <strong>I like this — order</strong>
+              <span class="badge">WhatsApp</span>
+            </div>
+            <p class="hint" style="margin-top:0;">Pick Ready size or Made-to-measure, then send order to +91 86998 41800.</p>
+            <div class="chip-row" id="order-size-grid" role="radiogroup" aria-label="Order size">
+              <button type="button" class="style-chip" data-order-size="S" aria-pressed="false">S</button>
+              <button type="button" class="style-chip" data-order-size="M" aria-pressed="false">M</button>
+              <button type="button" class="style-chip" data-order-size="L" aria-pressed="false">L</button>
+              <button type="button" class="style-chip" data-order-size="XL" aria-pressed="false">XL</button>
+              <button type="button" class="style-chip active" data-order-size="MTM" aria-pressed="true">MTM</button>
+            </div>
+            <p class="hint" id="order-tryon-size-hint">MTM uses the measurement draft when available.</p>
+            <button type="button" class="btn btn-primary btn-block" id="btn-tryon-order">I like this — WhatsApp order</button>
+          </div>
+          <div class="btn-row" style="margin-top:12px;">
+            <button type="button" class="btn btn-secondary btn-block" id="btn-tryon-wa">Share try-on on WhatsApp</button>
+          </div>
+          <div class="btn-row horizontal">
+            <button type="button" class="btn btn-secondary" id="btn-tryon-download">Download PNG</button>
+            <button type="button" class="btn btn-secondary" id="btn-tryon-copy-note">Copy share note</button>
+          </div>
+          <p class="hint" id="tryon-wa-hint">wa.me opens with the share note. Attach the try-on PNG manually if the phone share sheet does not include it.</p>
+        </div>
+        <p class="footer-note">Gulmohar Wears · +91 86998 41800</p>
+      </div>
+    </div>
+
+    <div class="app-foot">
+      <span>Wear the bloom.</span>
+      ·
+      <button type="button" class="linkish" id="btn-foot-studio">Gulmohar Studio</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Settings / Studio gate -->
+  <div id="settings-modal" class="camera-modal" hidden>
+    <div class="camera-sheet studio-gate">
+      <div class="camera-head">
+        <strong>Settings</strong>
+        <button type="button" class="btn btn-ghost" id="btn-settings-close">Close</button>
+      </div>
+      <p class="screen-sub" style="margin-top:0;">Switch between Customer Mode and Gulmohar Studio.</p>
+      <div id="settings-customer-view">
+        <button type="button" class="btn btn-primary btn-block" id="btn-enter-studio">Enter Gulmohar Studio</button>
+        <p class="hint">Staff tools: Clients, Inventory, Tailor verification, Orders.</p>
+        <div class="pin-row" id="studio-pin-row" hidden>
+          <input type="password" id="studio-pin" placeholder="Studio PIN" autocomplete="off" />
+          <button type="button" class="btn btn-secondary" id="btn-studio-pin-ok">Go</button>
+        </div>
+        <p class="hint" id="studio-pin-hint" hidden>PIN stub: <code>gulmohar</code></p>
+      </div>
+      <div id="settings-studio-view" hidden>
+        <p class="hint" style="margin-top:0;">You are in <strong>Gulmohar Studio</strong>.</p>
+        <button type="button" class="btn btn-secondary btn-block" id="btn-exit-studio">Back to Customer Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="profile-modal" class="camera-modal" hidden>
+    <div class="camera-sheet profile-sheet">
+      <div class="camera-head">
+        <strong id="profile-modal-title">Profile</strong>
+        <button type="button" class="btn btn-ghost" id="btn-profile-close">Close</button>
+      </div>
+      <div id="profile-modal-body" class="profile-modal-body"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary btn-block" id="btn-use-saved">Use saved measures</button>
+        <button type="button" class="btn btn-secondary btn-block" id="btn-remeasure">Re-measure (new photos)</button>
+      </div>
+      <label class="field" style="margin-top:12px;">
+        <span>Weight / body-change note (optional)</span>
+        <input type="text" id="profile-weight-note" placeholder="e.g. Lost ~3 kg since last order" />
+      </label>
+      <button type="button" class="btn btn-ghost btn-block" id="btn-save-weight-note">Save note only</button>
+    </div>
+  </div>
+
+  <div id="camera-modal" class="camera-modal" hidden>
+    <div class="camera-sheet">
+      <div class="camera-head">
+        <strong id="camera-title">Camera</strong>
+        <button type="button" class="btn btn-ghost" id="btn-cam-close">Close</button>
+      </div>
+      <video id="camera-video" playsinline autoplay muted></video>
+      <canvas id="camera-canvas" hidden></canvas>
+      <p class="status-line" id="camera-status"></p>
+      <div class="photo-actions">
+        <button type="button" class="btn btn-secondary" id="btn-cam-flip">Flip camera</button>
+        <button type="button" class="btn btn-primary" id="btn-cam-shot">Take photo</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

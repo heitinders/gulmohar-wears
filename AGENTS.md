@@ -16,6 +16,9 @@ changing framework code.
 - No em dashes or en dashes in customer copy. No component library.
 - The corrective brief overrides previous styleguide and media approval gates. Implement and visually review the complete asset-led redesign without routine approvals.
 - Review on 390px, 430px and 1440px widths. Respect reduced motion and keyboard input.
+- Before working on /fit or /studio (Find Your Fit), read the Find Your Fit section of
+  .impeccable.md and docs/superpowers/specs/2026-10-02-find-your-fit-design.md. The original
+  Grok prototype is kept for reference only in reference/measure-app.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
