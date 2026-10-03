@@ -8,7 +8,7 @@ export default function FitIntro() {
       <p className="eyebrow">FIND YOUR FIT</p>
       <h1>Find your <em>Gulmohar fit.</em></h1>
       <p>Two photos and your height give us a draft of your measurements. One tape measurement makes them closer. Our tailor checks every number before cutting fabric.</p>
-      <Link className="button button-primary" href="/fit/measure">Start my fit <Arrow/></Link>
+      <Link className="button button-primary" href="/fit/start">Start my fit <Arrow/></Link>
     </div>
     <section className="personal-process" aria-labelledby="fit-how">
       <div className="process-heading">

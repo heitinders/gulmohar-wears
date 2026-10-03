@@ -48,3 +48,12 @@ test("corrupt saved values read as empty", () => {
   const s = createClientTokenStore(m);
   assert.equal(s.who(), null); assert.equal(s.pendingPreference(), null);
 });
+
+test("when storage refuses writes the token is kept in memory for this visit", () => {
+  const fallback = new Map<string, string>();
+  const s = createClientTokenStore(throwing, fallback);
+  assert.equal(s.set("tok.sig", { name: "Simran", phoneMasked: "+91 ••••••3210" }), false);
+  assert.equal(s.get(), "tok.sig");
+  assert.deepEqual(createClientTokenStore(throwing, fallback).who(), { name: "Simran", phoneMasked: "+91 ••••••3210" });
+  s.clear(); assert.equal(s.get(), null);
+});

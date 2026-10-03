@@ -1,5 +1,5 @@
 'use client';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {Arrow} from '../icons';
 import {Ledger} from './ledger';
@@ -12,12 +12,24 @@ import {getStyle} from '@/lib/fit/styles';
 import {formatIn} from '@/lib/fit/units';
 import {browserProfileStore} from '@/lib/fit/device-store';
 import type {StepProps} from './flow-types';
+import {browserClientTokenStore} from '@/lib/fit/client-token';
+import {syncFitPreference} from '@/app/fit/actions';
 
 const PHOTOS = {landmarks: 'front and side photos', hybrid: 'front photo only', ratio: 'height only', none: 'height only'} as const;
 
 export function StepResult({state, update, onRemeasure, onRestart}: StepProps & {onRemeasure(): void; onRestart(): void}) {
   const draft = state.draft!; const style = getStyle(state.styleId);
   const [saved, setSaved] = useState<'idle' | 'ok' | 'failed'>('idle');
+  // Style and fit choices go to the atelier's client list; measurements never do (spec 4.2).
+  const {styleId, preference, brief} = state;
+  useEffect(() => {
+    const store = browserClientTokenStore(); const token = store.get(); if (!token) return;
+    const patch = {style: styleId, fit: preference.fit, sleeve: preference.sleeve, neckline: preference.neckline, lengthNote: preference.lengthNote, brief: {occasion: brief.occasion, fabric: brief.fabric, city: brief.city, deadline: brief.deadline}};
+    const timer = setTimeout(() => {
+      syncFitPreference(token, patch).then(r => { if (r.ok) store.clearPending(); else if (r.error === 'unavailable') store.setPendingPreference(patch); }).catch(() => store.setPendingPreference(patch));
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [styleId, preference, brief]);
   const adjusted = draft.measures.sources && Object.values(draft.measures.sources).some(s => s === 'ratio-clamped');
   function save() {
     const r = browserProfileStore().save({id: state.profileId ?? undefined, name: state.name, styleId: state.styleId, heightCm: state.heightCm!, kameezOverrideCm: state.kameezOverrideCm, preference: state.preference, measures: draft.measures, rawMeasures: draft.raw, calibration: draft.calibration, confidence: draft.confidence, rawConfidence: draft.baseConfidence, brief: state.brief});

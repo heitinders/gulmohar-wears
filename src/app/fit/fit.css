@@ -61,3 +61,7 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .fit-chart{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}.fit-chart th,.fit-chart td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line)}.fit-chart tr[aria-current] th,.fit-chart tr[aria-current] td{color:var(--flame)}
 /* Text links that are buttons: drop the browser button box, keep the underline. */
 button.text-link{background:none;border:0;border-bottom:1px solid currentColor;padding:0}
+.gate .fit-form{gap:28px}.gate .fit-form>.button{justify-self:start}.gate-actions{display:flex;flex-wrap:wrap;gap:24px;align-items:center}.nowrap{white-space:nowrap}
+.phone-input{display:grid;grid-template-columns:auto 1fr;align-items:stretch}.phone-input>span{display:flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-right:0;background:var(--paper-deep);font-size:16px}
+.consent-check{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-size:14px;line-height:1.6;cursor:pointer}.consent-check input{width:24px;height:24px;min-height:24px;padding:0;margin:2px 0 0;accent-color:var(--oxblood)}
+.fit-honeypot{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
