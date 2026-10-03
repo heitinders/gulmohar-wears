@@ -1,26 +1,9 @@
 import {test, expect, type Page} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import {passGate} from './gate';
+import {heightOnlyDraft, passGate} from './gate';
 
-const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
 const routes = ['/fit', '/fit/start', '/fit/measure', '/fit/profile'];
 const axeTags = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'];
-
-async function heightOnlyDraft(page: Page) {
-  await page.route('**/models/**', r => r.abort()); // the pose model cannot load, so the flow must offer height only
-  await page.goto('/fit/measure');
-  await page.getByRole('button', {name: /Anarkali/}).click();
-  await page.getByLabel(/^Height/).fill('64'); await page.getByLabel(/^Height/).blur();
-  await page.getByRole('button', {name: 'Next: Photos'}).click();
-  await expect(page).toHaveURL(/step=photos/);
-  for (const shot of ['front', 'side']) {
-    await page.getByLabel('Upload a photo').setInputFiles({name: `${shot}.png`, mimeType: 'image/png', buffer: PNG});
-    await page.getByRole('button', {name: 'Use this photo'}).click();
-  }
-  await page.getByRole('button', {name: 'Use height only'}).click();
-  await expect(page).toHaveURL(/step=result/);
-}
-
 
 test.describe('the consent gate', () => {
   test('measuring without a gate token goes to the gate first', async ({page}) => {

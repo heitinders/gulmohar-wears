@@ -31,3 +31,12 @@ export async function studioSignOut() {
   await clearSession();
   redirect('/studio/login');
 }
+
+/** Deletes a client record. Runs as the signed-in staff member, so RLS refuses anyone else. */
+export async function deleteClientAction(id: string): Promise<{ok: boolean}> {
+  const deps = studioDeps(); if (!deps || typeof id !== 'string' || id.length > 64) return {ok: false};
+  const access = (await cookies()).get(SESSION_COOKIES.access)?.value;
+  const staff = await requireStaff(deps, {access});
+  if (!staff.ok) return {ok: false};
+  try { return {ok: await deps.studioData(staff.accessToken).deleteClient(id)}; } catch { return {ok: false}; }
+}

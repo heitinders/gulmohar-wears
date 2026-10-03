@@ -10,3 +10,11 @@ body:has(.studio-shell) .site-header,body:has(.studio-shell) .site-footer,body:h
 .studio-page{max-width:var(--page-max);margin:0 auto;padding:40px var(--gutter) var(--chapter);display:grid;gap:28px;align-content:start}
 .studio-page h1{font-size:clamp(32px,4vw,48px)}
 @media(max-width:767px){.studio-signout .fit-note{display:none}}
+.client-list{list-style:none;display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.client-row{background:var(--paper);padding:20px 0;display:grid;gap:12px}
+.client-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}.client-head h2{font-size:28px}
+.client-deadline{font-size:13px;color:var(--flame)}
+.client-row dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 24px;margin:0}.client-row dt{font-size:11px;color:var(--muted);letter-spacing:var(--tracking-label)}.client-row dd{margin:4px 0 0;font-size:14px;overflow-wrap:anywhere}
+.client-row dd .text-link{min-height:44px}.client-actions{display:flex;gap:16px;align-items:center}.client-actions .text-link{background:none;border-top:0;border-inline:0;padding:0}
+.tag{font-size:11px;padding:4px 8px;border:1px solid var(--oxblood);color:var(--oxblood)}
+@media(max-width:899px){.client-row dl{grid-template-columns:1fr 1fr}}@media(max-width:479px){.client-row dl{grid-template-columns:1fr}}
