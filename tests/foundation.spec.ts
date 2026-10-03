@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const routes=['/','/collections','/collections/lehengas','/products/olive-gold-suit','/products/fuchsia-suit','/products/blue-suit','/custom','/atelier','/journal','/journal/your-first-atelier-conversation','/contact','/shipping','/size-and-fit','/returns','/faq','/privacy','/terms'];
+const routes=['/','/collections','/collections/lehengas','/products/olive-gold-suit','/products/fuchsia-suit','/products/blue-suit','/custom','/atelier','/journal','/journal/your-first-atelier-conversation','/contact','/shipping','/size-and-fit','/returns','/faq','/privacy','/terms','/fit','/fit/profile'];
 
 test('customer routes render without errors or horizontal overflow',async({page})=>{
  test.setTimeout(120000);

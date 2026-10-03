@@ -17,10 +17,12 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .unit-toggle{display:flex}.unit-toggle .chip{min-width:52px;min-height:var(--target);justify-content:center;display:inline-flex;align-items:center}
 .fit-error{border-left:2px solid var(--flame);padding:6px 12px;font-size:13px}.fit-note{font-size:12px;color:var(--muted);line-height:1.7}
 .fit-actions{position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:16px 0 calc(16px + env(safe-area-inset-bottom));display:grid;gap:12px}.fit-actions .button{width:100%}
+/* On the result step the bar holds only secondary actions, so it stays in the flow instead of covering the ledger. */
+.fit-step:has(> .ledger) > .fit-actions{position:static}
 .fit-form{display:grid;gap:24px}
 /* Style cards */
 .style-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.style-card{display:grid;gap:10px;padding:16px 14px 18px;background:var(--paper-light);border:2px solid transparent;text-align:left;color:var(--ink);min-height:var(--target)}
+.style-card{display:grid;align-content:start;gap:10px;padding:16px 14px 18px;background:var(--paper-light);border:2px solid transparent;text-align:left;color:var(--ink);min-height:var(--target)}
 .style-card svg{width:100%;height:auto;color:var(--ink)}.style-card[aria-pressed=true]{border-color:var(--oxblood)}
 .style-card strong{font:400 21px/1.2 var(--font-display),serif}.style-card small{font-size:12px;color:var(--muted)}
 /* Camera */

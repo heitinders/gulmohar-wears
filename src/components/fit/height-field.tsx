@@ -21,7 +21,7 @@ export function HeightField({valueCm, onChange, showError = false}: {valueCm: nu
     <label htmlFor="height">Height <span aria-hidden="true">*</span></label>
     <div className="fit-field-row">
       <input id="height" name="height" inputMode="decimal" required autoComplete="off" placeholder={unit === 'in' ? 'For example, 64' : 'For example, 163'} value={text} aria-describedby="height-hint height-error" aria-invalid={error ? true : undefined} onChange={e => edit(e.target.value)} onBlur={() => setFlagged(outOfRange)}/>
-      <div className="unit-toggle" role="group" aria-label="Height unit"><button type="button" className="chip" aria-pressed={unit === 'in'} onClick={() => switchUnit('in')}>in</button><button type="button" className="chip" aria-pressed={unit === 'cm'} onClick={() => switchUnit('cm')}>cm</button></div>
+      <div className="unit-toggle" role="group" aria-label="Unit for height"><button type="button" className="chip" aria-pressed={unit === 'in'} onClick={() => switchUnit('in')}>in</button><button type="button" className="chip" aria-pressed={unit === 'cm'} onClick={() => switchUnit('cm')}>cm</button></div>
     </div>
     <span id="height-hint" className="fit-note">Stand straight without shoes. Every photo measurement is scaled from this, so it must be right.</span>
     <p id="height-error" className="fit-error" role="alert" hidden={!error}>{error}</p>
