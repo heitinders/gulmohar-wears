@@ -66,3 +66,10 @@ test("consent wording is the spec text and the version is fixed", () => {
   assert.equal(CONSENT_TEXT, "I agree to Gulmohar Wears keeping my name, phone number and style choices so they can help with my order. My measurement photos stay on my phone. If I choose Try on, that one photo is sent to Google's Gemini service to make the preview and is deleted afterwards. Gulmohar never stores my photos or my sizes.");
   assert.doesNotMatch(CONSENT_TEXT, /[—–]/);
 });
+
+test("phones read in international format for staff", async () => {
+  const { formatPhone } = await import("./phone.ts");
+  assert.equal(formatPhone("+919022564907"), "+91 90225 64907");
+  assert.equal(formatPhone("+447400123456"), "+44 7400 123456");
+  assert.equal(formatPhone("not a phone"), "not a phone");
+});

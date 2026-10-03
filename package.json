@@ -13,7 +13,8 @@
     "test:ui": "playwright test",
     "postinstall": "node scripts/fetch-pose-assets.mjs",
     "assets:pose": "node scripts/fetch-pose-assets.mjs",
-    "test:db": "node --experimental-strip-types --test tests/db/*.test.ts"
+    "test:db": "node --experimental-strip-types --test tests/db/*.test.ts",
+    "test:supabase": "node --experimental-strip-types --test tests/supabase/*.test.ts"
   },
   "dependencies": {
     "@fontsource/bodoni-moda": "^5.3.0",

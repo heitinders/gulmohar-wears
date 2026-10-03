@@ -100,7 +100,8 @@ test("preference sync writes only whitelisted fields for the token's own row", a
   const row = (await d.store.getClient(v.clientId))!;
   assert.equal(row.fit, "relaxed"); assert.equal(row.style, "sharara"); assert.equal(row.name, "Simran"); assert.equal(row.phone, "+919876543210");
   assert.deepEqual(row.brief, { city: "Leeds" });
-  assert.equal(JSON.stringify(row).includes("86"), false);
+  for (const key of ["measures", "heightCm", "weightKg", "age", "photo"]) assert.equal(key in row, false, key);
+  assert.doesNotMatch(JSON.stringify(row.brief), /34|bust|notes/);
 });
 
 test("preference sync refuses bad tokens and reports outages", async () => {

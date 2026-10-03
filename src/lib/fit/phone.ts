@@ -36,3 +36,8 @@ export function maskPhone(e164: string): string {
   const national = parsed.nationalNumber;
   return `+${parsed.countryCallingCode} ${"•".repeat(Math.max(national.length - 4, 2))}${national.slice(-4)}`;
 }
+
+/** "+91 90225 64907", for reading a number back to a client. Unparseable input is returned unchanged. */
+export function formatPhone(e164: string): string {
+  try { return parsePhoneNumberFromString(e164)?.formatInternational() ?? e164; } catch { return e164; }
+}

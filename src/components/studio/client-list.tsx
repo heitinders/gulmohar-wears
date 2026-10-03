@@ -3,6 +3,7 @@ import {OnDevice} from './on-device';
 import {getStyle} from '@/lib/fit/styles';
 import {FIT_LABELS, NECKLINE_LABELS, SLEEVE_LABELS, type NecklineId, type SleeveId} from '@/lib/fit/fit-preference';
 import {briefSummary, waLink} from '@/lib/fit/studio-view';
+import {formatPhone} from '@/lib/fit/phone';
 import type {ClientRow} from '@/lib/fit/server/store';
 
 const seen = (iso: string) => new Date(iso).toLocaleDateString('en-GB', {timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric'});
@@ -17,7 +18,7 @@ export function ClientList({rows, empty, deadlineFirst = false}: {rows: ClientRo
       <div className="client-head"><h2>{r.name}</h2><OnDevice phone={r.phone}/></div>
       {deadlineFirst && r.brief?.deadline && <p className="client-deadline">Needed {brief.split(', ').pop()}</p>}
       <dl>
-        <div><dt>Phone</dt><dd><a className="text-link" href={waLink(r.phone)} target="_blank" rel="noopener noreferrer">WhatsApp {r.phone}</a></dd></div>
+        <div><dt>Phone</dt><dd><a className="text-link" href={waLink(r.phone)} target="_blank" rel="noopener noreferrer">WhatsApp {formatPhone(r.phone)}</a></dd></div>
         <div><dt>Choices</dt><dd>{choices || 'None yet'}{r.lengthNote ? `. ${r.lengthNote}` : ''}</dd></div>
         <div><dt>Order brief</dt><dd>{brief || 'None yet'}</dd></div>
         <div><dt>Last seen</dt><dd>{seen(r.updatedAt)}</dd></div>

@@ -65,10 +65,11 @@ button.text-link{background:none;border:0;border-bottom:1px solid currentColor;p
 .phone-input{display:grid;grid-template-columns:auto 1fr;align-items:stretch}.phone-input>span{display:flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-right:0;background:var(--paper-deep);font-size:16px}
 .consent-check{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-size:14px;line-height:1.6;cursor:pointer}.consent-check input{width:24px;height:24px;min-height:24px;padding:0;margin:2px 0 0;accent-color:var(--oxblood)}
 .fit-honeypot{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
-.look-picker legend{font-size:13px;margin-bottom:12px}.look-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.look-picker{border:0;padding:0;margin:0;min-width:0}.look-picker legend{font-size:13px;margin-bottom:12px;padding:0}.look-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .look-option{padding:0;border:2px solid transparent;background:var(--paper-light);text-align:left;display:grid;gap:8px;font-size:13px}.look-option .garment-picture{aspect-ratio:2/3}.look-option span{padding:0 8px 10px}.look-option[aria-pressed=true]{border-color:var(--oxblood)}
 .tryon .button{justify-self:start}.tryon-result{display:grid;gap:20px}.tryon-result h2{font-size:28px}
 .tryon-preview{position:relative;margin:0;background:var(--oxblood-deep);max-width:520px}.tryon-preview img{width:100%;height:auto;display:block}
 .tryon-label{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:var(--oxblood);color:var(--on-dark);font-size:12px;letter-spacing:.02em}
 .tryon-choice{display:flex;gap:24px;flex-wrap:wrap}.tryon-choice .consent-check{grid-template-columns:24px auto;align-items:center}
 .fit-error .text-link{background:none;border-top:0;border-inline:0;padding:0;margin-left:8px}
+.tryon input[type=file]{padding:10px;font-size:14px}.tryon input[type=file]::file-selector-button{font:inherit;font-size:var(--text-label);min-height:44px;padding:10px 18px;margin-right:14px;border:1px solid var(--oxblood);background:transparent;color:var(--oxblood);cursor:pointer}.tryon input[type=file]::file-selector-button:hover{background:var(--paper-deep)}
