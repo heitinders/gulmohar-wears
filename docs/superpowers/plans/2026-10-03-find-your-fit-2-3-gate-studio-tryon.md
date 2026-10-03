@@ -25,7 +25,7 @@
 
 ## Review Focus
 
-1. **Phone typed with spaces, a leading 0 or the wrong country.** `98765 43210` with India selected must become `+919876543210`; `0044 7911 123456` with India selected must be refused with a message naming India; a UK number pasted with `+44` must win over the selected country. Tests in Task 2.
+1. **Phone typed with spaces, a leading 0 or the wrong country.** `98765 43210` with India selected must become `+919876543210`; `0044 7400 123456` with India selected is India's exit code, so it must become `+447400123456`; a UK number typed without its code under India (`7400 123456`) must be refused with a message naming India; a UK number pasted with `+44` must win over the selected country. Tests in Task 2.
 2. **Token tampered, truncated or signed with an old secret.** Every server entry returns `invalid-token`, the phone clears its token and goes back to the gate. Tests in Task 3 and Task 8.
 3. **Supabase down or misconfigured at the gate.** The gate shows a retry message with the WhatsApp link, never a stack trace, and measuring is never blocked by a failed preference sync. Tests in Task 6 and Task 8.
 4. **A staff session that has expired, or a signed-in user who is not on the staff list.** The first goes through refresh in `proxy.ts`, the second gets the login page with "This account is not on the studio list." and no data. Tests in Task 10 and the RLS test in Task 4.
