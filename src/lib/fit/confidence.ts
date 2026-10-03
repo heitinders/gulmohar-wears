@@ -57,6 +57,24 @@ export function computeConfidence(
   return out;
 }
 
+/** Not in app.js (Decisions 9). Confidence after a tape is applied or cleared. A draft that still holds its photo landmarks,
+ * or one without a saved base, re-runs computeConfidence. A saved profile reopened on this device has no landmarks (photos
+ * are never stored), so re-running it would read as a height-only draft and drop every field to 48. Instead the saved
+ * uncalibrated confidence is the base and each tape-measured field is lifted to the calibrated floor of 90. */
+export function recalibratedConfidence(
+  m: Measures,
+  draft: { baseConfidence: Record<Field, number> | null; frontLm: Landmarks | null; sideLm: Landmarks | null; quality: PoseQuality | null },
+  calibrated: boolean,
+): Record<Field, number> {
+  if (draft.frontLm || !draft.baseConfidence) return computeConfidence(m, draft.frontLm, draft.sideLm, draft.quality, calibrated);
+  const out = {} as Record<Field, number>;
+  for (const key of FIELDS) {
+    const base = draft.baseConfidence[key] ?? 25;
+    out[key] = calibrated && m.sources[key] === "calibrated" ? Math.min(97, Math.max(base, 90)) : base;
+  }
+  return out;
+}
+
 // Ported from app.js confidenceClass (L1017-1021): 85 and up high, 70 and up mid.
 export const confidenceLevel = (pct: number): "high" | "mid" | "low" => (pct >= 85 ? "high" : pct >= 70 ? "mid" : "low");
 

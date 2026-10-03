@@ -23,7 +23,7 @@ export function MeasureFlow() {
     const p = browserProfileStore().list().find(x => x.id === profileId);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage is only readable after mount; this copies the profile in once.
     if (p) setState(s => ({...s, name: p.name, styleId: p.styleId, heightCm: p.heightCm, kameezOverrideCm: p.kameezOverrideCm, preference: p.preference, brief: p.brief ?? emptyBrief, profileId: p.id,
-      draft: requested === 'result' ? {measures: p.measures, raw: p.rawMeasures ?? p.measures, confidence: p.confidence, calibration: p.calibration, frontLm: null, sideLm: null, quality: null} : null}));
+      draft: requested === 'result' ? {measures: p.measures, raw: p.rawMeasures ?? p.measures, confidence: p.confidence, baseConfidence: p.rawConfidence ?? (p.calibration ? null : p.confidence), calibration: p.calibration, frontLm: null, sideLm: null, quality: null} : null}));
     setLoadedProfile(true);
   }, [profileId]); // eslint-disable-line react-hooks/exhaustive-deps
   // Until the profile effect has run, a saved result has no draft and the style step's fields would mount empty

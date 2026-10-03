@@ -12,7 +12,9 @@ export interface StorageLike { getItem(key: string): string | null; setItem(key:
 
 export interface SavedProfile {
   id: string; name: string; styleId: StyleId; heightCm: number; kameezOverrideCm: number | null; preference: FitPreference;
-  measures: Measures; rawMeasures: Measures | null; calibration: Calibration | null; confidence: Record<Field, number>; brief: OrderBrief | null; savedAt: string;
+  measures: Measures; rawMeasures: Measures | null; calibration: Calibration | null; confidence: Record<Field, number>;
+  /** Confidence before any tape calibration. Optional because profiles saved before it existed lack it. */
+  rawConfidence?: Record<Field, number> | null; brief: OrderBrief | null; savedAt: string;
 }
 export type ProfileInput = Omit<SavedProfile, "id" | "savedAt"> & { id?: string };
 

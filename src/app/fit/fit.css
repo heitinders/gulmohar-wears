@@ -26,9 +26,11 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 .style-card svg{width:100%;height:auto;color:var(--ink)}.style-card[aria-pressed=true]{border-color:var(--oxblood)}
 .style-card strong{font:400 21px/1.2 var(--font-display),serif}.style-card small{font-size:12px;color:var(--muted)}
 /* Camera */
-.fit-step.fit-step-capture{padding:0;max-width:none}.fit-step .capture-heading{padding:12px var(--gutter) 0;font-size:var(--text-small)}
-.capture{flex:1;display:grid;grid-template-rows:1fr auto auto;background:var(--oxblood-deep);color:var(--on-dark);min-height:calc(100dvh - var(--fit-bar) - 60px)}
-.capture-stage{position:relative;overflow:hidden;min-height:50dvh}.capture-stage video,.capture-stage img{width:100%;height:100%;object-fit:contain;display:block;background:var(--oxblood-deep)}
+/* The capture step fills exactly the viewport under the bar, rail and heading: the step is a flex column, .capture takes the
+   rest, and the stage takes what the tips and actions leave. The media is absolutely placed so its intrinsic size never grows the stage. */
+.fit-step.fit-step-capture{padding:0;max-width:none;display:flex;flex-direction:column;gap:0}.fit-step .capture-heading{padding:12px var(--gutter) 0;font-size:var(--text-small)}
+.capture{flex:1 1 0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto auto;background:var(--oxblood-deep);color:var(--on-dark)}
+.capture-stage{position:relative;overflow:hidden;min-height:240px}.capture-stage video,.capture-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:var(--oxblood-deep)}
 .capture-guide{position:absolute;inset:0;width:100%;height:100%;color:var(--on-dark);opacity:.45;pointer-events:none}
 .capture-tips{padding:12px var(--gutter);font-size:13px;display:grid;gap:6px;background:var(--film-control-bg)}.capture-tips strong{font-weight:500}
 .capture-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px var(--gutter) calc(16px + env(safe-area-inset-bottom))}
@@ -53,7 +55,7 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 /* Profile list */
 .profile-list{display:grid;gap:12px}.profile-card{display:grid;gap:8px;padding:16px;background:var(--paper-light)}
 .profile-card strong{font:400 21px/1.2 var(--font-display),serif}.profile-card .fit-summary{font-size:12px}.profile-card-actions{display:flex;flex-wrap:wrap;gap:8px}
-@media(min-width:768px){.style-grid{grid-template-columns:repeat(4,1fr)}.fit-step{padding-top:48px}.capture{min-height:0}.capture-stage{min-height:60vh}.fit-actions{position:static;border:0;padding:8px 0 0;grid-auto-flow:column;justify-content:start}.fit-actions .button{width:auto}}
+@media(min-width:768px){.style-grid{grid-template-columns:repeat(4,1fr)}.fit-step{padding-top:48px}.fit-actions{position:static;border:0;padding:8px 0 0;grid-auto-flow:column;justify-content:start}.fit-actions .button{width:auto}}
 /* Intro page disclosures */
 .fit-intro-details{max-width:720px;padding-bottom:var(--chapter)}.fit-intro-details>p{margin-top:24px}.page-heading>.button{margin-top:32px}.fit-intro-details>.fit-note{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px}
 .fit-chart{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}.fit-chart th,.fit-chart td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line)}.fit-chart tr[aria-current] th,.fit-chart tr[aria-current] td{color:var(--flame)}

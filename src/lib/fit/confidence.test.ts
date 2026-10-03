@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { computeConfidence, confidenceLevel, sourceLabel } from "./confidence.ts";
+import { computeConfidence, confidenceLevel, recalibratedConfidence, sourceLabel } from "./confidence.ts";
 import { ratioMeasures, landmarkMeasures } from "./estimate.ts";
 import { assessPoseQuality } from "./retake.ts";
 import { applyTapeCalibration } from "./calibrate.ts";
 import { FRONT, SIDE, IMG, HEIGHT_64_IN } from "./fixtures.ts";
-import { FIELDS } from "./measures.ts";
+import { FIELDS, GIRTH_KEYS } from "./measures.ts";
 
 test("height-only drafts without a tape value are capped at 48 everywhere", () => {
   const c = computeConfidence(ratioMeasures(HEIGHT_64_IN, null, "punjabi"), null, null, null, false);
@@ -48,6 +48,36 @@ test("a tape-measured girth on a height-only draft is not capped by the missing 
   assert.equal(c.bust, 90); // 53.4 capped 55, +18 = 71.4, calibrated floor 90, no front cap for "calibrated" (Decisions 8)
   assert.equal(c.waist, 90); // every girth is rescaled by the tape, so its source is "calibrated" too
   assert.equal(c.shoulder, 48); // lengths still come from height alone, so the no-front cap stays
+});
+
+test("a saved photo profile reopened without landmarks keeps its confidence when the tape is applied and cleared", () => {
+  const raw = landmarkMeasures({ front: { lm: FRONT, ...IMG }, side: { lm: SIDE, ...IMG }, heightCm: HEIGHT_64_IN, kameezOverrideCm: null, styleId: "punjabi" });
+  const saved = computeConfidence(raw, FRONT, SIDE, assessPoseQuality(FRONT, SIDE), false);
+  // A profile reopened from this browser has no landmarks: photos are never stored.
+  const reopened = { baseConfidence: saved, frontLm: null, sideLm: null, quality: null };
+  const r = applyTapeCalibration(raw, "bust", 86);
+  if (!r.ok) throw new Error("expected ok");
+  const applied = recalibratedConfidence(r.measures, reopened, true);
+  for (const f of FIELDS) {
+    if (GIRTH_KEYS.includes(f)) assert.equal(applied[f], Math.min(97, Math.max(saved[f], 90)), f); // calibrated floor only
+    else assert.equal(applied[f], saved[f], f); // lengths keep the photo confidence instead of dropping to 48
+  }
+  assert.equal(applied.shoulder, 90);
+  assert.deepEqual(recalibratedConfidence(raw, reopened, false), saved); // Clear restores the saved photo confidence
+});
+
+test("recalibratedConfidence re-runs computeConfidence while landmarks or no saved base are present", () => {
+  const m = landmarkMeasures({ front: { lm: FRONT, ...IMG }, side: null, heightCm: HEIGHT_64_IN, kameezOverrideCm: null, styleId: "punjabi" });
+  const r = applyTapeCalibration(m, "bust", 86);
+  if (!r.ok) throw new Error("expected ok");
+  const q = assessPoseQuality(FRONT, null);
+  assert.deepEqual(recalibratedConfidence(r.measures, { baseConfidence: null, frontLm: FRONT, sideLm: null, quality: q }, true), computeConfidence(r.measures, FRONT, null, q, true));
+  const h = ratioMeasures(HEIGHT_64_IN, null, "anarkali");
+  const hc = applyTapeCalibration(h, "bust", 86.4);
+  if (!hc.ok) throw new Error("expected ok");
+  const heightOnly = { baseConfidence: computeConfidence(h, null, null, null, false), frontLm: null, sideLm: null, quality: null };
+  assert.deepEqual(recalibratedConfidence(hc.measures, heightOnly, true), computeConfidence(hc.measures, null, null, null, true)); // height-only drafts match exactly
+  assert.deepEqual(recalibratedConfidence(hc.measures, { ...heightOnly, baseConfidence: null }, true), computeConfidence(hc.measures, null, null, null, true));
 });
 
 test("levels and labels", () => {

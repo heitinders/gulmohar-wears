@@ -21,14 +21,14 @@ export function StepPhotos({state, update, onBack, onDone}: StepProps & {onBack(
     let outcome: MeasureOutcome;
     // A photo the browser cannot decode must not leave the customer on "Measuring" forever.
     try { outcome = await provider.measure({front, side, heightCm: state.heightCm, kameezOverrideCm: state.kameezOverrideCm, styleId: state.styleId, force}); } catch { setPhase('unavailable'); return; }
-    if (outcome.ok) { update({draft: {measures: outcome.measures, raw: outcome.measures, confidence: outcome.confidence, calibration: null, frontLm: outcome.frontLm, sideLm: outcome.sideLm, quality: outcome.quality}}); onDone(); return; }
+    if (outcome.ok) { update({draft: {measures: outcome.measures, raw: outcome.measures, confidence: outcome.confidence, baseConfidence: outcome.confidence, calibration: null, frontLm: outcome.frontLm, sideLm: outcome.sideLm, quality: outcome.quality}}); onDone(); return; }
     if (outcome.reason === 'model-unavailable') { setPhase('unavailable'); return; }
     setBlocked(outcome); update({attempts: state.attempts + 1}); setPhase('blocked');
   }
   function heightOnly() {
     if (!state.heightCm) return;
     const r = measureFromHeight(state.heightCm, state.kameezOverrideCm, state.styleId);
-    update({draft: {measures: r.measures, raw: r.measures, confidence: r.confidence, calibration: null, frontLm: null, sideLm: null, quality: null}}); onDone();
+    update({draft: {measures: r.measures, raw: r.measures, confidence: r.confidence, baseConfidence: r.confidence, calibration: null, frontLm: null, sideLm: null, quality: null}}); onDone();
   }
 
   // Keyed by shot so the front preview never carries over into the side capture.

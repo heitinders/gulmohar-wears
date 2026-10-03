@@ -20,7 +20,7 @@ export function StepResult({state, update, onRemeasure, onRestart}: StepProps & 
   const [saved, setSaved] = useState<'idle' | 'ok' | 'failed'>('idle');
   const adjusted = draft.measures.sources && Object.values(draft.measures.sources).some(s => s === 'ratio-clamped');
   function save() {
-    const r = browserProfileStore().save({id: state.profileId ?? undefined, name: state.name, styleId: state.styleId, heightCm: state.heightCm!, kameezOverrideCm: state.kameezOverrideCm, preference: state.preference, measures: draft.measures, rawMeasures: draft.raw, calibration: draft.calibration, confidence: draft.confidence, brief: state.brief});
+    const r = browserProfileStore().save({id: state.profileId ?? undefined, name: state.name, styleId: state.styleId, heightCm: state.heightCm!, kameezOverrideCm: state.kameezOverrideCm, preference: state.preference, measures: draft.measures, rawMeasures: draft.raw, calibration: draft.calibration, confidence: draft.confidence, rawConfidence: draft.baseConfidence, brief: state.brief});
     if (r.ok && r.profile) { update({profileId: r.profile.id}); setSaved('ok'); } else setSaved('failed');
   }
   // Measurements appear as text from here on, so session recording masks the whole step.

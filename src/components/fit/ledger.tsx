@@ -9,7 +9,7 @@ const UPPER: [Field, string][] = [['bust', 'Bust'], ['waist', 'Waist'], ['hip', 
 export function Ledger({draft, styleId}: {draft: Draft; styleId: StyleId}) {
   const style = getStyle(styleId);
   const row = (key: Field, label: string) => {
-    const cm = draft.measures[key], pct = draft.confidence[key]; const [num, unit] = formatIn(cm).split(' ');
+    const cm = draft.measures[key], pct = draft.confidence[key]; const [num, unit = ''] = formatIn(cm).split(' '); // NO_MEASURE has no unit, so a corrupt saved value shows n/a instead of throwing
     return <div className="ledger-row" key={key}>
       <dt>{label}<small>{sourceLabel(draft.measures.sources[key], key, styleId)}</small></dt>
       <dd><span className="ledger-in">{num}<small>{unit.toUpperCase()}</small></span><span className="ledger-cm">{formatCm(cm)}</span></dd>

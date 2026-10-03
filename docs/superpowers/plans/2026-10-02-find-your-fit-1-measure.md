@@ -78,6 +78,7 @@ Listed so the client can decide; the port keeps the prototype's behaviour unless
 6. Tailor bias learning is deferred (spec 2). Not ported in part 1.
 7. Knee and ankle "widths" measure the distance between the two knees or ankles (stance), not limb width. Ported as-is.
 8. Confidence for a tape-measured value is not capped by the missing front photo (changed from the prototype).
+9. A saved profile reopened on this device has no landmarks (photos are never stored), so applying or clearing a tape there starts from the saved uncalibrated confidence (stored as `rawConfidence`) and only lifts tape-measured fields to the calibrated floor of 90, instead of re-running the photo formula without photos (new behaviour, the prototype did not recompute).
 
 ## File structure
 

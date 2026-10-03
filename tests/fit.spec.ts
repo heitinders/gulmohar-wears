@@ -72,6 +72,40 @@ test('saving keeps the draft on this phone and the profile page can reopen it', 
   await expect(page).toHaveURL(/step=result/); await expect(page.locator('.ledger-row')).toHaveCount(13);
 });
 
+test('the camera step keeps its actions above the fold at 390 by 844', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.addInitScript(() => { navigator.mediaDevices.getUserMedia = () => Promise.reject(new DOMException('blocked', 'NotAllowedError')); });
+  await page.goto('/fit/measure');
+  await page.getByRole('button', {name: /Anarkali/}).click();
+  await page.getByLabel(/^Height/).fill('64'); await page.getByLabel(/^Height/).blur();
+  await page.getByRole('button', {name: 'Next: Photos'}).click();
+  await expect(page.getByText('Camera not available.')).toBeVisible();
+  for (const name of ['Take photo', 'Upload instead']) { const box = (await page.getByRole('button', {name}).boundingBox())!; expect(box.y + box.height, name).toBeLessThanOrEqual(844); }
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(844);
+});
+
+test('a reopened photo profile keeps its confidence through tape and clear, and a missing value shows n/a', async ({page}) => {
+  await heightOnlyDraft(page);
+  await page.getByRole('button', {name: 'Save to this phone'}).click();
+  await expect(page.getByRole('status')).toContainText('Saved in this browser only');
+  // Turn the saved draft into a photo profile as it would be stored, with one corrupt value.
+  await page.evaluate(() => {
+    const list = JSON.parse(localStorage.getItem('gulmohar_fit_profile_v1')!);
+    const p = list[0];
+    for (const m of [p.measures, p.rawMeasures]) { m.mode = 'landmarks'; for (const k of Object.keys(m.sources)) m.sources[k] = 'landmark+side'; m.neck = null; }
+    for (const c of [p.confidence, p.rawConfidence]) for (const k of Object.keys(c)) c[k] = 86;
+    localStorage.setItem('gulmohar_fit_profile_v1', JSON.stringify(list));
+  });
+  await page.goto('/fit/profile'); await page.getByRole('link', {name: 'Use saved measures'}).click();
+  await expect(page).toHaveURL(/step=result/);
+  const row = (name: string) => page.locator('.ledger-row', {hasText: name}).first();
+  await expect(row('Neck')).toContainText('n/a');
+  await page.getByLabel(/Tape measure/).fill('34'); await page.getByRole('button', {name: 'Apply tape'}).click();
+  await expect(row('Bust')).toContainText('confidence 90%'); await expect(row('Shoulder')).toContainText('confidence 86%');
+  await page.getByRole('button', {name: 'Clear'}).click();
+  await expect(row('Bust')).toContainText('confidence 86%'); await expect(row('Shoulder')).toContainText('confidence 86%');
+});
+
 test('accessibility checks on the fit routes', async ({page}) => {
   test.setTimeout(120000);
   for (const width of [390, 1440]) { await page.setViewportSize({width, height: 900}); for (const route of routes) { await page.goto(route); const result = await new AxeBuilder({page}).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze(); expect(result.violations, `${route} at ${width}`).toEqual([]); } }

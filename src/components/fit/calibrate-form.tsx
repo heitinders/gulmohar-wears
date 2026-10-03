@@ -1,7 +1,7 @@
 'use client';
 import {useState, type FormEvent} from 'react';
 import {applyTapeCalibration} from '@/lib/fit/calibrate';
-import {computeConfidence} from '@/lib/fit/confidence';
+import {recalibratedConfidence} from '@/lib/fit/confidence';
 import {inToCm, formatIn} from '@/lib/fit/units';
 import type {Draft} from './flow-types';
 
@@ -17,9 +17,9 @@ export function CalibrateForm({draft, onChange}: {draft: Draft; onChange(next: D
     const r = applyTapeCalibration(draft.raw, field, inToCm(tape), length > 0 ? inToCm(length) : null);
     if (!r.ok) { setError(ERRORS[r.error]); return; }
     setError(null);
-    onChange({...draft, measures: r.measures, calibration: r.calibration, confidence: computeConfidence(r.measures, draft.frontLm, draft.sideLm, draft.quality, true)});
+    onChange({...draft, measures: r.measures, calibration: r.calibration, confidence: recalibratedConfidence(r.measures, draft, true)});
   }
-  function clear() { onChange({...draft, measures: draft.raw, calibration: null, confidence: computeConfidence(draft.raw, draft.frontLm, draft.sideLm, draft.quality, false)}); setError(null); }
+  function clear() { onChange({...draft, measures: draft.raw, calibration: null, confidence: recalibratedConfidence(draft.raw, draft, false)}); setError(null); }
   return <form className="fit-panel" onSubmit={apply} aria-labelledby="calibrate-title">
     <p className="eyebrow draft-eyebrow">BEST ACCURACY STEP</p><h2 id="calibrate-title">Correct with one tape measure</h2>
     <p className="fit-note">Measure your bust or waist once with a tape. Every girth scales to match. Lengths stay as photographed unless you also enter your kameez length.</p>
