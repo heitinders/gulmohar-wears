@@ -13,8 +13,10 @@ export function ProfileList() {
   useEffect(() => { setProfiles(store.list()); }, []); // eslint-disable-line react-hooks/exhaustive-deps, react-hooks/set-state-in-effect
   if (profiles === null) return <p className="fit-note">Looking for saved measures on this phone.</p>;
   if (!profiles.length) return <div className="fit-panel"><h2>Nothing saved yet</h2><p className="fit-note">Finish a fit and tap Save to this phone. Measures stay in this browser only.</p><Link className="button button-primary" href="/fit/measure">Start my fit <Arrow/></Link></div>;
-  return <div className="profile-list">
+  // Saved measures are shown as text, so session recording masks the list.
+  return <div className="profile-list" data-clarity-mask="true">
     {profiles.map(p => <article className="profile-card" key={p.id}>
+      <p className="eyebrow draft-eyebrow">DRAFT, TAILOR TO VERIFY</p>
       <strong>{p.name || 'Saved measures'}</strong>
       <p className="fit-summary"><span>{getStyle(p.styleId).label}</span><span>Height {formatIn(p.heightCm)}</span><span>Bust {formatIn(p.measures.bust)}</span><span>Saved {new Date(p.savedAt).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'})}</span></p>
       {store.isStale(p) && <p className="fit-error">These are more than six months old. Re-measure before ordering.</p>}

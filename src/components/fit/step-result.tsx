@@ -23,7 +23,8 @@ export function StepResult({state, update, onRemeasure, onRestart}: StepProps & 
     const r = browserProfileStore().save({id: state.profileId ?? undefined, name: state.name, styleId: state.styleId, heightCm: state.heightCm!, kameezOverrideCm: state.kameezOverrideCm, preference: state.preference, measures: draft.measures, rawMeasures: draft.raw, calibration: draft.calibration, confidence: draft.confidence, brief: state.brief});
     if (r.ok && r.profile) { update({profileId: r.profile.id}); setSaved('ok'); } else setSaved('failed');
   }
-  return <main id="main" className="fit-step">
+  // Measurements appear as text from here on, so session recording masks the whole step.
+  return <main id="main" className="fit-step" data-clarity-mask="true">
     <div><p className="eyebrow draft-eyebrow">DRAFT, TAILOR TO VERIFY</p><h1>Your draft fit</h1>
       <p className="fit-summary"><span>{state.name || 'Your measurements'}</span><span>{style.label}</span><span>Height {formatIn(state.heightCm!)}</span><span>From {PHOTOS[draft.measures.mode]}</span></p></div>
     <p className="fit-lede">{draft.calibration ? 'Calibrated to your tape. Girths are usually within half an inch to an inch now.' : 'Before a tape measurement, girths can be off by an inch or two, sometimes more. The tape step below is the one that matters most.'}{adjusted ? ' Some values were adjusted to typical body proportions because the photo did not give a clear reading.' : ''}</p>
