@@ -15,3 +15,6 @@ playwright-report/
 # Local review artifacts and Vercel link metadata
 screenshots/
 .vercel
+
+# Try-on spike outputs: a real person's photo and AI previews, never committed
+.fit-spike/
