@@ -11,3 +11,6 @@ export interface FlowState {name: string; styleId: StyleId; heightCm: number | n
 export const emptyBrief: OrderBrief = {fabric: '', occasion: '', city: '', deadline: '', notes: ''};
 export const initialFlow: FlowState = {name: '', styleId: 'punjabi', heightCm: null, kameezOverrideCm: null, front: null, side: null, attempts: 0, draft: null, preference: defaultPreference, brief: emptyBrief, profileId: null};
 export interface StepProps {state: FlowState; update(patch: Partial<FlowState>): void}
+
+/** In-shop measuring for a known client: results are saved on the studio device, never to WhatsApp or the customer's phone store. */
+export interface StudioMode {client: {phone: string; name: string}; onSave(state: FlowState): boolean}

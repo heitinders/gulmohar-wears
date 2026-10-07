@@ -138,7 +138,7 @@ package.json                           deps, postinstall, test glob
 **Interfaces:**
 - Produces: `CM_PER_IN = 2.54`, `round1(n)`, `cmToIn(cm)`, `inToCm(inch)`, `formatIn(cm): string` (quarter-inch, e.g. `"33¼ in"`), `formatCm(cm): string` (half cm, e.g. `"84.5 cm"`); `FIELDS` (13 keys in order), `Field`, `Source`, `Measures`, `Landmark`, `Landmarks`, `LM`, `RATIOS`, `GIRTH_KEYS`.
 
-- [ ] **Step 1: Change the test script to run every test file**
+- [x] **Step 1: Change the test script to run every test file**
 
 In `package.json` replace the `test` line with:
 
@@ -148,7 +148,7 @@ In `package.json` replace the `test` line with:
 
 Run `npm test`. Expected: the existing `messages.test.ts` still passes.
 
-- [ ] **Step 2: Write the failing unit tests**
+- [x] **Step 2: Write the failing unit tests**
 
 `src/lib/fit/units.test.ts`:
 
@@ -180,12 +180,12 @@ test("formatCm rounds to the nearest half centimetre", () => {
 });
 ```
 
-- [ ] **Step 3: Run the tests to verify they fail**
+- [x] **Step 3: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, `Cannot find module './units.ts'`.
 
-- [ ] **Step 4: Write `units.ts`**
+- [x] **Step 4: Write `units.ts`**
 
 ```ts
 // Ported from app.js: CM_PER_IN (L537), round1, cmToIn, inToCm, fmtIn (L537-547).
@@ -210,7 +210,7 @@ export function formatCm(cm: number): string {
 }
 ```
 
-- [ ] **Step 5: Write `measures.ts`**
+- [x] **Step 5: Write `measures.ts`**
 
 ```ts
 // Ported from app.js: VERIFY_FIELDS (L47-61), LM indices (L155-173), RATIOS (L176-190), GIRTH_KEYS (L431).
@@ -247,12 +247,12 @@ export const RATIOS: Values = {
 };
 ```
 
-- [ ] **Step 6: Run the tests to verify they pass**
+- [x] **Step 6: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS (units and messages tests).
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add package.json src/lib/fit/units.ts src/lib/fit/measures.ts src/lib/fit/units.test.ts
@@ -272,7 +272,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `FIELDS`, `RATIOS`, `Measures`, `Values` from `measures.ts`; `round1` from `units.ts`.
 - Produces: `StyleId = "punjabi" | "anarkali" | "sharara" | "farshi"`, `Style` (`id, label, note, kameezRatio, salwarRatio, kameezLabel, bottomTitle, bottomRows: {key: Field; label: string}[]`), `STYLES: Style[]`, `getStyle(id)`; `ratioMeasures(heightCm, kameezOverrideCm, styleId): Measures`.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `src/lib/fit/styles.test.ts`:
 
@@ -308,12 +308,12 @@ test("ratioMeasures honours a kameez override and the style ratios", () => {
 });
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, cannot find `./styles.ts`.
 
-- [ ] **Step 3: Write `styles.ts`**
+- [x] **Step 3: Write `styles.ts`**
 
 Copy the label strings from `reference/measure-app/app.js` L71-144 exactly (they are internal labels, not customer copy, so the dash rule does not apply to `bottomRows` labels; the UI may still soften them).
 
@@ -350,7 +350,7 @@ export const getStyle = (id: StyleId): Style => STYLES.find(s => s.id === id) ??
 
 Before committing, open `app.js` L71-144 and make the `bottomRows` labels match the prototype exactly for all four styles (the sharara row is confirmed above; check the other three and correct them).
 
-- [ ] **Step 4: Write the ratio part of `estimate.ts`**
+- [x] **Step 4: Write the ratio part of `estimate.ts`**
 
 ```ts
 import { FIELDS, RATIOS, type Field, type Measures, type Source } from "./measures.ts";
@@ -374,12 +374,12 @@ export function ratioMeasures(heightCm: number, kameezOverrideCm: number | null,
 }
 ```
 
-- [ ] **Step 5: Run the tests to verify they pass**
+- [x] **Step 5: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/lib/fit/styles.ts src/lib/fit/estimate.ts src/lib/fit/styles.test.ts
@@ -400,7 +400,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `LM`, `RATIOS`, `Landmarks`, `Measures` (Task 1), `ratioMeasures`, `getStyle` (Task 2).
 - Produces: `cmPerPxFromHeight(lm, imgW, imgH, heightCm): { cmPerPx: number | null; method: ScaleMethod; warning: string | null }`, `girthCircumference(frontWidthCm, depthCm | null, depthK = 0.95)`, `landmarkMeasures(input: { front: {lm, w, h}; side?: {lm, w, h} | null; heightCm; kameezOverrideCm: number | null; styleId }): Measures`, `makeLandmarks(spec)` in fixtures.
 
-- [ ] **Step 1: Write the fixture helper**
+- [x] **Step 1: Write the fixture helper**
 
 `src/lib/fit/fixtures.ts`:
 
@@ -445,7 +445,7 @@ export const IMG = { w: 1000, h: 2000 };
 export const HEIGHT_64_IN = 162.56;
 ```
 
-- [ ] **Step 2: Write the failing tests**
+- [x] **Step 2: Write the failing tests**
 
 `src/lib/fit/estimate.test.ts` (expected values were computed by hand from the prototype's formulas; the comments show the arithmetic):
 
@@ -517,12 +517,12 @@ test("non-Punjabi styles take kameez from height, and an override wins", () => {
 });
 ```
 
-- [ ] **Step 3: Run the tests to verify they fail**
+- [x] **Step 3: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, `cmPerPxFromHeight` is not exported.
 
-- [ ] **Step 4: Port the scale, geometry and girth helpers into `estimate.ts`**
+- [x] **Step 4: Port the scale, geometry and girth helpers into `estimate.ts`**
 
 Append to `estimate.ts` (keep `ratioMeasures`). Port from `app.js` L412-444 (helpers), L453-504 (`cmPerPxFromHeight`), L515-525 (`girthCircumference`):
 
@@ -574,7 +574,7 @@ export function girthCircumference(frontFullWidth: number, depthFull: number | n
 
 The two warning strings above replace the prototype's em dashes with commas; they are internal `warnings` and the UI (Task 13) decides what customers see.
 
-- [ ] **Step 5: Port `landmarkMeasures`**
+- [x] **Step 5: Port `landmarkMeasures`**
 
 Port from `app.js` L728-862, following this structure exactly (open the file beside you and check each constant):
 
@@ -645,12 +645,12 @@ export function landmarkMeasures(input: { front: PoseImage; side?: PoseImage | n
 
 Add `Values` to the `measures.ts` import at the top of the file.
 
-- [ ] **Step 6: Run the tests to verify they pass**
+- [x] **Step 6: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS. If a value is off by 0.1, re-check the arithmetic in the comment before touching the formula; the formula must match `app.js`.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/fit/estimate.ts src/lib/fit/fixtures.ts src/lib/fit/estimate.test.ts
@@ -672,7 +672,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 
 The prototype's tip strings contain em dashes and are replaced by codes here; customer wording lives in `pose-tips.tsx` (Task 13).
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```ts
 import { test } from "node:test";
@@ -724,12 +724,12 @@ test("a frontal side photo is hard, a missing side photo is soft", () => {
 });
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, cannot find `./retake.ts`.
 
-- [ ] **Step 3: Port `assessPoseQuality`**
+- [x] **Step 3: Port `assessPoseQuality`**
 
 Port from `app.js` L865-945. Each condition and threshold below is the prototype's:
 
@@ -778,12 +778,12 @@ export function assessPoseQuality(front: Landmarks | null, side: Landmarks | nul
 }
 ```
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [x] **Step 4: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/fit/retake.ts src/lib/fit/retake.test.ts
@@ -806,7 +806,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
   - `FitId = "fitted" | "regular" | "relaxed"`, `SleeveId`, `NecklineId`, `FIT_EASE`, `FIT_LABELS`, `SLEEVE_LABELS`, `NECKLINE_LABELS`, `FitPreference { fit; sleeve; neckline; lengthNote }`, `defaultPreference`.
   - `SIZE_CHART`, `SizeAdvice { size: "S"|"M"|"L"|"XL"|"Custom"; closest: "S"|"M"|"L"|"XL"; mtm: boolean; reasons: ReasonCode[]; bustIn; waistIn; hipIn; easeCm }`, `recommendSize(m: Measures, fit: FitId): SizeAdvice`, `sizeAdviceLine(a: SizeAdvice): string` (customer copy, no dashes).
 
-- [ ] **Step 1: Write the failing calibration tests**
+- [x] **Step 1: Write the failing calibration tests**
 
 `src/lib/fit/calibrate.test.ts`:
 
@@ -848,7 +848,7 @@ test("unrealistic tapes and scales are refused", () => {
 });
 ```
 
-- [ ] **Step 2: Write the failing size-advice tests**
+- [x] **Step 2: Write the failing size-advice tests**
 
 `src/lib/fit/size-advice.test.ts`:
 
@@ -896,12 +896,12 @@ test("relaxed ease adds room and notes it", () => {
 });
 ```
 
-- [ ] **Step 3: Run the tests to verify they fail**
+- [x] **Step 3: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL on missing modules.
 
-- [ ] **Step 4: Write `fit-preference.ts`**
+- [x] **Step 4: Write `fit-preference.ts`**
 
 ```ts
 // Ported from app.js FIT_LABELS, SLEEVE_LABELS, NECKLINE_LABELS, FIT_EASE (L33-45).
@@ -918,7 +918,7 @@ export interface FitPreference { fit: FitId; sleeve: SleeveId; neckline: Necklin
 export const defaultPreference: FitPreference = { fit: "regular", sleeve: "full", neckline: "round", lengthNote: "" };
 ```
 
-- [ ] **Step 5: Write `calibrate.ts`**
+- [x] **Step 5: Write `calibrate.ts`**
 
 ```ts
 import { GIRTH_KEYS, type Measures } from "./measures.ts";
@@ -948,7 +948,7 @@ export function applyTapeCalibration(raw: Measures, field: "bust" | "waist", tap
 }
 ```
 
-- [ ] **Step 6: Write `size-advice.ts`**
+- [x] **Step 6: Write `size-advice.ts`**
 
 Port the algorithm from `app.js` L595-726. Reason strings become codes; `sizeAdviceLine` is our customer copy.
 
@@ -1015,12 +1015,12 @@ export function sizeAdviceLine(a: SizeAdvice): string {
 
 Compare each threshold with `app.js` L595-726 before committing. Check which band the prototype uses for `overIn` and `underIn` (the closest band) and that `custom` keeps `closest` as the best band.
 
-- [ ] **Step 7: Run the tests to verify they pass**
+- [x] **Step 7: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS. In the L case `hipOver` is `round1(44.02 - 42) = 2`, so the line reads "2 in".
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add src/lib/fit/calibrate.ts src/lib/fit/fit-preference.ts src/lib/fit/size-advice.ts src/lib/fit/calibrate.test.ts src/lib/fit/size-advice.test.ts
@@ -1040,7 +1040,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `Measures`, `Landmarks`, `LM`, `GIRTH_KEYS`, `Field`, `FIELDS` (Task 1), `PoseQuality` (Task 4), fixtures (Task 3), `applyTapeCalibration` (Task 5).
 - Produces: `computeConfidence(m: Measures, front: Landmarks | null, side: Landmarks | null, quality: PoseQuality | null, calibrated: boolean): Record<Field, number>`, `confidenceLevel(pct): "high" | "mid" | "low"`, `sourceLabel(source, field, styleId): string` (customer words: "from photo", "photo and side", "from height", "your tape", "tailor verified", "saved").
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```ts
 import { test } from "node:test";
@@ -1095,12 +1095,12 @@ test("levels and labels", () => {
 });
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, cannot find `./confidence.ts`.
 
-- [ ] **Step 3: Port `computeConfidence`**
+- [x] **Step 3: Port `computeConfidence`**
 
 Port from `app.js` L972-1017:
 
@@ -1168,12 +1168,12 @@ export function sourceLabel(source: Source, field: Field, styleId: StyleId): str
 }
 ```
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [x] **Step 4: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/fit/confidence.ts src/lib/fit/confidence.test.ts
@@ -1194,7 +1194,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `Values`, `FIELDS`, `Measures` (Task 1), `StyleId`, `getStyle` (Task 2), `FitPreference`, labels (Task 5), `Calibration` (Task 5), `SizeAdvice`, `sizeAdviceLine` (Task 5), `formatIn`, `formatCm` (Task 1), `whatsappUrl` (existing).
 - Produces: `DraftPayload { v: 1; style: StyleId; fit: FitId; heightCm: number; calibrated: boolean; m: Values }`, `encodeDraftCode(p): string` (`GW1.<base64url>.<4 chars>`), `decodeDraftCode(code): { ok: true; payload: DraftPayload } | { ok: false; error: "format" | "checksum" | "schema" }`; `composeMeasurementDraft(input: DraftMessageInput): string`, `composeOrderBrief(input: DraftMessageInput & { brief: OrderBrief }): string`, `OrderBrief { fabric; occasion; city; deadline; notes }` (all strings, may be empty).
 
-- [ ] **Step 1: Write the failing handoff tests**
+- [x] **Step 1: Write the failing handoff tests**
 
 `src/lib/fit/handoff.test.ts`:
 
@@ -1230,7 +1230,7 @@ test("wrong prefix and bad schema are refused", () => {
 });
 ```
 
-- [ ] **Step 2: Write the failing message tests**
+- [x] **Step 2: Write the failing message tests**
 
 Append to `src/lib/enquiries/messages.test.ts` (keep the existing tests; match their import style):
 
@@ -1266,12 +1266,12 @@ test("the order brief lists fabric, occasion, city, deadline and notes", () => {
 });
 ```
 
-- [ ] **Step 3: Run the tests to verify they fail**
+- [x] **Step 3: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL on missing exports.
 
-- [ ] **Step 4: Write `handoff.ts`**
+- [x] **Step 4: Write `handoff.ts`**
 
 ```ts
 import { FIELDS, type Values } from "./measures.ts";
@@ -1312,7 +1312,7 @@ export function decodeDraftCode(code: string): DecodeResult {
 }
 ```
 
-- [ ] **Step 5: Extend `messages.ts`**
+- [x] **Step 5: Extend `messages.ts`**
 
 Append (keep `composeEnquiry` and `whatsappUrl` as they are). The content follows the prototype's `buildWhatsAppCard` (L1456-1506) and `buildOrderBrief` (L1578-1631) but in the site's voice, without dashes:
 
@@ -1391,12 +1391,12 @@ export function composeOrderBrief(i: DraftMessageInput & { brief: OrderBrief }):
 
 `clean` already exists at the top of `messages.ts`.
 
-- [ ] **Step 6: Run the tests to verify they pass**
+- [x] **Step 6: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS. `formatCm(162.56)` is "162.5 cm" and `formatIn(83.7)` is "33 in" (32.95 in rounds to 33).
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/fit/handoff.ts src/lib/fit/handoff.test.ts src/lib/enquiries/messages.ts src/lib/enquiries/messages.test.ts
@@ -1416,7 +1416,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `Measures`, `Field` (Task 1), `StyleId` (Task 2), `FitPreference`, `Calibration` (Task 5), `OrderBrief` (Task 7).
 - Produces: `StorageLike { getItem(k): string | null; setItem(k, v): void; removeItem(k): void }`, `SavedProfile { id; name; styleId; heightCm; kameezOverrideCm: number | null; preference; measures; rawMeasures: Measures | null; calibration: Calibration | null; confidence: Record<Field, number>; brief: OrderBrief | null; savedAt: string }`, `createProfileStore(storage: StorageLike | null)` returning `{ list(): SavedProfile[]; save(p: Omit<SavedProfile, "id" | "savedAt"> & { id?: string }): { ok: boolean; profile?: SavedProfile }; remove(id): boolean; clear(): boolean; isStale(p, now?): boolean }`, `browserProfileStore()` (wraps `window.localStorage`, returns a store over `null` when unavailable), `PROFILE_KEY = "gulmohar_fit_profile_v1"`, `MAX_PROFILES = 10`, `SIX_MONTHS_MS`.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```ts
 import { test } from "node:test";
@@ -1466,12 +1466,12 @@ test("corrupt JSON under the key is treated as empty", () => {
 });
 ```
 
-- [ ] **Step 2: Run the tests to verify they fail**
+- [x] **Step 2: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, cannot find `./device-store.ts`.
 
-- [ ] **Step 3: Write `device-store.ts`**
+- [x] **Step 3: Write `device-store.ts`**
 
 ```ts
 import type { Field, Measures } from "./measures.ts";
@@ -1521,12 +1521,12 @@ export function browserProfileStore(): ProfileStore {
 }
 ```
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [x] **Step 4: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/fit/device-store.ts src/lib/fit/device-store.test.ts
@@ -1549,7 +1549,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
   - `pose.ts`: `PoseDetector { detect(source: CanvasImageSource): Landmarks | null; close(): void }`, `loadPoseDetector(): Promise<PoseDetector>` (cached; GPU delegate, CPU fallback), `decodeImage(blob: Blob): Promise<DecodedImage>` with `DecodedImage { source: CanvasImageSource; w: number; h: number }` (downscaled to a 1600px long edge).
   - `measure-provider.ts`: `MeasureInput { front: Blob; side: Blob | null; heightCm: number; kameezOverrideCm: number | null; styleId: StyleId; force?: boolean }`, `MeasureOutcome = { ok: true; measures: Measures; confidence: Record<Field, number>; quality: PoseQuality; frontLm: Landmarks | null; sideLm: Landmarks | null } | { ok: false; reason: "pose-blocked"; quality: PoseQuality } | { ok: false; reason: "model-unavailable" }`, `MeasureProvider { measure(input: MeasureInput): Promise<MeasureOutcome> }`, `OnDeviceProvider` (constructor takes `{ loadDetector, decode }` with the real functions as defaults), `measureFromHeight(heightCm, kameezOverrideCm, styleId): { measures; confidence }`.
 
-- [ ] **Step 1: Install the package and write the asset script**
+- [x] **Step 1: Install the package and write the asset script**
 
 Run: `npm install @mediapipe/tasks-vision@1.0.1`
 
@@ -1588,12 +1588,12 @@ In `package.json` add to `scripts`: `"postinstall": "node scripts/fetch-pose-ass
 Run: `npm run assets:pose && ls -la public/models public/models/wasm`
 Expected: `pose_landmarker_lite.task` (about 5.8 MB) and six `vision_wasm_*` files.
 
-- [ ] **Step 2: Check the MediaPipe 1.0.1 API names before writing `pose.ts`**
+- [x] **Step 2: Check the MediaPipe 1.0.1 API names before writing `pose.ts`**
 
 Run: `grep -nE "static forVisionTasks|static createFromOptions|detect\(|minPoseDetectionConfidence|minPosePresenceConfidence|delegate\?" node_modules/@mediapipe/tasks-vision/vision.d.ts | head -20`
 Expected: `FilesetResolver.forVisionTasks`, `PoseLandmarker.createFromOptions`, `detect(image, ...)` returning `PoseLandmarkerResult` with `landmarks: NormalizedLandmark[][]`, options `minPoseDetectionConfidence`, `minPosePresenceConfidence`, `baseOptions.delegate`. If any name differs, use the name from `vision.d.ts` in the next step and note it in the commit body.
 
-- [ ] **Step 3: Write `pose.ts`**
+- [x] **Step 3: Write `pose.ts`**
 
 ```ts
 // Browser only. The single file that touches MediaPipe. Assets come from /public/models (see scripts/fetch-pose-assets.mjs).
@@ -1639,7 +1639,7 @@ export async function decodeImage(blob: Blob): Promise<DecodedImage> {
 }
 ```
 
-- [ ] **Step 4: Write the failing provider tests**
+- [x] **Step 4: Write the failing provider tests**
 
 ```ts
 import { test } from "node:test";
@@ -1687,12 +1687,12 @@ test("measureFromHeight is the ratio draft at capped confidence", () => {
 });
 ```
 
-- [ ] **Step 5: Run the tests to verify they fail**
+- [x] **Step 5: Run the tests to verify they fail**
 
 Run: `npm test`
 Expected: FAIL, cannot find `./measure-provider.ts`.
 
-- [ ] **Step 6: Write `measure-provider.ts`**
+- [x] **Step 6: Write `measure-provider.ts`**
 
 Ported from `app.js` `processMeasurements` (L2008-2090) without the tailor-bias step (deferred):
 
@@ -1747,7 +1747,7 @@ export function measureFromHeight(heightCm: number, kameezOverrideCm: number | n
 }
 ```
 
-- [ ] **Step 7: Run the tests to verify they pass**
+- [x] **Step 7: Run the tests to verify they pass**
 
 Run: `npm test`
 Expected: PASS. Node 22 has `Blob` globally; `pose.ts` is imported for types only in the test, so it is never executed there.
@@ -1755,7 +1755,7 @@ Expected: PASS. Node 22 has `Blob` globally; `pose.ts` is imported for types onl
 Run: `npm run typecheck`
 Expected: no errors. If `CanvasImageSource` is not known to `tsc`, `lib` already includes `dom`; check the cast in the test compiles.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add package.json package-lock.json .gitignore scripts/fetch-pose-assets.mjs src/lib/fit/pose.ts src/lib/fit/measure-provider.ts src/lib/fit/measure-provider.test.ts
@@ -1777,11 +1777,11 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 **Interfaces:**
 - Produces: `TapeRail({ current }: { current: StepId })` with `StepId = "style" | "photos" | "result"` and `STEPS: { id: StepId; label: string }[]` exported from `tape-rail.tsx`; `FocusBar({ backHref, backLabel, children })` renders `<div className="fit-focus">` with the sticky bar and children; CSS class names listed in the stylesheet below.
 
-- [ ] **Step 1: Add the token**
+- [x] **Step 1: Add the token**
 
 In `src/app/tokens.css`, inside `:root` after `--nav-height:80px;`, add ` --fit-bar:56px;`.
 
-- [ ] **Step 2: Write `src/app/fit/fit.css`**
+- [x] **Step 2: Write `src/app/fit/fit.css`**
 
 Match the repo's one-rule-per-line density. Every colour is a token.
 
@@ -1839,7 +1839,7 @@ body:has(.fit-focus) .site-header,body:has(.fit-focus) .site-footer,body:has(.fi
 @media(min-width:768px){.style-grid{grid-template-columns:repeat(4,1fr)}.fit-step{padding-top:48px}.capture{min-height:0}.capture-stage{min-height:60vh}.fit-actions{position:static;border:0;padding:8px 0 0;grid-auto-flow:column;justify-content:start}.fit-actions .button{width:auto}}
 ```
 
-- [ ] **Step 3: Write the fit layout**
+- [x] **Step 3: Write the fit layout**
 
 `src/app/fit/layout.tsx`:
 
@@ -1850,7 +1850,7 @@ export const metadata:Metadata={title:'Find your fit',description:'Draft Punjabi
 export default function FitLayout({children}:{children:React.ReactNode}){return children;}
 ```
 
-- [ ] **Step 4: Write `tape-rail.tsx`**
+- [x] **Step 4: Write `tape-rail.tsx`**
 
 ```tsx
 export type StepId = 'style' | 'photos' | 'result';
@@ -1867,7 +1867,7 @@ export function TapeRail({current}: {current: StepId}) {
 }
 ```
 
-- [ ] **Step 5: Write `focus-bar.tsx`**
+- [x] **Step 5: Write `focus-bar.tsx`**
 
 ```tsx
 import Link from 'next/link';
@@ -1882,7 +1882,7 @@ export function FocusBar({backHref, backLabel, children}: {backHref: string; bac
 }
 ```
 
-- [ ] **Step 6: Typecheck and commit**
+- [x] **Step 6: Typecheck and commit**
 
 Run: `npm run typecheck && npm run lint`
 Expected: clean (the components are not rendered yet, that comes in Task 12).
@@ -1906,7 +1906,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `.page-heading`, `.process-list`, `.button`, `.text-link`, `details/summary` styles from `globals.css`; `Arrow` from `icons.tsx`; `whatsappUrl`.
 - Produces: route `/fit`.
 
-- [ ] **Step 1: Write the intro page**
+- [x] **Step 1: Write the intro page**
 
 Copy is from spec section 5, humanized, no dashes. The three steps are a real sequence, so the numbered `.process-list` is justified.
 
@@ -1933,7 +1933,7 @@ export default function FitIntro(){return <main id="main" className="page-width"
 
 If `style` props feel out of place next to the repo's class-only styling, add `.fit-intro-details{max-width:720px;padding-bottom:var(--chapter)}` and `.fit-intro-details>p{margin-top:24px}` to `fit.css` and use those classes instead.
 
-- [ ] **Step 2: Add the navigation and footer links**
+- [x] **Step 2: Add the navigation and footer links**
 
 In `navigation.tsx` line 12 change `links` to:
 
@@ -1943,11 +1943,11 @@ const links = [['Collections', '/collections'], ['Find your fit', '/fit'], ['Cus
 
 The mobile menu numbers entries `0{i + 1}`; five entries still fit. In `footer.tsx`, in the "HELP WITH YOUR ORDER" column, add `<Link href="/fit">Find your fit</Link>` before `<Link href="/size-and-fit">`.
 
-- [ ] **Step 3: Check in the browser**
+- [x] **Step 3: Check in the browser**
 
 Run `npm run dev`, open `http://localhost:3001/fit` at 390px and 1440px. Expected: one `h1`, the three steps, both disclosures open and close, the primary button goes to `/fit/measure` (404 until Task 12). The desktop nav shows "Find your fit" between Collections and Custom orders without wrapping at 1100px; if it wraps, shorten the label to "Your fit" in the desktop list only.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/app/fit/page.tsx src/components/navigation.tsx src/components/footer.tsx src/app/fit/fit.css
@@ -1972,7 +1972,7 @@ The spec names `public/fit/styles/*.svg`; this plan inlines the four drawings as
   - `StyleArt({id})`, `StylePicker({value, onChange})`, `HeightField({valueCm, onChange})`, `StepStyle(props: StepProps & { onNext(): void })`, `MeasureFlow()`.
   - Route `/fit/measure?step=style|photos|result`.
 
-- [ ] **Step 1: Write `flow-types.ts`**
+- [x] **Step 1: Write `flow-types.ts`**
 
 ```ts
 import type {StyleId} from '@/lib/fit/styles';
@@ -1989,7 +1989,7 @@ export const initialFlow: FlowState = {name: '', styleId: 'punjabi', heightCm: n
 export interface StepProps {state: FlowState; update(patch: Partial<FlowState>): void}
 ```
 
-- [ ] **Step 2: Write `style-art.tsx`**
+- [x] **Step 2: Write `style-art.tsx`**
 
 Four diagrams, not garments. `viewBox 0 0 90 120`, stroke `currentColor`, no fill.
 
@@ -2009,7 +2009,7 @@ const ART: Record<StyleId, React.ReactNode> = {
 export function StyleArt({id}: {id: StyleId}) {return <svg {...common}>{ART[id]}</svg>;}
 ```
 
-- [ ] **Step 3: Write `style-picker.tsx` and `height-field.tsx`**
+- [x] **Step 3: Write `style-picker.tsx` and `height-field.tsx`**
 
 ```tsx
 'use client';
@@ -2051,7 +2051,7 @@ export function HeightField({valueCm, onChange}: {valueCm: number | null; onChan
 }
 ```
 
-- [ ] **Step 4: Write `step-style.tsx`**
+- [x] **Step 4: Write `step-style.tsx`**
 
 ```tsx
 'use client';
@@ -2086,7 +2086,7 @@ export function StepStyle({state, update, onNext}: StepProps & {onNext(): void})
 
 If the nested `.fit-step` padding override reads badly, add `.fit-form{display:grid;gap:24px}` to `fit.css` and use it on the form instead.
 
-- [ ] **Step 5: Write `measure-flow.tsx` with the other two steps stubbed**
+- [x] **Step 5: Write `measure-flow.tsx` with the other two steps stubbed**
 
 ```tsx
 'use client';
@@ -2117,7 +2117,7 @@ export function MeasureFlow() {
 }
 ```
 
-- [ ] **Step 6: Write the page**
+- [x] **Step 6: Write the page**
 
 `src/app/fit/measure/page.tsx`:
 
@@ -2131,13 +2131,13 @@ export default function Measure(){return <FocusBar backHref="/fit" backLabel="Ba
 
 `useSearchParams` needs the Suspense boundary for prerendering (see `03-layouts-and-pages.md`, "Rendering with search params").
 
-- [ ] **Step 7: Check in the browser**
+- [x] **Step 7: Check in the browser**
 
 Run `npm run dev`. Open `/fit/measure` at 390px: the site header and orbs are gone, the slim bar shows "← Back" and the lockup, the tape rail shows no flame, "01 Style" is flame. Tap a card: 2px oxblood border. Type `640` in height and blur: error appears under the field. Type `64`, submit: URL becomes `?step=photos`, rail fills to the middle tick. Browser back returns to the style step with the card still selected. Reload on `?step=photos` redirects to `?step=style` (state is memory only).
 
 Run: `npm run typecheck && npm run lint`
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add src/components/fit src/app/fit/measure/page.tsx
@@ -2158,7 +2158,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: `OnDeviceProvider`, `measureFromHeight`, `MeasureOutcome` (Task 9), `loadPoseDetector` (Task 9), `IssueCode`, `PoseIssue` (Task 4), `StepProps`, `Draft` (Task 12).
 - Produces: `CameraCapture({shot, onCapture}: {shot: 'front' | 'side'; onCapture(blob: Blob): void})`, `TIPS: Record<IssueCode, string>`, `PoseTips({issues}: {issues: PoseIssue[]})`, `StepPhotos(props: StepProps & {onBack(): void; onDone(): void})`.
 
-- [ ] **Step 1: Write `pose-tips.tsx`** (customer wording for the codes from Task 4; no dashes)
+- [x] **Step 1: Write `pose-tips.tsx`** (customer wording for the codes from Task 4; no dashes)
 
 ```tsx
 import type {IssueCode, PoseIssue} from '@/lib/fit/retake';
@@ -2181,7 +2181,7 @@ export function PoseTips({issues}: {issues: PoseIssue[]}) {
 }
 ```
 
-- [ ] **Step 2: Write `camera-capture.tsx`**
+- [x] **Step 2: Write `camera-capture.tsx`**
 
 Rear camera first (someone is usually helping), switchable. Front-camera frames are mirrored on capture like the prototype (app.js L2831). Upload is always available and becomes the only option when the camera is denied.
 
@@ -2252,7 +2252,7 @@ export function CameraCapture({shot, onCapture}: {shot: 'front' | 'side'; onCapt
 }
 ```
 
-- [ ] **Step 3: Write `step-photos.tsx`**
+- [x] **Step 3: Write `step-photos.tsx`**
 
 ```tsx
 'use client';
@@ -2303,7 +2303,7 @@ export function StepPhotos({state, update, onBack, onDone}: StepProps & {onBack(
 
 Replace the inline `style` props with classes in `fit.css` if preferred: `.fit-step-capture{padding:0;max-width:none}` and `.capture-heading{padding:12px var(--gutter) 0}`.
 
-- [ ] **Step 4: Wire it into `measure-flow.tsx`**
+- [x] **Step 4: Wire it into `measure-flow.tsx`**
 
 Replace the photos stub with:
 
@@ -2313,13 +2313,13 @@ Replace the photos stub with:
 
 and import `StepPhotos`.
 
-- [ ] **Step 5: Check on a real phone**
+- [ ] **Step 5: Check on a real phone** (not verifiable from the repo; confirm on a device)
 
 Run `npm run dev -- --hostname 0.0.0.0` and open `http://<your-mac-ip>:3001/fit/measure` on a phone on the same Wi-Fi (camera needs HTTPS or localhost; if the phone refuses, use `npx vercel dev` or deploy a preview in Task 15 and test there). Expected: camera preview with the dotted guide, "Take photo" captures and shows the preview, "Use this photo" moves to the side shot, then "Measuring" and on to `?step=result` (which still shows the Task 14 stub). Cover the lens: the hard tips appear with "Retake photos"; after two failures "Use these anyway" appears. In desktop Chrome with the camera blocked: "Camera not available", upload works.
 
 Run: `npm run typecheck && npm run lint`
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/components/fit
@@ -2340,7 +2340,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - Consumes: everything from Tasks 1 to 9 and 12; `.message-preview`, `.chips`, `.chip`, `.optional`, `.field-hint` from `globals.css`; `MessageIcon`, `Arrow`.
 - Produces: `Ledger({draft, styleId})`, `CalibrateForm({draft, onChange(draft: Draft): void})`, `FitPreferenceForm({value, onChange})`, `SizeAdvicePanel({measures, fit})`, `OrderBriefForm({value, onChange})`, `SendOnWhatsApp({state})`, `StepResult(props: StepProps & {onRemeasure(): void; onRestart(): void})`, `ProfileList()`; route `/fit/profile`; `/fit/measure?profile=<id>` loads a saved profile.
 
-- [ ] **Step 1: Write `ledger.tsx`**
+- [x] **Step 1: Write `ledger.tsx`**
 
 ```tsx
 import {getStyle, type StyleId} from '@/lib/fit/styles';
@@ -2368,7 +2368,7 @@ export function Ledger({draft, styleId}: {draft: Draft; styleId: StyleId}) {
 }
 ```
 
-- [ ] **Step 2: Write `calibrate-form.tsx`**
+- [x] **Step 2: Write `calibrate-form.tsx`**
 
 ```tsx
 'use client';
@@ -2406,7 +2406,7 @@ export function CalibrateForm({draft, onChange}: {draft: Draft; onChange(next: D
 }
 ```
 
-- [ ] **Step 3: Write `fit-preference-form.tsx` and `size-advice.tsx`**
+- [x] **Step 3: Write `fit-preference-form.tsx` and `size-advice.tsx`**
 
 ```tsx
 'use client';
@@ -2444,7 +2444,7 @@ export function SizeAdvicePanel({measures, fit}: {measures: Measures; fit: FitId
 
 Add to `fit.css`: `.fit-chart{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}.fit-chart th,.fit-chart td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line)}.fit-chart tr[aria-current] th,.fit-chart tr[aria-current] td{color:var(--flame)}`
 
-- [ ] **Step 4: Write `order-brief-form.tsx`**
+- [x] **Step 4: Write `order-brief-form.tsx`**
 
 ```tsx
 'use client';
@@ -2465,7 +2465,7 @@ export function OrderBriefForm({value, onChange}: {value: OrderBrief; onChange(n
 }
 ```
 
-- [ ] **Step 5: Write `send-on-whatsapp.tsx`**
+- [x] **Step 5: Write `send-on-whatsapp.tsx`**
 
 ```tsx
 'use client';
@@ -2499,7 +2499,7 @@ export function SendOnWhatsApp({state}: {state: FlowState}) {
 }
 ```
 
-- [ ] **Step 6: Write `step-result.tsx`**
+- [x] **Step 6: Write `step-result.tsx`**
 
 ```tsx
 'use client';
@@ -2544,7 +2544,7 @@ export function StepResult({state, update, onRemeasure, onRestart}: StepProps & 
 }
 ```
 
-- [ ] **Step 7: Profile page and list**
+- [x] **Step 7: Profile page and list**
 
 `src/components/fit/profile-list.tsx`:
 
@@ -2583,7 +2583,7 @@ export const metadata={title:'Saved measures'};
 export default function Profile(){return <main id="main" className="page-width" style={{paddingBottom:'var(--chapter)'}}><div className="page-heading"><p className="eyebrow">FIND YOUR FIT</p><h1>Saved on <em>this phone.</em></h1><p>Your drafts stay in this browser so you need not re-photograph for every order. They are never uploaded.</p></div><ProfileList/></main>;}
 ```
 
-- [ ] **Step 8: Finish `measure-flow.tsx`**
+- [x] **Step 8: Finish `measure-flow.tsx`**
 
 Replace the result stub and add profile loading:
 
@@ -2605,13 +2605,13 @@ useEffect(() => {
 
 Import `browserProfileStore`, `emptyBrief`, `StepResult`. Because the guard redirects `?step=result` to `style` when `draft` is null, make the guard wait: compute `step` only after this effect has had a chance to run by treating `profileId && requested === 'result' && !state.draft && !loadedProfile` as "loading" and rendering the Suspense fallback heading until `loadedProfile` is set (a `useState<boolean>` flipped in the effect, including when no profile matches).
 
-- [ ] **Step 9: Check in the browser**
+- [x] **Step 9: Check in the browser**
 
 With photos blocked (DevTools, block `*/models/*`), run the height-only path to the result. Expected: the DRAFT eyebrow in flame, the ledger with inches large and cm small, every row "from height" with "confidence 48%" and a grey bar. Apply a bust tape of 34: the bust row reads "34 in", "your tape", bar turns flame; Clear restores. Switch Fit to Fitted: the size advice line changes. Add a brief: the WhatsApp preview gains a toggle and the brief text. Save: "Saved in this browser only." `/fit/profile` lists it; "Use saved measures" opens the result step with the ledger; Delete removes it. Check 390, 430 and 1440: no horizontal scroll, the sticky action bar never covers the last ledger row.
 
 Run: `npm run typecheck && npm run lint && npm test`
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add src/components/fit src/app/fit src/app/fit/fit.css
@@ -2631,7 +2631,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 **Interfaces:**
 - Consumes: the routes and labels from Tasks 11 to 14. Button and link names used below must match exactly: "Start my fit", "Next: Photos", "Upload instead", "Use this photo", "Use height only", "Apply tape", "Save to this phone", "Continue to WhatsApp".
 
-- [ ] **Step 1: Write the spec**
+- [x] **Step 1: Write the spec**
 
 ```ts
 import {test, expect, type Page} from '@playwright/test';
@@ -2716,14 +2716,14 @@ test('accessibility checks on the fit routes', async ({page}) => {
 });
 ```
 
-- [ ] **Step 2: Run it**
+- [x] **Step 2: Run it**
 
 Run: `npm run test:ui -- tests/fit.spec.ts`
 Expected: all pass. Where an assertion fails because a label differs from the implementation, fix whichever side is wrong against the plan; do not loosen the assertion.
 
 Also run the existing suites: `npm run test:ui`. The foundation test's route list does not include `/fit`; add `'/fit'` and `'/fit/profile'` to `routes` in `tests/foundation.spec.ts` so the overflow and h1 checks cover them too.
 
-- [ ] **Step 3: Visual review against the design notes**
+- [x] **Step 3: Visual review against the design notes**
 
 With `npm run dev` running, screenshot `/fit`, `/fit/measure` (style step), the camera step with the camera blocked, and the result step at 390, 430 and 1440 into `.playwright-mcp/fit-*.png`. Check, and fix in `fit.css` where needed:
 
@@ -2736,7 +2736,7 @@ With `npm run dev` running, screenshot `/fit`, `/fit/measure` (style step), the 
 
 Remove one thing that is not earning its place (the Chanel rule), then commit.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add tests/fit.spec.ts tests/foundation.spec.ts src/app/fit/fit.css

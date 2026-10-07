@@ -1,5 +1,5 @@
 'use client';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {Arrow} from '../icons';
 import {Ledger} from './ledger';
@@ -11,13 +11,30 @@ import {SendOnWhatsApp} from './send-on-whatsapp';
 import {getStyle} from '@/lib/fit/styles';
 import {formatIn} from '@/lib/fit/units';
 import {browserProfileStore} from '@/lib/fit/device-store';
-import type {StepProps} from './flow-types';
+import type {StepProps, StudioMode} from './flow-types';
+import {browserClientTokenStore} from '@/lib/fit/client-token';
+import {syncFitPreference} from '@/app/fit/actions';
 
 const PHOTOS = {landmarks: 'front and side photos', hybrid: 'front photo only', ratio: 'height only', none: 'height only'} as const;
 
-export function StepResult({state, update, onRemeasure, onRestart}: StepProps & {onRemeasure(): void; onRestart(): void}) {
+export function StepResult({state, update, onRemeasure, onRestart, studio}: StepProps & {onRemeasure(): void; onRestart(): void; studio?: StudioMode}) {
   const draft = state.draft!; const style = getStyle(state.styleId);
   const [saved, setSaved] = useState<'idle' | 'ok' | 'failed'>('idle');
+  const [tryOn, setTryOn] = useState(false);
+  // The try-on link shows only when previews are switched on for this deployment.
+  useEffect(() => { if (studio) return; let live = true; fetch('/api/fit/try-on').then(r => r.json()).then((j: {available?: boolean}) => { if (live) setTryOn(!!j.available); }).catch(() => {}); return () => { live = false; }; }, [studio]);
+  // Style and fit choices go to the atelier's client list; measurements never do (spec 4.2).
+  const {styleId, preference, brief} = state;
+  useEffect(() => {
+    // In the studio the device may hold some other customer's token, so nothing syncs from here.
+    if (studio) return;
+    const store = browserClientTokenStore(); const token = store.get(); if (!token) return;
+    const patch = {style: styleId, fit: preference.fit, sleeve: preference.sleeve, neckline: preference.neckline, lengthNote: preference.lengthNote, brief: {occasion: brief.occasion, fabric: brief.fabric, city: brief.city, deadline: brief.deadline}};
+    const timer = setTimeout(() => {
+      syncFitPreference(token, patch).then(r => { if (r.ok) store.clearPending(); else if (r.error === 'unavailable') store.setPendingPreference(patch); }).catch(() => store.setPendingPreference(patch));
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [styleId, preference, brief, studio]);
   const adjusted = draft.measures.sources && Object.values(draft.measures.sources).some(s => s === 'ratio-clamped');
   function save() {
     const r = browserProfileStore().save({id: state.profileId ?? undefined, name: state.name, styleId: state.styleId, heightCm: state.heightCm!, kameezOverrideCm: state.kameezOverrideCm, preference: state.preference, measures: draft.measures, rawMeasures: draft.raw, calibration: draft.calibration, confidence: draft.confidence, rawConfidence: draft.baseConfidence, brief: state.brief});
@@ -33,9 +50,15 @@ export function StepResult({state, update, onRemeasure, onRestart}: StepProps & 
     <FitPreferenceForm value={state.preference} onChange={preference => update({preference})}/>
     <SizeAdvicePanel measures={draft.measures} fit={state.preference.fit}/>
     <OrderBriefForm value={state.brief} onChange={brief => update({brief})}/>
-    <div className="chips"><button type="button" className="button button-outline" onClick={save}>{state.profileId ? 'Update saved measures' : 'Save to this phone'}</button><Link className="text-link" href="/fit/profile">Saved measures <Arrow/></Link></div>
-    <p className="fit-note" role="status">{saved === 'ok' ? 'Saved in this browser only. Nothing leaves your phone.' : saved === 'failed' ? "Couldn't save on this phone. Private browsing or full storage can cause this. You can still send the draft." : ''}</p>
-    <SendOnWhatsApp state={state}/>
+    {studio ? <>
+      <div className="chips"><button type="button" className="button button-primary" onClick={() => setSaved(studio.onSave(state) ? 'ok' : 'failed')}>Save for {studio.client.name} on this device</button></div>
+      <p className="fit-note" role="status">{saved === 'ok' ? 'Saved on this device. It is not uploaded anywhere.' : saved === 'failed' ? "Couldn't save on this device. Private browsing or full storage can cause this." : ''}</p>
+    </> : <>
+      <div className="chips"><button type="button" className="button button-outline" onClick={save}>{state.profileId ? 'Update saved measures' : 'Save to this phone'}</button><Link className="text-link" href="/fit/profile">Saved measures <Arrow/></Link></div>
+      <p className="fit-note" role="status">{saved === 'ok' ? 'Saved in this browser only. Nothing leaves your phone.' : saved === 'failed' ? "Couldn't save on this phone. Private browsing or full storage can cause this. You can still send the draft." : ''}</p>
+      <SendOnWhatsApp state={state}/>
+      {tryOn && <Link className="text-link" href="/fit/try-on">Try a look on <Arrow/></Link>}
+    </>}
     <div className="fit-actions"><button type="button" className="button button-outline" onClick={onRemeasure}>Retake photos</button><button type="button" className="text-link" onClick={onRestart}>Start over</button></div>
   </main>;
 }
