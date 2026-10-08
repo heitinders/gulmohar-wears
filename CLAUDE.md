@@ -1,8 +1,8 @@
-# Design context: Gulmohar Wears
+# Gulmohar Wears: Claude instructions
 
-Source: client master brief and corrective design brief, 21 September 2026;
-owner answers, 7 October 2026. Values live in src/app/tokens.css; STYLEGUIDE.md
-records how they are applied. This file says why.
+Project rules live in AGENTS.md. This file mirrors the site Design Context from
+.impeccable.md so it is always loaded; if they differ, update both. Find Your Fit
+has its own section in .impeccable.md.
 
 ## Design Context
 
@@ -71,42 +71,3 @@ WCAG 2.2 AAA where practical, AA everywhere. Measured 7 October 2026:
 5. Tokens first. New colours, fonts, sizes or motion are added to tokens.css
    before any component uses them.
 
-## Design Context: Find Your Fit (/fit, /studio)
-
-Source: Find Your Fit spec (docs/superpowers/specs/2026-10-02-find-your-fit-design.md),
-the original Grok prototype (reference/measure-app) and owner answers, 2 October 2026.
-
-### Users
-
-Women ordering a Punjabi suit, often on a phone, often overseas, standing in a
-room with someone helping take photos. The job: get a credible draft of their
-measurements and a sense of how a Gulmohar look suits them, then hand it to the
-atelier on WhatsApp. Studio users are atelier staff checking clients and order
-briefs between fittings.
-
-### Brand Personality
-
-Assured, warm, precise. The fitting room, not a gadget. The customer should feel
-looked after and told the truth: every number is a DRAFT that a tailor verifies.
-
-### Aesthetic Direction
-
-The site's look with an app's focus. Bodoni Moda and Manrope, paper, oxblood and
-the flame accent from tokens.css, crisp rectangles and rules. Keep the prototype's
-flow (Measure, Photos, Fit, Try on) and its numbered step tracker. Drop its
-Cormorant, gold, rounded pills, gradients and sparkle wallpaper. During measuring
-the page shows a slim step bar and back link; the site menu and floating contact
-orbs step aside. Style cards use simple line drawings of each silhouette, never
-generated garments. Measurements show inches first with cm alongside.
-Try-on previews always carry "AI preview, not a photograph of the garment".
-
-### Design Principles
-
-1. Honesty is visible: DRAFT labels, confidence and the tape step are part of the
-   design, not fine print.
-2. One task per screen on a phone; the camera step gets the whole viewport.
-3. Real garments only. Drawings explain styles; shoot photos sell clothes.
-4. Calm under failure: every error says what happened and what to do next, and
-   WhatsApp is always one tap away.
-5. Same house as the site: no new fonts, colours or component styles unless a
-   token is added to tokens.css first.
