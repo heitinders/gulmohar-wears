@@ -4,6 +4,7 @@ import {MeasureFlow} from '../fit/measure-flow';
 import {browserStudioStore} from '@/lib/fit/studio-store';
 import {FIELDS, type Values} from '@/lib/fit/measures';
 import type {FlowState} from '../fit/flow-types';
+import {useFocusOnChange} from '../fit/use-focus-on-change';
 
 type Client = {phone: string; name: string};
 
@@ -15,6 +16,7 @@ function save(client: Client, s: FlowState) {
 /** The customer measuring flow, run in the shop for a chosen client. Results stay on this device (spec 4.1). */
 export function StudioFit({clients}: {clients: Client[] | null}) {
   const [phone, setPhone] = useState(''); const [chosen, setChosen] = useState<Client | null>(null);
+  useFocusOnChange(chosen ? `client-${chosen.phone}` : 'pick', '#main h1');
   // The same focused shell customers get, so the camera step has the whole viewport; the studio bar steps aside.
   if (chosen) return <div className="fit-focus">
     <header className="focus-bar"><div className="focus-bar-inner"><button type="button" className="focus-back" onClick={() => setChosen(null)}>← Change client</button><span className="studio-context">Measuring <strong>{chosen.name}</strong></span></div></header>

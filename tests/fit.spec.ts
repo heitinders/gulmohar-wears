@@ -148,7 +148,7 @@ test.describe('measuring after the gate', () => {
   test('saving keeps the draft on this phone and the profile page can reopen it', async ({page}) => {
     await heightOnlyDraft(page);
     await page.getByRole('button', {name: 'Save to this phone'}).click();
-    await expect(page.getByRole('status')).toContainText('Saved in this browser only');
+    await expect(page.getByRole('status').filter({hasText:'Saved in this browser only'})).toBeVisible();
     await page.goto('/fit/profile');
     await expect(page.locator('.profile-card')).toHaveCount(1);
     await page.getByRole('link', {name: 'Use saved measures'}).click();
@@ -170,7 +170,7 @@ test.describe('measuring after the gate', () => {
   test('a reopened photo profile keeps its confidence through tape and clear, and a missing value shows n/a', async ({page}) => {
     await heightOnlyDraft(page);
     await page.getByRole('button', {name: 'Save to this phone'}).click();
-    await expect(page.getByRole('status')).toContainText('Saved in this browser only');
+    await expect(page.getByRole('status').filter({hasText:'Saved in this browser only'})).toBeVisible();
     // Turn the saved draft into a photo profile as it would be stored, with one corrupt value.
     await page.evaluate(() => {
       const list = JSON.parse(localStorage.getItem('gulmohar_fit_profile_v1')!);

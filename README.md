@@ -7,7 +7,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3001/. Collections, three real product galleries, Custom, Atelier, Journal and utility pages are implemented. `/design-studies` retains the rendered font comparison; `/styleguide` describes the current visual system. The preview is noindex.
+Open http://localhost:3001/. Collections, four real product galleries, Custom, Atelier, Journal and utility pages are implemented. `/design-studies` retains the rendered font comparison; `/styleguide` describes the current visual system. The preview is noindex.
 
 ```sh
 npm run lint

@@ -8,6 +8,7 @@ import {browserClientTokenStore} from '@/lib/fit/client-token';
 import {downscaleImage} from '@/lib/fit/image';
 import {composeTryOnOrder, whatsappUrl} from '@/lib/enquiries/messages';
 import type {Look} from '@/lib/catalogue';
+import {useFocusOnChange} from './use-focus-on-change';
 
 type Problem = {kind: 'cap'; whatsapp: string} | {kind: 'retry'} | {kind: 'photo'} | {kind: 'blocked'} | {kind: 'unavailable'};
 const SIZES = ['S', 'M', 'L', 'XL'];
@@ -23,6 +24,8 @@ export function TryOnFlow({looks}: {looks: (LookOption & {look: Look})[]}) {
   const [choice, setChoice] = useState<'size' | 'mtm'>('size'); const [size, setSize] = useState('');
   const urlRef = useRef<string | null>(null);
   useEffect(() => () => { if (urlRef.current) URL.revokeObjectURL(urlRef.current); }, []);
+  // A new preview takes focus to its heading; trying another look returns focus to the first look.
+  useFocusOnChange(result ? result.url : 'pick', result ? '#tryon-result-title' : '.look-picker button');
   const chosen = looks.find(l => l.slug === (result?.slug ?? slug));
 
   async function addPhoto(file: File | undefined) {
@@ -70,7 +73,7 @@ export function TryOnFlow({looks}: {looks: (LookOption & {look: Look})[]}) {
       </div>
       <button type="button" className="button button-primary" disabled={!slug || !photo || busy} onClick={make}>{busy ? 'Making your preview' : 'Make my preview'} <Arrow/></button>
     </>}
-    <p className="fit-note" role="status">{busy ? 'Making your preview. This can take up to a minute.' : reported ? "Thank you. We'll look at this preview." : ''}</p>
+    <p className="fit-note" role="status">{busy ? 'Making your preview. This can take up to a minute.' : reported ? "Thank you. We'll look at this preview." : result ? 'Your preview is ready.' : ''}</p>
     {problem && <div className="fit-error" role="alert">
       {problem.kind === 'cap' && <>You&apos;ve used today&apos;s previews. Message us on WhatsApp and we&apos;ll help. <a className="text-link" href={problem.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp us <Arrow diagonal/></a></>}
       {problem.kind === 'retry' && <>The preview didn&apos;t work this time, and it didn&apos;t count against today&apos;s previews. <button type="button" className="text-link" onClick={make}>Try again</button></>}
@@ -79,7 +82,7 @@ export function TryOnFlow({looks}: {looks: (LookOption & {look: Look})[]}) {
       {problem.kind === 'unavailable' && <>Previews are not available just now. <a className="text-link" href={whatsappUrl('Hi Gulmohar, I would like help choosing a look.')} target="_blank" rel="noopener noreferrer">WhatsApp us <Arrow diagonal/></a></>}
     </div>}
     {result && chosen && <section className="tryon-result" aria-labelledby="tryon-result-title">
-      <h2 id="tryon-result-title">{chosen.name}</h2>
+      <h2 id="tryon-result-title" tabIndex={-1}>{chosen.name}</h2>
       <TryOnPreview src={result.url} lookName={chosen.name}/>
       <div className="chips"><button type="button" className="button button-primary" onClick={() => setLiked(true)}>I like this</button><button type="button" className="button button-outline" onClick={tryAnother}>Try another look</button><button type="button" className="text-link" onClick={report}>Report this preview</button></div>
       {liked && <div className="fit-panel">

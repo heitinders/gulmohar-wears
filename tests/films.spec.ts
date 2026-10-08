@@ -5,20 +5,20 @@ test('hero plays silently, pauses offscreen, and remembers a manual pause', asyn
   const downloads:string[]=[];
   page.on('request', request => {if(request.url().endsWith('.mp4')) downloads.push(request.url());});
   await page.goto('/');
-  const hero=page.locator('[data-film="olive-hero"]');
+  const hero=page.locator('[data-film="teal-hero"]');
   const media=hero.locator('video');
-  await expect(hero.getByRole('button',{name:'Pause olive-gold hero film'})).toBeVisible();
+  await expect(hero.getByRole('button',{name:'Pause film: sage-teal suit'})).toBeVisible();
   expect(await media.evaluate(v => ({muted:(v as HTMLVideoElement).muted,inline:(v as HTMLVideoElement).playsInline}))).toEqual({muted:true,inline:true});
-  await expect(media).toHaveAttribute('src','/media/olive-hero-720.mp4');
-  expect(downloads.every(url => url.includes('olive-hero'))).toBe(true);
+  await expect(media).toHaveAttribute('src','/media/teal-hero-720.mp4');
+  expect(downloads.every(url => url.includes('teal-hero'))).toBe(true);
   const fuchsia=page.locator('[data-film="fuchsia-walk"]');
   await fuchsia.scrollIntoViewIfNeeded();
   await expect.poll(() => media.evaluate(v => (v as HTMLVideoElement).paused)).toBe(true);
-  await expect(fuchsia.getByRole('button',{name:'Pause fuchsia suit film'})).toBeVisible();
+  await expect(fuchsia.getByRole('button',{name:'Pause film: fuchsia suit'})).toBeVisible();
   await hero.scrollIntoViewIfNeeded();
-  await hero.getByRole('button',{name:'Pause olive-gold hero film'}).click();
+  await hero.getByRole('button',{name:'Pause film: sage-teal suit'}).click();
   await fuchsia.scrollIntoViewIfNeeded();await hero.scrollIntoViewIfNeeded();
-  await expect(hero.getByRole('button',{name:'Play olive-gold hero film'})).toBeVisible();
+  await expect(hero.getByRole('button',{name:'Play film: sage-teal suit'})).toBeVisible();
   expect(await media.evaluate(v => (v as HTMLVideoElement).paused)).toBe(true);
 });
 
@@ -30,22 +30,22 @@ for(const policy of ['reduced motion','data saving']) {
     const downloads:string[]=[];
     page.on('request',request => {if(request.url().endsWith('.mp4')) downloads.push(request.url());});
     await page.goto('/');
-    for(const id of ['olive-hero','fuchsia-walk','olive-drape']){
+    for(const id of ['teal-hero','fuchsia-walk','olive-drape']){
       const film=page.locator(`[data-film="${id}"]`);await film.scrollIntoViewIfNeeded();
       await expect(film.locator('img')).toBeVisible();await expect(film.locator('video')).not.toHaveAttribute('src');
     }
     expect(downloads).toEqual([]);
-    const hero=page.locator('[data-film="olive-hero"]');
-    await hero.scrollIntoViewIfNeeded();await hero.getByRole('button',{name:'Play olive-gold hero film'}).click();
-    await expect(hero.getByRole('button',{name:'Pause olive-gold hero film'})).toBeVisible();
-    await expect(hero.locator('video')).toHaveAttribute('src','/media/olive-hero-480.mp4');
+    const hero=page.locator('[data-film="teal-hero"]');
+    await hero.scrollIntoViewIfNeeded();await hero.getByRole('button',{name:'Play film: sage-teal suit'}).click();
+    await expect(hero.getByRole('button',{name:'Pause film: sage-teal suit'})).toBeVisible();
+    await expect(hero.locator('video')).toHaveAttribute('src','/media/teal-hero-480.mp4');
   });
 }
 
 test('failed video keeps the poster and ordering links usable', async ({page}) => {
-  await page.route('**/olive-hero-*.mp4', route => route.abort());
+  await page.route('**/teal-hero-*.mp4', route => route.abort());
   await page.goto('/');
-  const hero=page.locator('[data-film="olive-hero"]');
+  const hero=page.locator('[data-film="teal-hero"]');
   await expect(hero.getByRole('status')).toHaveText('Film unavailable. Showing a still.');
   await expect(hero.locator('img')).toBeVisible();
   expect(await hero.locator('img').evaluate(i => (i as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
@@ -62,11 +62,11 @@ test('blocked autoplay can be started manually, and a new motion preference paus
     };
   });
   await page.goto('/');
-  const hero = page.locator('[data-film="olive-hero"]');
-  await expect(hero.locator('video')).toHaveAttribute('src',/olive-hero/);
-  await hero.getByRole('button',{name:'Play olive-gold hero film'}).click();
-  await expect(hero.getByRole('button',{name:'Pause olive-gold hero film'})).toBeVisible();
+  const hero = page.locator('[data-film="teal-hero"]');
+  await expect(hero.locator('video')).toHaveAttribute('src',/teal-hero/);
+  await hero.getByRole('button',{name:'Play film: sage-teal suit'}).click();
+  await expect(hero.getByRole('button',{name:'Pause film: sage-teal suit'})).toBeVisible();
   await page.emulateMedia({reducedMotion:'reduce'});
-  await expect(hero.getByRole('button',{name:'Play olive-gold hero film'})).toBeVisible();
+  await expect(hero.getByRole('button',{name:'Play film: sage-teal suit'})).toBeVisible();
   expect(await hero.locator('video').evaluate(v=>(v as HTMLVideoElement).paused)).toBe(true);
 });

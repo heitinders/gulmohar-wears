@@ -19,11 +19,12 @@ export function SendOnWhatsApp({state}: {state: FlowState}) {
   const hasBrief = Object.values(state.brief).some(Boolean);
   async function copy() { try { await navigator.clipboard.writeText(message); setCopied(true); setTimeout(() => setCopied(false), 2500); } catch { setCopied(false); } }
   return <section className="message-preview" aria-label="Your WhatsApp message">
-    <p className="eyebrow">YOUR MESSAGE</p><h3>Check it, then send it to us.</h3>
+    <p className="eyebrow">YOUR MESSAGE</p><h2>Check it, then send it to us.</h2>
     {hasBrief && <div className="chips"><button type="button" className="chip" aria-pressed={kind === 'draft'} onClick={() => setKind('draft')}>Measurement draft</button><button type="button" className="chip" aria-pressed={kind === 'brief'} onClick={() => setKind('brief')}>Order brief</button></div>}
     <p className="preserve-lines">{message}</p>
     <a className="button button-primary" href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer"><MessageIcon/> Continue to WhatsApp <Arrow diagonal/></a>
     <div className="chips"><button type="button" className="button button-outline" onClick={copy}>{copied ? 'Copied' : 'Copy the text'}</button></div>
+    <p className="sr-only" role="status">{copied ? 'Copied' : ''}</p>
     <p className="field-hint">Opens WhatsApp in a new tab. You choose whether to press send. Nothing is sent until you do.</p>
   </section>;
 }

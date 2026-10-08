@@ -30,7 +30,7 @@ These are garment films, not footage of the making process. The films are presen
 
 The final galleries contain three visually matched outfits: fuchsia, blue and olive-gold. Clothing colour, neckline, repeated motifs, dupatta and trouser treatment were compared across selected frames. Descriptive colour names are not claimed to be official product names. No uncertain cross-outfit matches are included.
 
-No verified lehenga, workshop, maker-at-work or customer-worn images were identified. Lehengas use a clearly described custom-enquiry page without a fabricated image. The Atelier page identifies its image as an outfit from the edit. No material-composition or handwork inference is made from the images. Confirm fabric, technique, prices, available options and timing with the business.
+No verified lehenga or customer-worn images were identified. Workshop footage arrived with the October shoot; see below. Lehengas use a clearly described custom-enquiry page without a fabricated image. The Atelier page identifies its image as an outfit from the edit. No material-composition or handwork inference is made from the images. Confirm fabric, technique, prices, available options and timing with the business.
 
 ## Unused strong still candidates
 
@@ -60,3 +60,26 @@ These are selection previews only, not public storefront images.
 | [2026-09-18/DSC07072.ARW](https://drive.google.com/file/d/1IN7OhrHLdeeCagz3EctkZJXtomRRb8Kk/view) | Custom opening | 3:4 Custom crop; article 4:3 desktop, 4:5 mobile, focus 50% 38%. | `/media/dsc07072-{width}.{avif,webp}` |
 | [2026-09-18/DSC07085.ARW](https://drive.google.com/file/d/12GCfbenwNtMdGmKrzH4JrVAi9HO9vN6w/view) | Journal first-conversation article and listing | Listing 4:5; article 4:3 desktop and 4:5 phone, focus 50% 38%. | `/media/dsc07085-{width}.{avif,webp}` |
 | [2026-09-18/DSC07089.ARW](https://drive.google.com/file/d/10oxnA_yEMLv92uiPQKC4ZpGkeOl6VKia/view) | Home opening detail; Olive-gold gallery | Narrow hero detail at 48% 50%, upper two-thirds of companion column. Gallery full portrait. | `/media/dsc07089-{width}.{avif,webp}` |
+
+## New shoot, added 7 October 2026
+
+Second model, teal suit, from the Drive folder "new shoot" (inventory: docs/drive-inventory-new.json; clip names repeat across folders, so sources are recorded by full path). Stills are the camera's own colour-processed JPEGs, EXIF orientation applied and resized only, with no colour changes. Reproduce with `node scripts/export-new-media.mjs` and `.venv/bin/python scripts/export-new-video.py`. Both append to the existing manifests.
+
+The stills are 4000×6000 (2:3). The September RAW stills are 4024×6024, which is effectively the same ratio.
+
+| Placement | Source and trim | Bytes | Dimensions |
+|---|---|---|---|
+| Sage-teal look (home, edit, index, product) | new shoot/DSC07114.JPG, standing with dupatta and flowers | 1600 JPEG 931,024; all AVIF and WebP 4,627,915 | 4000×6000 |
+| Sage-teal look (home, edit, index, product) | new shoot/DSC07098.JPG, seated, full length | 1600 JPEG 690,022; all AVIF and WebP 3,021,810 | 4000×6000 |
+| Sage-teal look (home, edit, index, product) | new shoot/DSC07102.JPG, seated, three quarter, smiling | 1600 JPEG 663,749; all AVIF and WebP 2,896,693 | 4000×6000 |
+| Sage-teal look (home, edit, index, product) | new shoot/DSC07104.JPG, kameez hem and scalloped border | 1600 JPEG 1,017,283; all AVIF and WebP 5,080,627 | 4000×6000 |
+| Home opening (opening film) | new shoot/C0016.MP4, 3.3s to 9.7s, `teal-hero` | 480: 790,908 / 720: 1,481,376; poster 157,160 | 480×854 / 720×1280 |
+| Atelier page, In the workshop | new shoot/Workshop/C0181.MP4, 4.5s to 10.5s, `workshop-border` | 480: 791,866 / 720: 1,566,352; poster frame-matched | 480×854 / 720×1280 |
+
+Review notes:
+
+- DSC07114: a crew member is softly reflected in the wall mirror at left. Every frame in the DSC07113 to DSC07119 series has the same reflection, so this frame was kept for its pose. Avoid crops that enlarge the mirror.
+- DSC07098: a light stand and cable sit at the far left edge. DSC07099 and DSC07100 have them too. A crop from the left removes them.
+- Both films have no rotation metadata. C0016 was shot with the camera on its side and is turned 90 degrees counter-clockwise, checked visually. The trim is the steadiest stretch, with the full outfit in frame and a slow push in starting after it. C0034 shows the full standing look but is only 5.76s long, and C0017 is a closer mid shot.
+- C0181 was filmed with the camera on its side (the needle bar ran horizontally). It is exported in portrait, turned 90 degrees counter-clockwise like the garment clips, so the machine sits upright.
+- All clips were recorded at 100fps and are exported in real time at 25fps.

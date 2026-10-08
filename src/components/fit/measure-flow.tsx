@@ -7,6 +7,7 @@ import {StepPhotos} from './step-photos';
 import {StepResult} from './step-result';
 import {browserProfileStore} from '@/lib/fit/device-store';
 import {emptyBrief, initialFlow, type FlowState, type StudioMode} from './flow-types';
+import {useFocusOnChange} from './use-focus-on-change';
 
 const isStep = (s: string | null): s is StepId => STEPS.some(step => step.id === s);
 
@@ -33,6 +34,8 @@ export function MeasureFlow({basePath = '/fit/measure', studio}: {basePath?: str
   // A step cannot show without its inputs: results need a draft, photos need a height.
   const step: StepId = requested === 'result' && !state.draft ? (state.heightCm ? 'photos' : 'style') : requested === 'photos' && !state.heightCm ? 'style' : requested;
   useEffect(() => { if (!loading && step !== requested) router.replace(`${basePath}?step=${step}`); }, [loading, step, requested, router, basePath]);
+  // Each step is a new page to a screen reader, so its heading takes focus once the customer moves on.
+  useFocusOnChange(loading ? null : step, '#main h1');
   const go = (s: StepId) => router.push(`${basePath}?step=${s}`);
   const update = (patch: Partial<FlowState>) => setState(s => ({...s, ...patch}));
   if (loading) return <main id="main" className="fit-step"><h1>Find your fit</h1></main>;

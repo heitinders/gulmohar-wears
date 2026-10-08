@@ -2,26 +2,38 @@
  --paper:#f4f0e7; --paper-light:#fbf8f1; --paper-deep:#e8e0d2;
  --ink:#362426; --muted:#6d5b55; --oxblood:#421f25; --oxblood-deep:#30171c;
  --flame:#a53726; --on-dark:#faf3e5; --on-dark-muted:#d8c5b5;
- --line:rgba(54,36,38,.22); --line-light:rgba(250,243,229,.3);
+ --line:rgba(54,36,38,.22); --line-light:rgba(250,243,229,.3); --line-field:#867a77;
  --font-body-fallback:Arial,sans-serif; --font-display-fallback:Georgia,serif;
- --text-small:.75rem; --text-label:.8125rem; --text-body:1rem;
+ --text-small:.75rem; --text-label:.8125rem; --text-meta:.875rem; --text-reading:.9375rem;
+ --text-body:1rem; --text-lead:1.0625rem; --text-sub:1.25rem; --text-sub-lg:1.375rem;
+ --text-heading-6:1.5rem; --text-heading-5:1.75rem; --text-heading-4:2rem; --text-heading-3:2.25rem;
+ --text-heading-2:2.5rem; --text-heading-1:2.75rem; --text-display-2:4rem; --text-display-1:4.375rem;
  --text-intro:clamp(1.25rem,2.1vw,2rem); --text-title:clamp(2.4rem,4.8vw,5rem);
  --text-hero:clamp(3rem,5.5vw,6.4rem); --text-statement:clamp(3.5rem,8vw,8.5rem);
- --text-card:clamp(1.5rem,2.4vw,2.5rem); --tracking-label:.13em;
- --leading-body:1.65; --leading-display:1.09;
- --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
- --space-6:32px; --space-7:40px; --space-8:48px; --space-9:64px;
- --space-10:80px; --space-11:96px; --space-12:120px; --space-13:160px;
+ --text-card:clamp(1.5rem,2.4vw,2.5rem);
+ --text-feature-link:clamp(1.25rem,2.1vw,1.875rem); --text-statement-sm:clamp(1.625rem,3vw,2.625rem);
+ --text-index-title:clamp(2rem,3.7vw,3.25rem); --text-index-entry:clamp(1.75rem,3.5vw,3rem);
+ --text-campaign:clamp(3rem,5.4vw,4rem); --text-campaign-phone:clamp(2.25rem,10.4vw,3rem);
+ --text-page-title:clamp(2.75rem,6vw,5.5rem); --text-numeral:clamp(3.125rem,10vw,10rem);
+ --text-product-title:clamp(2.375rem,4vw,3.75rem); --text-custom-title:clamp(2.5rem,5.5vw,5rem);
+ --text-atelier-title:clamp(3rem,7vw,6rem); --text-article-title:clamp(2.75rem,5vw,4.5rem);
+ --text-step-title:clamp(2rem,5vw,2.75rem); --text-studio-title:clamp(2rem,4vw,3rem);
+ --tracking-label:.13em; --leading-body:1.65; --leading-display:1.09;
+ --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+ --space-6:24px; --space-7:28px; --space-8:32px; --space-9:40px; --space-10:48px;
+ --space-11:64px; --space-12:80px; --space-13:96px; --space-14:120px; --space-15:160px;
  --gutter:clamp(20px,4.45vw,80px); --page-max:1600px;
  --chapter:clamp(72px,8vw,128px); --target:48px; --rule:1px;
  --ease:cubic-bezier(.22,1,.36,1); --duration:300ms;
  --nav-height:80px; --fit-bar:56px; --logo-width:144px; --logo-ratio:900 / 870; --icon-size:20px; --focus:2px solid var(--flame);
+ --shadow-panel:0 20px 24px rgba(48,23,28,.12); --shadow-label:0 4px 18px rgba(54,36,38,.1);
  --whatsapp-light:#38b47b; --whatsapp-green:#178254; --whatsapp-dark:#075338;
  --whatsapp-shadow:rgba(8,56,38,.25); --whatsapp-size:64px; --whatsapp-inset:28px;
  --instagram-light:#d96178; --instagram-pink:#aa2857; --instagram-dark:#672d68;
- --instagram-shadow:rgba(103,45,104,.22); --social-gap:16px;
+ --instagram-shadow:rgba(103,45,104,.22); --social-gap:16px; --orb-icon:32px;
+ --orb-rim:rgba(255,255,255,.35); --orb-highlight:rgba(255,255,255,.5); --orb-shade:rgba(0,0,0,.16); --orb-icon-shadow:rgba(0,0,0,.2);
  --radius-field:0px; --focal:50% 50%;
  --film-ratio:9 / 16; --film-control-bg:rgba(48,23,28,.88); --film-control-inset:16px;
 }
-@media(max-width:767px){:root{--nav-height:72px; --logo-width:108px; --whatsapp-size:58px; --whatsapp-inset:18px;}}
+@media(max-width:767px){:root{--nav-height:72px; --logo-width:108px; --whatsapp-size:var(--target); --whatsapp-inset:12px; --social-gap:12px; --orb-icon:24px;}}
 @media(prefers-reduced-motion:reduce){:root{--duration:0s;}}

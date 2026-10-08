@@ -48,7 +48,7 @@ export function CameraCapture({shot, onCapture}: {shot: 'front' | 'side'; onCapt
     <div className="capture-stage">
       {preview ? <img src={preview.url} alt={`Your ${shot} photo, ready to check`}/> : <video ref={video} playsInline muted aria-label="Camera preview"/>}
       {!preview && camera === 'live' && <svg className="capture-guide" viewBox="0 0 90 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 3"><circle cx="45" cy="18" r="9"/><path d="M22 40h46M45 40v70M18 150h54"/></svg>}
-      {!preview && camera === 'unavailable' && <div className="capture-tips capture-unavailable"><strong>Camera not available.</strong> Upload a photo from your gallery instead.</div>}
+      <div role="alert">{!preview && camera === 'unavailable' && <div className="capture-tips capture-unavailable"><strong>Camera not available.</strong> Upload a photo from your gallery instead.</div>}</div>
     </div>
     <div className="capture-tips">{preview ? <strong>Whole body in frame, feet showing, arms away from the body?</strong> : FRAMING[shot].map(t => <span key={t}>{t}</span>)}</div>
     <div className="capture-actions">

@@ -3,7 +3,7 @@
 import {useEffect, useRef, useState} from 'react';
 
 type Connection = EventTarget & {saveData?: boolean; effectiveType?: string};
-type Props = {id: 'olive-hero' | 'fuchsia-walk' | 'olive-drape'; label: string; description: string; eager?: boolean; className?: string};
+type Props = {id: 'teal-hero' | 'fuchsia-walk' | 'olive-drape' | 'workshop-border'; label: string; description: string; eager?: boolean; className?: string};
 
 export function EditorialFilm({id, label, description, eager = false, className = ''}: Props) {
   const container = useRef<HTMLDivElement>(null);
@@ -74,7 +74,7 @@ export function EditorialFilm({id, label, description, eager = false, className 
       onPlaying={() => {setPlaying(true); setHasFrame(true);}}
       onPause={() => setPlaying(false)} onError={() => {setFailed(true); setPlaying(false);}}/>
     {!failed ? <button type="button" className="film-control" onClick={() => toggle.current()}
-      aria-label={`${playing ? 'Pause' : 'Play'} ${label}`}>
+      aria-label={`${playing ? 'Pause' : 'Play'} film: ${label}`}>
       <svg viewBox="0 0 20 20" aria-hidden="true">{playing
         ? <path d="M6 4v12M14 4v12" fill="none" stroke="currentColor" strokeWidth="2"/>
         : <path d="m6 3 11 7-11 7Z" fill="currentColor"/>}</svg>

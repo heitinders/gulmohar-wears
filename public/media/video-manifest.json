@@ -64,5 +64,53 @@
         "bytes": 1336995
       }
     ]
+  },
+  {
+    "id": "teal-hero",
+    "source": "new shoot/C0016.MP4",
+    "driveId": "15xiaqLlkOoLHVbHuEm_JlJHZmObbHwex",
+    "start": 3.3,
+    "duration": 6.4,
+    "audio": false,
+    "processing": "Portrait orientation restored, full frame retained, H.264 CRF26, 25fps, no colour changes.",
+    "poster": "/media/teal-hero-poster.webp",
+    "posterWidth": 720,
+    "posterHeight": 1280,
+    "outputs": [
+      {
+        "src": "/media/teal-hero-480.mp4",
+        "width": 480,
+        "bytes": 790908
+      },
+      {
+        "src": "/media/teal-hero-720.mp4",
+        "width": 720,
+        "bytes": 1481376
+      }
+    ]
+  },
+  {
+    "id": "workshop-border",
+    "source": "new shoot/Workshop/C0181.MP4",
+    "driveId": "1bBr8d5PFp5Yq4-2l4k-yImgmVqOYFxE4",
+    "start": 4.5,
+    "duration": 6.0,
+    "audio": false,
+    "processing": "Portrait orientation restored, full frame retained, H.264 CRF26, 25fps, no colour changes.",
+    "poster": "/media/workshop-border-poster.webp",
+    "posterWidth": 720,
+    "posterHeight": 1280,
+    "outputs": [
+      {
+        "src": "/media/workshop-border-480.mp4",
+        "width": 480,
+        "bytes": 791866
+      },
+      {
+        "src": "/media/workshop-border-720.mp4",
+        "width": 720,
+        "bytes": 1566352
+      }
+    ]
   }
 ]

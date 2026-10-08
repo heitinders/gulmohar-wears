@@ -13,7 +13,12 @@ export const looks:Look[]=[
  {slug:'blue-suit',name:'Blue embroidered suit',tone:'Soft blue',number:'03',description:'Long embroidered panels run down the front of this blue suit. The sleeves and trouser hems have matching detail. See the seated view for a closer look at the blue dupatta.',images:[
   {id:'dsc07025',alt:'Full-length blue embroidered suit with matching trousers and dupatta beside a staircase',caption:'The full silhouette'},
   {id:'dsc07018',alt:'Blue suit seated on stairs with the dupatta spread alongside',caption:'The drape, seated'},
-  {id:'dsc07024',alt:'Close view of the blue embroidered front, sleeve and trouser details',caption:'The embroidery in detail'}],features:['Blue colour','Long embroidered front panels','Detailed sleeves and trouser hems','Matching dupatta']}
+  {id:'dsc07024',alt:'Close view of the blue embroidered front, sleeve and trouser details',caption:'The embroidery in detail'}],features:['Blue colour','Long embroidered front panels','Detailed sleeves and trouser hems','Matching dupatta']},
+ {slug:'sage-teal-suit',name:'Sage-teal embroidered suit',tone:'Sage teal',number:'04',description:'A sage-teal suit with gold-toned embroidery and touches of pink running down the front. Wide scalloped borders finish the sleeves and the hem, and the matching dupatta has an embroidered edge. The close-ups show the neckline, sleeves and hem.',images:[
+  {id:'dsc07114',alt:'Full-length sage-teal suit with the embroidered dupatta held open, in a pale room with white flowers',caption:'The full silhouette'},
+  {id:'dsc07098',alt:'Sage-teal suit seated on a cane chair, showing the scalloped hem and embroidered front',caption:'The suit, seated'},
+  {id:'dsc07102',alt:'Smiling portrait in the sage-teal suit, showing the V neckline and embroidered sleeves',caption:'Neckline and sleeves'},
+  {id:'dsc07104',alt:'Close view of the sage-teal hem, with a diamond motif above the wide scalloped border',caption:'The hem in detail'}],features:['Sage-teal colour','V neckline','Gold-toned embroidery with pink accents','Wide scalloped sleeve and hem borders','Matching dupatta with an embroidered edge']}
 ];
 export const findLook=(slug:string)=>looks.find(look=>look.slug===slug);
 export const lookMessage=(look:Look)=>`Hi Gulmohar, I would like to enquire about the ${look.name} shown on your website. Please confirm the fabric, available options, price, measurements and delivery timeline.`;

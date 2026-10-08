@@ -189,7 +189,7 @@ test.describe('studio fit, import and tailor', () => {
     await expect(page.getByRole('link', {name: 'Continue to WhatsApp'})).toHaveCount(0);
     await expect(page.getByRole('button', {name: 'Save to this phone'})).toHaveCount(0);
     await page.getByRole('button', {name: `Save for ${name} on this device`}).click();
-    await expect(page.locator('main').getByRole('status')).toContainText('Saved on this device');
+    await expect(page.locator('main').getByRole('status').filter({hasText:'Saved on this device'})).toBeVisible();
     await page.waitForTimeout(1500);
     await page.goto('/studio');
     await expect(page.locator('.client-row', {hasText: name})).toContainText('On this device');
@@ -224,7 +224,7 @@ test.describe('studio fit, import and tailor', () => {
     await bust.getByLabel('Tape, inches').fill('34.5');
     await bust.getByRole('checkbox', {name: 'Verified'}).check();
     await page.getByRole('button', {name: 'Save corrections'}).click();
-    await expect(page.locator('main').getByRole('status')).toContainText('Saved on this device');
+    await expect(page.locator('main').getByRole('status').filter({hasText:'Saved on this device'})).toBeVisible();
     await page.reload();
     await pick(page, 'Client on this device', name);
     await expect(bust.getByLabel('Tape, inches')).toHaveValue('34.5');
